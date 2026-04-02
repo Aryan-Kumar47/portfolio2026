@@ -1,0 +1,46 @@
+// hooks/useScrollParallaxY.ts
+"use client";
+
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+interface ParallaxOptions {
+  trigger: string;
+  start?: string;
+  end?: string;
+  scrub?: number | boolean;
+  fromY?: number;
+  toY?: number;
+}
+
+export const useScrollParallaxY = ({
+  trigger,
+  start = "top 80%",
+  end = "bottom top",
+  scrub = 1,
+  fromY = 50,
+  toY = -50,
+}: ParallaxOptions) => {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        trigger,
+        { y: fromY },
+        {
+          y: toY,
+          scrollTrigger: {
+            trigger,
+            start,
+            end,
+            scrub,
+          },
+        },
+      );
+    });
+
+    return () => ctx.revert();
+  }, [trigger, start, end, scrub, fromY, toY]);
+};
