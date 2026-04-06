@@ -6,7 +6,7 @@ import { HiMiniArrowUpRight } from "react-icons/hi2";
 import { IProject, projects } from "@/src/components/work/projects";
 import { GilroyLight } from "@/src/utlis/fonts";
 import RoundedButton from "@/src/components/UI/RoundedButton";
-import Footer from "@/src/components/Footer";
+import Footer from "@/src/components/FooterDennis";
 interface pageProps {
   params: {
     id: string;

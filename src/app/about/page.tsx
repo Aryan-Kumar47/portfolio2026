@@ -10,7 +10,7 @@ import Text from "@/src/components/UI/Text";
 import AboutSection from "@/src/components/AboutSection";
 import Test from "@/src/components/Text";
 import WhatIMake from "@/src/components/WhatIMake";
-import Footer from "@/src/components/Footer";
+import Footer from "@/src/components/FooterDennis";
 
 interface pageProps {}
 const phrase = `“Be yourself; everyone else is already taken.”`;

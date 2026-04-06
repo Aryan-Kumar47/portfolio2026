@@ -5,7 +5,7 @@ import WhatIMade, { ModelInterface } from "@/src/components/work/WhatIMade";
 import { backstreetFont, GilroyLight } from "@/src/utlis/fonts";
 import ArrowBadge from "@/src/components/UI/ArrowBadge";
 import Text from "@/src/components/UI/Text";
-import Footer from "@/src/components/Footer";
+import Footer from "@/src/components/FooterDennis";
 
 interface pageProps {}
 
