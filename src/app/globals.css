@@ -1,12 +1,29 @@
 @import "tailwindcss";
 
+/* ─── Design System (inspired by dennissnellenberg.com) ─── */
+
+/* Typography Scale:
+   - Display/Hero:  clamp(3.5rem, 8vw, 9rem)   — big hero text
+   - H1:            clamp(2.5rem, 6vw, 7rem)    — section titles
+   - H2:            clamp(2rem, 4vw, 4.5rem)    — subsection titles
+   - H3:            clamp(1.25rem, 2vw, 2rem)   — card titles
+   - Body:          clamp(0.875rem, 1vw, 1rem)  — body text
+   - Small/Label:   0.75rem                      — labels, meta
+
+   Spacing Scale:
+   - Section padding:    clamp(100px, 15vh, 200px) vertical
+   - Container padding:  clamp(20px, 4vw, 80px) horizontal
+   - Element gaps:       clamp(40px, 6vh, 80px)
+*/
+
 html body::-webkit-scrollbar {
   height: 0 !important;
   width: 0 !important;
 }
 
 .section-wrapper {
-  @apply md:px-[4vw] flex flex-col md:pt-[9vh] pt-[7vh] pb-[7vh] overflow-hidden mt-20;
+  @apply flex flex-col overflow-hidden;
+  padding: clamp(80px, 12vh, 160px) clamp(20px, 4vw, 80px);
 }
 
 html {
@@ -19,6 +36,28 @@ html {
   text-size-adjust: none;
   text-rendering: optimizelegibility;
   background-color: #fff;
+}
+
+/* ─── Label style (uppercase small text like Dennis Snellenberg) ─── */
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+/* ─── Section title scale ─── */
+.section-title {
+  font-size: clamp(2.5rem, 6vw, 7rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Body text rhythm ─── */
+.body-text {
+  font-size: clamp(0.875rem, 1vw, 1rem);
+  line-height: 1.75;
+  color: #555;
 }
 
 .animate-text {

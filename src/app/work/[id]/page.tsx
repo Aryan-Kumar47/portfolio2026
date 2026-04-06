@@ -50,7 +50,12 @@ const Page: FC<PageProps> = ({ params }) => {
         </div>
         <div className="relative w-full flex justify-center items-center flex-col">
           <div className="mt-5 ">
-            <h1 className="text-[8.95349vw]  font-bold">{project?.name}</h1>
+            <h1
+              className="font-bold leading-[1.1] tracking-[-0.02em]"
+              style={{ fontSize: "clamp(3rem, 8.9vw, 10rem)" }}
+            >
+              {project?.name}
+            </h1>
           </div>
           <div className="w-full flex justify-between flex-wrap md:px-[calc(7vw+5rem)] px-[calc(3vw+1rem)] items-center mt-10">
             <div className="text-sm font-bold text-black">
@@ -108,7 +113,7 @@ const Page: FC<PageProps> = ({ params }) => {
               src={`/${project?.image}`}
               height={1000}
               width={1000}
-              alt="project-image"
+              alt={`${project?.name} project screenshot`}
             />
           </div>
         </div>

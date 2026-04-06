@@ -31,7 +31,10 @@ const About: FC<pageProps> = ({}) => {
         >
           <div className={` w-full flex items-center justify-between gap-x-4`}>
             <Text delay={0.9}>
-              <h1 className="md:text-[7.7vw] text-[16.7vw]">
+              <h1
+                className="leading-[1.1] tracking-[-0.02em]"
+                style={{ fontSize: "clamp(3rem, 7.7vw, 8rem)" }}
+              >
                 A
                 <span className={`${twisterFont.className} text-purple-600`}>
                   B
@@ -47,9 +50,12 @@ const About: FC<pageProps> = ({}) => {
             />
           </div>
           <Text delay={0.9}>
-            <h1 className="text-[calc(clamp(3.25em,5vw,4.5em)*0.65)] leading-[1.065]">
+            <p
+              className="leading-[1.3]"
+              style={{ fontSize: "clamp(1.25rem, 3vw, 2.5rem)" }}
+            >
               {phrase}
-            </h1>
+            </p>
           </Text>
         </div>
         <div className="md:px-[calc(7vw+5rem)] px-[3vw]">

@@ -14,8 +14,8 @@ const Header = () => {
   ];
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 text-white md:p-10 p-8">
-      <div className="flex justify-between items-center text-xs">
+    <header className="absolute top-0 left-0 right-0 z-50 text-white" style={{ padding: "clamp(24px, 3vw, 40px)" }}>
+      <div className="flex justify-between items-center label">
         <div>
           <Magnetic>
             <TransitionLink

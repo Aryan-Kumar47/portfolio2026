@@ -105,7 +105,7 @@ const page: FC<pageProps> = ({}) => {
   max-[720px]:pt-[calc(12vh*1.95)] pb-[calc(clamp(5em,21vh,12em)*0.66)]
   max-[720px]:pb-[calc(12vh*0.75)]"
         >
-          <h1 className={`text-[clamp(2.84em,6.125vw,7em)] leading-[1.165]`}>
+          <h1 className={`leading-[1.1] tracking-[-0.02em]`} style={{ fontSize: "clamp(2.5rem, 6vw, 7rem)" }}>
             Let'<span className={`${geraldine.className}`}>s</span> start a
             project together
           </h1>
@@ -189,9 +189,9 @@ const page: FC<pageProps> = ({}) => {
           </div>
           <div className="hidden py-8 lg:py-16 lg:flex flex-col w-full lg:w-[27%] lg:pl-[calc(clamp(2.5em,8vw,8em)/2)]">
             {/* Contact Details */}
-            <h5 className="text-[0.6em] uppercase tracking-[0.05em] opacity-50 mb-4">
+            <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50 mb-4">
               Contact Details
-            </h5>
+            </span>
 
             <ul className="flex flex-col items-start gap-y-3 pb-10">
               <li>
@@ -212,9 +212,9 @@ const page: FC<pageProps> = ({}) => {
             </ul>
 
             {/* Business Details */}
-            <h5 className="text-[0.6em] uppercase tracking-[0.05em] opacity-50 mb-4">
+            <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50 mb-4">
               Site Map
-            </h5>
+            </span>
 
             <ul className="flex flex-col gap-y-2 pb-10 text-white/80">
               {navLinks.map((item, index) => (
@@ -230,9 +230,9 @@ const page: FC<pageProps> = ({}) => {
             </ul>
 
             {/* Socials */}
-            <h5 className="text-[0.6em] uppercase tracking-[0.05em] opacity-50 mb-4">
+            <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50 mb-4">
               Socials
-            </h5>
+            </span>
 
             <ul className="flex flex-col items-start gap-y-3">
               {footerSocialLinks.map((item, i) => (
@@ -260,9 +260,9 @@ const page: FC<pageProps> = ({}) => {
             <div className="">
               <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
                 <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                <h5 className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
+                <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
                   Site Map
-                </h5>
+                </span>
               </div>
               <ul className="flex flex-row gap-x-2 pb-5 text-white/80">
                 {navLinks.map((item, index) => (
@@ -280,9 +280,9 @@ const page: FC<pageProps> = ({}) => {
             <div className="">
               <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
                 <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                <h5 className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
+                <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
                   Socials
-                </h5>
+                </span>
               </div>
               <ul className="flex flex-row items-start gap-x-2 pb-5">
                 {footerSocialLinks.map((item, i) => (
@@ -307,9 +307,9 @@ const page: FC<pageProps> = ({}) => {
             <div className="">
               <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
                 <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                <h5 className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
+                <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
                   More
-                </h5>
+                </span>
               </div>
               <div className="flex flex-row gap-x-2 items-start pb-5">
                 <a
@@ -328,9 +328,9 @@ const page: FC<pageProps> = ({}) => {
             <div className="">
               <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
                 <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                <h5 className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
+                <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
                   Contact Details
-                </h5>
+                </span>
               </div>
               <ul className="flex flex-col items-start gap-x-2 pb-5">
                 <li>
@@ -381,10 +381,11 @@ const page: FC<pageProps> = ({}) => {
             <p className="text-xs">Available</p>
           </div>
           <div className="flex flex-row justify-center items-center mb-1">
-            <h1 className="text-gray-400 text-xs text-center">
-              © {currentYear} — Designed & Developed by Aryan Kumar. <br />
+            <p className="text-gray-400 text-xs text-center leading-[1.6]">
+              &copy; {currentYear} — Designed & Developed by Aryan Kumar.{" "}
+              <br />
               All rights reserved.
-            </h1>
+            </p>
           </div>
         </div>
       </div>

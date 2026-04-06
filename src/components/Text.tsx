@@ -238,18 +238,33 @@ export default function Test() {
           >
             <div className="">
               <Text scrub>
-                <h1 className={`leading-[1.2]`}>Technologies </h1>
+                <h2
+                  className="leading-[1.2] tracking-[-0.02em]"
+                  style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}
+                >
+                  Technologies <span
+                    className={`${geraldine.className}`}
+                    style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}
+                  >
+                    I use
+                  </span>
+                </h2>
               </Text>
-              <div className="flex justify-between items-center px-4">
+              <div className="flex justify-center items-center px-4 mt-4">
                 <Text scrub>
-                  <p className="text-xs w-[30ch] text-start font-bold">
+                  <p className="label w-[60ch] text-center font-bold leading-[1.6]">
                     My toolkit includes industry-standard frameworks,
                     programming languages, and development tools.
                   </p>
                 </Text>
-                <Text scrub>
-                  <h1 className={`${geraldine.className} underline`}>I use</h1>
-                </Text>
+                {/* <Text scrub>
+                  <span
+                    className={`${geraldine.className}`}
+                    style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}
+                  >
+                    I use
+                  </span>
+                </Text> */}
               </div>
             </div>
           </div>
@@ -288,7 +303,7 @@ export default function Test() {
 
             <div className="absolute inset-0 flex items-center justify-center text-center px-6">
               <div className="relative">
-                <h1
+                <p
                   ref={maskHeaderRef}
                   className={`text-sm md:text-sm font-light max-w-3xl text-black`}
                 >
@@ -296,7 +311,7 @@ export default function Test() {
                   <span className={`${editorialLightItalic.className}`}>
                     Craft
                   </span>
-                </h1>
+                </p>
                 <div
                   ref={maskSubHeaderRef}
                   className="relative opacity-0 translate-y-8"

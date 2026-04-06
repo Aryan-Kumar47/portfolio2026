@@ -39,20 +39,25 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
     index: 0,
   });
   return (
-    <div
-      className={`md:px-[4vw] flex flex-col md:pt-[9vh] pt-[7vh] pb-[7vh] overflow-hidden ${source === "Work" ? "mt-0" : "mt-20"}select-none`}
+    <section
+      aria-label="Projects"
+      className={`flex flex-col overflow-hidden select-none ${source === "Work" ? "mt-0" : ""}`}
+      style={{ padding: "clamp(80px, 12vh, 160px) clamp(20px, 4vw, 80px)" }}
     >
       <div className={`w-full flex flex-col gap-12 relative`}>
         {source === "Home" && (
           <div className="flex flex-row gap-5 sm:gap-10 px-10 justify-between items-center md:px-[calc(5%+64px+32px)] relative">
             <Text>
-              <h1 className="md:text-[7.7vw] leading-[1.8] text-[16.7vw]">
+              <h2
+                className="leading-[1.2] tracking-[-0.02em]"
+                style={{ fontSize: "clamp(3rem, 7.7vw, 8rem)" }}
+              >
                 Pro
                 <span className={`${backstreetFont.className} text-[#455CE9]`}>
                   j
                 </span>
-                ect<span className={``}>s</span>
-              </h1>
+                ects
+              </h2>
             </Text>
             <ArrowIcon className="rotate-90 o-ui-arrow-project min-w-9 min-h-9 absolute right-10 top-10" />
           </div>
@@ -117,7 +122,7 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
         </div>
       </div>
       <Model model={model} projects={projects} />
-    </div>
+    </section>
   );
 };
 

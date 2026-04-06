@@ -47,13 +47,18 @@ const Footer: FC<FooterProps> = ({}) => {
   }, []);
   return (
     <footer
-      className={`fixed_footer select-none h-screen flex flex-col bg-[#1C1D20] text-white w-full fixed left-0 bottom-0 pt-[4vh] px-[3vw]`}
+      className={`fixed_footer select-none h-screen flex flex-col bg-[#1C1D20] text-white w-full fixed left-0 bottom-0`}
+      style={{ padding: "clamp(30px, 4vh, 60px) clamp(20px, 3vw, 60px)" }}
     >
       <div className="flex flex-col h-full justify-end items-center mt-8">
         <div className="md:mt-0 mt-20">
-          <h1 className={`md:text-[7vw] w-fit text-[10vw]`}>
-            Let'<span className={`${geraldine.className}`}>s</span> have a chat
-          </h1>
+          <h2
+            className="w-fit leading-[1.1] tracking-[-0.02em]"
+            style={{ fontSize: "clamp(2.5rem, 7vw, 7rem)" }}
+          >
+            Let&apos;<span className={`${geraldine.className}`}>s</span> have a
+            chat
+          </h2>
         </div>
         <div className="flex-col flex flex-1 justify-center items-center py-8 gap-y-10">
           <div className="">
@@ -105,9 +110,9 @@ const Footer: FC<FooterProps> = ({}) => {
                 <div className="mb-1.25">
                   <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
                     <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                    <h5 className="text-xs uppercase tracking-[0.05em] opacity-50">
+                    <span className="text-xs uppercase tracking-[0.05em] opacity-50">
                       Site Map
-                    </h5>
+                    </span>
                   </div>
                   <ul className="flex flex-row gap-x-2 pb-5 text-white/80">
                     {navLinks.map((item, index) => (
@@ -136,9 +141,9 @@ const Footer: FC<FooterProps> = ({}) => {
                 <div className="mb-1.25">
                   <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
                     <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                    <h5 className="text-xs uppercase tracking-[0.05em] opacity-50">
+                    <span className="text-xs uppercase tracking-[0.05em] opacity-50">
                       More
-                    </h5>
+                    </span>
                   </div>
                   <div className="flex flex-row gap-x-2">
                     <a
@@ -214,11 +219,11 @@ const Footer: FC<FooterProps> = ({}) => {
             <p className="text-xs">Available</p>
           </div>
           <div className="flex flex-row justify-center items-center mb-1">
-            <h1 className="text-gray-400 text-xs text-center">
-              © {currentYear} Aryan Kumar — Designed & Developed with passion.{" "}
-              <br />
+            <p className="text-gray-400 text-xs text-center leading-[1.6]">
+              &copy; {currentYear} Aryan Kumar — Designed & Developed with
+              passion. <br />
               All rights reserved.
-            </h1>
+            </p>
           </div>
         </div>
       </div>

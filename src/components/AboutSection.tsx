@@ -37,12 +37,17 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
   });
 
   return (
-    <div id="about-section" className={`section-wrapper bg-white`}>
-      <div
-        className={`flex md:flex-row flex-col justify-between items-start w-full md:p-0 px-10`}
-      >
+    <section
+      id="about-section"
+      aria-label="About"
+      className="section-wrapper bg-white"
+    >
+      <div className="flex md:flex-row flex-col justify-between items-start w-full md:p-0 px-10">
         <div className="w-full md:w-1/2">
-          <p className="md:text-[clamp(1em,1vw,100vw)] text-[clamp(1em,4vw,100vw)] leading-none uppercase flex flex-wrap md:px-20 md:pl-[calc(10%+64px+32px)] px-0">
+          <div
+            className="uppercase flex flex-wrap md:px-20 md:pl-[calc(10%+64px+32px)] px-0 leading-[1.4]"
+            style={{ fontSize: "clamp(0.875rem, 1vw, 1.125rem)" }}
+          >
             <Text
               animateOnScroll={source === "Home"}
               delay={source === "About" ? 1 : 0}
@@ -51,7 +56,8 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
                 <span>
                   <span>i am</span>
                   <span
-                    className={`${backstreetFont.className} text-[#455CE9] leading-[1.7] capitalize md:text-[clamp(1.5em,1vw,100vw)] text-[clamp(1em,3vw,100vw)] ml-px`}
+                    className={`${backstreetFont.className} text-[#455CE9] leading-[1.7] capitalize ml-px`}
+                    style={{ fontSize: "clamp(1.125rem, 1.5vw, 1.5rem)" }}
                   >
                     Aryan Kumar.
                   </span>{" "}
@@ -62,14 +68,16 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
                 </span>
               </span>
             </Text>
-          </p>
-          <div className="w-full flex justify-center items-center md:mt-20 mt-10">
-            <div className=" w-fit about-button">
-              <div className=" w-fit about-button">
+          </div>
+          <div
+            className="w-full flex justify-center items-center"
+            style={{ marginTop: "clamp(40px, 6vh, 80px)" }}
+          >
+            <div className="w-fit about-button">
+              <div className="w-fit about-button">
                 <RounderButton
                   href={"/about"}
                   customText={source === "Home" ? "Know More About Me" : "Me"}
-                  // hoverBackgroundColor="#f43f5e"
                   className="rounded-[50%] h-44 w-44"
                 >
                   {source === "Home" ? (
@@ -77,57 +85,68 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
                   ) : (
                     <Image
                       src="/me/10.png"
-                      alt="connect"
+                      alt="Aryan Kumar"
                       width={1000}
                       height={1000}
-                      className=" rounded-full"
+                      className="rounded-full"
                       unoptimized
                     />
-                    // <ParallaxImage className="" startY={-100} endY={100}>
-                    // </ParallaxImage>
                   )}
                 </RounderButton>
               </div>
             </div>
           </div>
         </div>
-        <div className="w-full md:w-1/2 flex flex-row md:mt-40 mt-20 relative">
+        <div
+          className="w-full md:w-1/2 flex flex-row relative"
+          style={{ marginTop: "clamp(40px, 8vh, 160px)" }}
+        >
           <Text>
             <div className="text-center w-full">
-              <h1 className={`text-8xl leading-[1.4] ${geraldine.className}`}>
+              <h2
+                className={`leading-[1.2] tracking-[-0.02em] ${geraldine.className}`}
+                style={{ fontSize: "clamp(4rem, 7vw, 8rem)" }}
+              >
                 Web &
-              </h1>
-              <br />
-              <h1
-                className={`text-8xl flex justify-center items-center gap-x-6 -mt-5`}
+              </h2>
+              <h2
+                className="leading-[1.2] tracking-[-0.02em] -mt-2"
+                style={{ fontSize: "clamp(4rem, 7vw, 8rem)" }}
               >
                 Mobile
-              </h1>
-              <br />
-              <h1 className={`${geraldine.className} text-xs`}>developer</h1>
+              </h2>
+              <p
+                className={`${geraldine.className} label mt-2`}
+                style={{textTransform: 'lowercase'}}
+              >
+                developer
+              </p>
             </div>
           </Text>
           <ArrowIcon className="rotate-90 o-ui-arrow-project1 min-w-9 min-h-9 absolute right-0 top-0" />
         </div>
       </div>
-      <div className="flex gap-10 md:px-0 px-10 mt-24 relative">
+      <div
+        className="flex gap-10 md:px-0 px-10 relative"
+        style={{ marginTop: "clamp(60px, 10vh, 120px)" }}
+      >
         <div className="w-full md:w-1/2">
           <ArrowIcon className="o-ui-arrow-about min-w-9 min-h-9 absolute left-10 md:left-0 top-0" />
           <div className="uppercase mt-10 md:px-[calc(10%+64px+32px)] font-bold">
             <Text>
-              <div className="text-xs text-gray-500 mb-8 font-semibold">
+              <h3 className="label text-gray-500 mb-8 font-semibold">
                 things i{" "}
                 <span className={`${geraldine.className} capitalize`}>can</span>{" "}
                 help you with ...
-              </div>
-              <div className="text-xs max-w-112.5 text-black">
-                web & mobile • UI & UX • front-end development • back-end
-                development • interaction • animation
-              </div>
+              </h3>
+              <p className="label max-w-[50ch] text-black leading-loose">
+                web & mobile &bull; UI & UX &bull; front-end development &bull;
+                back-end development &bull; interaction &bull; animation
+              </p>
             </Text>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

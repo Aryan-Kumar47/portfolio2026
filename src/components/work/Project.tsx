@@ -33,9 +33,9 @@ const Project: FC<ProjectProps> = ({
         href={`/work/${name.replaceAll(" ", "_")}`}
       >
         <div className=" group-hover:opacity-50 group-hover:-translate-x-4 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)]">
-          <h2 className="text-[calc(clamp(2em,8vw,3.5em)*0.75)] text-black font-extrabold">
+          <h3 className="text-black font-extrabold leading-[1.1] tracking-[-0.01em]" style={{ fontSize: "clamp(1.5rem, 4vw, 2.625rem)" }}>
             {name}
-          </h2>
+          </h3>
           <p className="text-sm text-gray-600 sm:block hidden">{product}</p>
         </div>
         <div className="text-sm text-gray-600 sm:block hidden group-hover:opacity-50 group-hover:translate-x-4 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)]">

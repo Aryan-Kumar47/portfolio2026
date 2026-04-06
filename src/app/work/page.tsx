@@ -53,7 +53,10 @@ const page: FC<pageProps> = ({}) => {
               {/* <h1 className="text-[clamp(2.84em,6.125vw,7em)] leading-[1.165] font-bold">
                 Creating next level digital products
               </h1> */}
-              <h1 className="md:text-[7.7vw] text-[16.7vw] font-medium">
+              <h1
+                className="font-medium leading-[1.1] tracking-[-0.02em]"
+                style={{ fontSize: "clamp(3rem, 7.7vw, 8rem)" }}
+              >
                 Pro
                 <span className={`${backstreetFont.className} text-[#fb923c]`}>
                   j
@@ -70,9 +73,12 @@ const page: FC<pageProps> = ({}) => {
           </div>
 
           <Text delay={0.9}>
-            <h1 className="text-[calc(clamp(2em,8vw,3.5em)*0.75)] text-gray-800 max-w-[50ch] leading-[1.065]">
+            <p
+              className="text-gray-800 max-w-[50ch] leading-[1.3]"
+              style={{ fontSize: "clamp(1.25rem, 3vw, 2.25rem)" }}
+            >
               {phrase}
-            </h1>
+            </p>
           </Text>
         </div>
         <WhatIMade source="Work" />

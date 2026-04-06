@@ -13,9 +13,12 @@ export default function ConnectUI() {
     <>
       <div className=" md:w-[66%] w-full relative mx-auto px-[4vw] md:pt-[9vh] pt-[7vh] mb-[7vh] mt-60">
         {/* Top Heading */}
-        <h2 className="absolute z-1 left-1/2 -translate-x-1/2 -top-6 text-center text-[4.5rem] leading-[1.1] tracking-normal">
-          <div>Connect</div>
-          <div>With me</div>
+        <h2
+          className="absolute z-1 left-1/2 -translate-x-1/2 -top-6 text-center leading-[1.1] tracking-[-0.02em]"
+          style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
+        >
+          <span className="block">Connect</span>
+          <span className="block">With me</span>
         </h2>
 
         {/* Parallax Image */}
@@ -32,14 +35,13 @@ export default function ConnectUI() {
         </div>
 
         {/* Bottom Heading */}
-        <h2
-          className={`absolute left-1/2 -translate-x-1/2 md:-bottom-[6.2rem] -bottom-[3.1rem] text-center ${editorialItalic.className} text-[4.5rem] leading-[1.1] tracking-normal`}
+        <p
+          className={`absolute left-1/2 -translate-x-1/2 md:-bottom-[6.2rem] -bottom-[3.1rem] text-center ${editorialItalic.className} leading-[1.1] tracking-[-0.02em]`}
+          style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
         >
-          <div>on</div>
-          <div className="overflow-hidden">
-            <span>linkedin</span>
-          </div>
-        </h2>
+          <span className="block">on</span>
+          <span className="block overflow-hidden">linkedin</span>
+        </p>
       </div>
 
       {/* Button */}
