@@ -52,11 +52,11 @@ const ProjectCard: React.FC<IProject> = ({
     <li ref={cardRef} className="w-full md:w-1/2 opacity-0">
       <TransitionLink
         href={`/work/${name.replaceAll(" ", "_")}`}
-        className="group block overflow-hidden text-[#3b3b3b] no-underline"
+        className="group block overflow-hidden no-underline"
       >
         {/* Image */}
         <div
-          className="relative w-full overflow-hidden"
+          className="relative w-full overflow-hidden "
           style={{ backgroundColor: bgColor }}
         >
           <ParallaxImage startY={-40} endY={40}>
@@ -70,15 +70,15 @@ const ProjectCard: React.FC<IProject> = ({
         </div>
 
         {/* Title */}
-        <div className="mt-4">
+        <div className="mt-(--gap-padding)">
           <h4 className="text-2xl md:text-3xl font-semibold">
             <span className="relative">{name}</span>
           </h4>
-          <div className="h-px w-full bg-neutral-700 my-3" />
+          <div className="h-px w-full bg-(--color-border) my-[calc(var(--gap-padding)/2)]" />
         </div>
 
         {/* Meta */}
-        <div className="flex justify-between text-sm text-[#3b3b3b]">
+        <div className="flex justify-between text-sm">
           <p>{role}</p>
           <p>{year}</p>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCursorContext } from "@/src/context/CursorContext";
+import { cn } from "@/src/utlis/cn";
 import gsap from "gsap";
 import React, { FC, PropsWithChildren, useEffect, useRef } from "react";
 
@@ -77,7 +78,7 @@ const Magnetic: FC<MagneticProps> = ({
         leave;
       }}
       ref={wrapperRef}
-      className={`inline-block w-full ${className ?? ""}`}
+      className={cn(`inline-block w-full ${className}`)}
     >
       {children}
     </div>

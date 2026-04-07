@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cn } from "@/src/utlis/cn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,7 +57,12 @@ export default function AnimatedLine({
 
   return (
     <div className="overflow-hidden">
-      <div ref={lineRef} className={`w-full h-px bg-black ${className}`} />
+      <div
+        ref={lineRef}
+        className={cn(
+          `w-full h-[0.5px] bg-(--color-dark) will-change-transform ${className}`,
+        )}
+      />
     </div>
   );
 }

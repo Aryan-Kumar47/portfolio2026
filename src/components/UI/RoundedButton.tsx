@@ -19,8 +19,8 @@ interface RoundedButtonProps extends ButtonHTMLAttributes<
 
 const RoundedButton: FC<RoundedButtonProps> = ({
   className,
-  backgroundColor = "#1C1D20",
-  hoverBackgroundColor = "#455CE9",
+  backgroundColor = "var(--color-dark)",
+  hoverBackgroundColor = "var(--color-blue)",
   href,
   customText,
   children,

@@ -3,7 +3,6 @@ import React, { FC } from "react";
 import { projects } from "./projects";
 import Project from "./Project";
 import Model from "./Model";
-import Work from "./Work";
 import { backstreetFont } from "@/src/utlis/fonts";
 import { useCursorContext } from "@/src/context/CursorContext";
 import { useScrollRotate } from "@/src/hooks/useScrollRotate";
@@ -15,6 +14,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import AnimatedLine from "../UI/AnimatedLine";
 import ProjectCard from "./ProjectCard";
+import ArrowBadge from "../UI/ArrowBadge";
 
 interface WhatIMakeProps {
   source?: "Home" | "Work";
@@ -39,26 +39,39 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
     index: 0,
   });
   return (
-    <div
-      className={`md:px-[4vw] flex flex-col md:pt-[9vh] pt-[7vh] pb-[7vh] overflow-hidden ${source === "Work" ? "mt-0" : "mt-20"}select-none`}
+    <section
+      aria-label="Selected Projects"
+      className={`flex flex-col overflow-hidden ${source === "Work" ? "pb-(--section-padding)" : "section"} select-none`}
     >
-      <div className={`w-full flex flex-col gap-12 relative`}>
+      <div
+        className={`w-full container-custom flex flex-col gap-[calc(var(--gap-padding)*2)] relative`}
+      >
         {source === "Home" && (
-          <div className="flex flex-row gap-5 sm:gap-10 px-10 justify-between items-center md:px-[calc(5%+64px+32px)] relative">
-            <Text>
-              <h1 className="md:text-[7.7vw] leading-[1.8] text-[16.7vw]">
-                Pro
-                <span className={`${backstreetFont.className} text-[#455CE9]`}>
-                  j
-                </span>
-                ect<span className={``}>s</span>
-              </h1>
-            </Text>
-            <ArrowIcon className="rotate-90 o-ui-arrow-project min-w-9 min-h-9 absolute right-10 top-10" />
+          <div className="">
+            <div
+              className={
+                "flex w-full flex-row gap-5 sm:gap-10 justify-between items-center relative "
+              }
+            >
+              <Text>
+                <h2 className="md:text-[7.7vw] leading-[1.2] tracking-[-0.02em] text-[16.7vw]">
+                  Pro
+                  <span
+                    className={`${backstreetFont.className} text-[#455CE9]`}
+                  >
+                    j
+                  </span>
+                  ect<span className={``}>s</span>
+                </h2>
+              </Text>
+              <ArrowIcon className="rotate-90 o-ui-arrow-project min-w-9 min-h-9 absolute right-10 top-10" />
+            </div>
           </div>
         )}
 
-        <div className="flex flex-col h-fit items-center justify-center px-10 relative md:px-[calc(5%+64px+32px)]">
+        <div
+          className={`flex flex-col h-fit items-center justify-center relative`}
+        >
           <div
             onMouseEnter={hide}
             onMouseLeave={visible}
@@ -69,18 +82,16 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
                 return (
                   <div
                     key={`home_project_${index}`}
-                    className="overflow-hidden item w-full transition-all duration-200 ease-linear hideCursor "
+                    className="overflow-hidden item w-full transition-all duration-200 ease-linear"
                   >
-                    {index === 0 && <AnimatedLine className="bg-gray-200" />}
                     <Project {...project} setModel={setModel} index={index} />
-                    <AnimatedLine className="bg-gray-200" />
                   </div>
                 );
               },
             )}
           </div>
           <div className="block md:hidden w-full">
-            <ul className="flex flex-col gap-y-12">
+            <ul className="flex flex-col gap-y-12 w-full">
               {(source === "Home" ? projects.slice(0, 4) : projects).map(
                 (project, index) => {
                   return <ProjectCard key={index} {...project} />;
@@ -94,7 +105,7 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
                 <TransitionLink
                   customText="Explore More"
                   href={"/work"}
-                  className="flex justify-center py-[1.8rem] px-2 w-full rounded-[5rem] group relative border"
+                  className="flex justify-center py-[1.8rem] px-[2.5em] w-full rounded-[5rem] group relative shadow-[inset_0px_0px_0px_1px_var(--color-border)]"
                 >
                   <div className="text-center uppercase text-xs">
                     <p>More Works</p>
@@ -117,7 +128,7 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
         </div>
       </div>
       <Model model={model} projects={projects} />
-    </div>
+    </section>
   );
 };
 

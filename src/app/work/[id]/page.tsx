@@ -108,7 +108,7 @@ const Page: FC<PageProps> = ({ params }) => {
               src={`/${project?.image}`}
               height={1000}
               width={1000}
-              alt="project-image"
+              alt={`${project?.name ?? "Project"} screenshot`}
             />
           </div>
         </div>

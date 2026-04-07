@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cn } from "@/src/utlis/cn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,7 +59,9 @@ export default function ArrowBadge({
   return (
     <span
       ref={ref}
-      className={`inline-flex items-center justify-center rounded-full p-3 ${className}`}
+      className={cn(
+        `inline-flex items-center justify-center rounded-full p-3 ${className}`,
+      )}
       style={{ width: size, height: size }}
     >
       <svg
@@ -69,7 +72,7 @@ export default function ArrowBadge({
         className="-rotate-90"
       >
         <path
-          fill="#fff"
+          fill="var(--color-white)"
           d="M14.603,10.301c-0.391-0.394-1.024-0.394-1.414,0l-7.873,7.962c-0.404,0.382-0.421,1.055-0.026,1.453l7.899,7.988c0.391,0.394,1.024,0.394,1.414,0c0.391-0.394,0.391-1.033,0-1.427l-6.205-6.275h17.598c0.552,0,1-0.448,1-1V5c0-0.552-0.448-1-1-1s-1,0.448-1,1v12.986H8.415l6.188-6.257C14.994,11.334,14.994,10.695,14.603,10.301z"
         />
       </svg>

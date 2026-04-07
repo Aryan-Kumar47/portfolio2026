@@ -9,8 +9,8 @@ export default function EthosTitle({
   animation,
   p,
   colorAccent = "#455CE9",
-  colorInitial = "#dddddd",
-  colorFinal = "#3b3b3b",
+  colorInitial = "var(--color-gray)",
+  colorFinal = "var(--color-text)",
 }: {
   text: string;
   italic?: boolean;
@@ -26,7 +26,9 @@ export default function EthosTitle({
     >
       {p && (
         <Text>
-          <p className="text-xs max-w-[50ch] text-start text-[#4E4E4E]">{p}</p>
+          <p className="text-xs max-w-[50ch] text-start text-(--color-gray)">
+            {p}
+          </p>
         </Text>
       )}
       {/* Line 1 */}
@@ -38,14 +40,14 @@ export default function EthosTitle({
             colorFinal={colorFinal}
           >
             <h1
-              className={`animate-text text-[#4E4E4E] ${italic ? editorialLightItalic.className : PPMoriRegular.className}`}
+              className={`animate-text ${italic ? editorialLightItalic.className : PPMoriRegular.className}`}
             >
               {text}
             </h1>
           </Heading>
         ) : (
           <h1
-            className={`animate-text text-[#4E4E4E] ${p ? "pl-2" : "pl-0"} ${italic ? editorialLightItalic.className : PPMoriRegular.className}`}
+            className={`animate-text ${p ? "pl-2" : "pl-0"} ${italic ? editorialLightItalic.className : PPMoriRegular.className}`}
           >
             {text}
           </h1>

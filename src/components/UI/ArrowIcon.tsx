@@ -1,3 +1,4 @@
+import { cn } from "@/src/utlis/cn";
 import React from "react";
 
 interface ArrowAboutIconProps {
@@ -10,12 +11,12 @@ interface ArrowAboutIconProps {
 const ArrowIcon: React.FC<ArrowAboutIconProps> = ({
   size = 20,
   className = "",
-  strokeColor = "#1c1d20",
+  strokeColor = "var(--color-dark)",
   strokeWidth = 1,
 }) => {
   return (
     <svg
-      className={`w-5 h-5 md:w-16 md:h-16 ${className}`}
+      className={cn(`w-5 h-5 md:w-16 md:h-16 ${className}`)}
       //   width={size}
       //   height={size}
       viewBox="0 0 64 64"

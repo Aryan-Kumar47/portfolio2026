@@ -21,7 +21,7 @@ export default function Test() {
   const spotlightImages = useRef<HTMLDivElement>(null);
   const maskContainerRef = useRef<HTMLDivElement>(null);
   const maskImageRef = useRef<HTMLDivElement>(null);
-  const maskHeaderRef = useRef<HTMLHeadingElement>(null);
+  const maskHeaderRef = useRef<HTMLParagraphElement>(null);
   const maskSubHeaderRef = useRef<HTMLParagraphElement>(null);
   const mainHeader = useRef<HTMLDivElement>(null);
 
@@ -230,15 +230,17 @@ export default function Test() {
 
   return (
     <>
-      <div ref={containerRef} className="mt-[10vh]">
-        <section className="spotlight relative h-[calc(100vh+30px)] overflow-hidden bg-[#1c1d20] text-white">
+      <div ref={containerRef} className="pt-(--section-padding)">
+        <section className="spotlight relative h-[calc(100vh+30px)] overflow-hidden bg-(--color-dark) text-white">
           <div
             ref={mainHeader}
             className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-6xl md:text-8xl will-change-transform"
           >
             <div className="">
               <Text scrub>
-                <h1 className={`leading-[1.2]`}>Technologies </h1>
+                <h2 className={`leading-[1.2] tracking-[-0.02em]`}>
+                  Technologies{" "}
+                </h2>
               </Text>
               <div className="flex justify-between items-center px-4">
                 <Text scrub>
@@ -248,7 +250,11 @@ export default function Test() {
                   </p>
                 </Text>
                 <Text scrub>
-                  <h1 className={`${geraldine.className} underline`}>I use</h1>
+                  <span
+                    className={`${geraldine.className} underline text-6xl md:text-8xl`}
+                  >
+                    I use
+                  </span>
                 </Text>
               </div>
             </div>
@@ -261,7 +267,7 @@ export default function Test() {
             {skills.map((row, rowIndex) => (
               <div
                 key={rowIndex + "_row"}
-                className="w-full md:p-8 overflow-hidden flex gap-8 md:gap-x-16"
+                className="w-full p-(--container-padding) overflow-hidden flex gap-(--gap-padding)"
               >
                 {row.map((item, colIndex) =>
                   item ? (
@@ -286,17 +292,17 @@ export default function Test() {
               className="h-full w-full bg-white will-change-transform"
             />
 
-            <div className="absolute inset-0 flex items-center justify-center text-center px-6">
+            <div className="absolute inset-0 flex items-center justify-center text-center px-(--container-padding)">
               <div className="relative">
-                <h1
+                <p
                   ref={maskHeaderRef}
-                  className={`text-sm md:text-sm font-light max-w-3xl text-black`}
+                  className={`text-sm md:text-sm font-light max-w-3xl text-(--color-text)`}
                 >
                   What I{" "}
                   <span className={`${editorialLightItalic.className}`}>
                     Craft
                   </span>
-                </h1>
+                </p>
                 <div
                   ref={maskSubHeaderRef}
                   className="relative opacity-0 translate-y-8"

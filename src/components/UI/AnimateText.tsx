@@ -3,6 +3,7 @@
 import React, { JSX, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cn } from "@/src/utlis/cn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,7 +49,7 @@ const AnimateText: React.FC<AnimateTextProps> = ({
   return (
     <Tag
       ref={textRef as any}
-      className={`animate-text text-[10rem] text-[#4E4E4E] leading-[1.2] ${className}`}
+      className={cn(`animate-text text-[10rem] leading-[1.2] ${className}`)}
     >
       {children}
     </Tag>

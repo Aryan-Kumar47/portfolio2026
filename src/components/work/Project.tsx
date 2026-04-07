@@ -26,26 +26,28 @@ const Project: FC<ProjectProps> = ({
       }}
       className={` flex w-full ${
         index === 0 ? "border-y-[0.5px]" : "border-b-[0.5px]"
-      } border-[rgba(0,0,0,0.125)]  cursor-pointer  group`}
+      } border-(--color-border)  cursor-pointer  group`}
     >
       <TransitionLink
         className={`px-4 py-14 flex w-full sm:items-center items-start justify-between`}
         href={`/work/${name.replaceAll(" ", "_")}`}
       >
         <div className=" group-hover:opacity-50 group-hover:-translate-x-4 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)]">
-          <h2 className="text-[calc(clamp(2em,8vw,3.5em)*0.75)] text-black font-extrabold">
+          <h3 className="text-[calc(clamp(2em,8vw,3.5em)*0.75)] text-(--color-dark) font-extrabold leading-[1.1] tracking-[-0.01em]">
             {name}
-          </h2>
-          <p className="text-sm text-gray-600 sm:block hidden">{product}</p>
+          </h3>
+          <p className="text-sm text-(--color-gray) sm:block hidden">
+            {product}
+          </p>
         </div>
-        <div className="text-sm text-gray-600 sm:block hidden group-hover:opacity-50 group-hover:translate-x-4 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)]">
+        <div className="text-sm text-(--color-gray) sm:block hidden group-hover:opacity-50 group-hover:translate-x-4 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)]">
           <p className="">{role}</p>
           <span className="">{year}</span>
         </div>
-        <button className="group border sm:hidden block rounded-full p-4 border-black">
+        {/* <button className="group border sm:hidden block rounded-full p-4 border-(--color-gray)">
           <i className="flex justify-center items-center">
             <svg
-              className="group-hover:fill-black fill-blue-400"
+              className="group-hover:fill-(black) fill-blue-400"
               width="19"
               height="19"
               viewBox="0 0 19 19"
@@ -58,7 +60,7 @@ const Project: FC<ProjectProps> = ({
               ></path>
             </svg>
           </i>
-        </button>
+        </button> */}
       </TransitionLink>
     </div>
   );

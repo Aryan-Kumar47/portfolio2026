@@ -159,9 +159,9 @@ const Footer: FC<FooterProps> = ({}) => {
               <div className="text-xs">
                 <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
                   <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                  <h5 className="text-xs uppercase tracking-[0.05em] opacity-50">
+                  <span className="text-xs uppercase tracking-[0.05em] opacity-50">
                     Socials
-                  </h5>
+                  </span>
                 </div>
                 <ul className="flex flex-row items-start gap-x-2 pb-5">
                   {footerSocialLinks.map((item, i) => (
@@ -214,11 +214,11 @@ const Footer: FC<FooterProps> = ({}) => {
             <p className="text-xs">Available</p>
           </div>
           <div className="flex flex-row justify-center items-center mb-1">
-            <h1 className="text-gray-400 text-xs text-center">
-              © {currentYear} Aryan Kumar — Designed & Developed with passion.{" "}
-              <br />
+            <p className="text-gray-400 text-xs text-center leading-[1.6]">
+              &copy; {currentYear} Aryan Kumar — Designed & Developed with
+              passion. <br />
               All rights reserved.
-            </h1>
+            </p>
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import EthosTitle from "./UI/EthosTitle";
 // 9810fa
 interface WhatIMakeI {
@@ -7,8 +6,10 @@ interface WhatIMakeI {
 
 export default function WhatIMake({ source = "Home" }: WhatIMakeI) {
   return (
-    <div className="px-[4vw] relative flex justify-center items-center flex-col pb-10 text-black">
-      <div className="w- absolute -top-[46vh]">
+    <div className="relative pb-(--section-padding) flex justify-center items-center flex-col text-(--color-text)">
+      <div
+        className={`absolute w-full -top-[46vh] ${source === "About" ? "container-custom medium" : "container-custom"}`}
+      >
         <EthosTitle text="Flexible" />
         <EthosTitle
           colorAccent={source === "About" ? "#9810fa" : undefined}

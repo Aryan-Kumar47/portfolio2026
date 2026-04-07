@@ -9,6 +9,32 @@ html body::-webkit-scrollbar {
   @apply md:px-[4vw] flex flex-col md:pt-[9vh] pt-[7vh] pb-[7vh] overflow-hidden mt-20;
 }
 
+:root {
+  --color-dark: #1c1d20;
+  --color-dark-dark: #141517;
+  --color-light: #ffffff;
+  --color-blue: #455ce9;
+  --color-blue-dark: #334bd3;
+  --color-gray: #999d9e;
+  --color-lightgray: #e9eaeb;
+  --color-white: #ffffff;
+  --color-border: rgba(28, 29, 32, 0.175);
+  --color-border-solid: #d2d2d2;
+  --color-border-light: rgba(255, 255, 255, 0.2);
+  --color-border-solid-light: #545557;
+  --color-text: #1c1d20;
+  --color-text-light: #fff;
+  --alert-error: #ff4444;
+  --alert-success: #24c958;
+  --animation-primary: all 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+  --animation-fast: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+  --animation-smooth: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+  --animation-slow: all 0.9s cubic-bezier(0.7, 0, 0.3, 1);
+  --section-padding: clamp(5em, 21vh, 12em);
+  --container-padding: clamp(2.5em, 8vw, 8em);
+  --gap-padding: clamp(1.5em, 4vw, 2.5em);
+}
+
 html {
   scroll-behavior: auto;
   scrollbar-width: none !important;
@@ -18,14 +44,18 @@ html {
   -moz-text-size-adjust: none;
   text-size-adjust: none;
   text-rendering: optimizelegibility;
-  background-color: #fff;
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-text);
 }
 
 .animate-text {
   position: relative;
   /* width: 60%; */
   margin: 0 auto;
-  color: #a9a7a7;
+  color: var(--color-gray);
   --clip-value: 100%;
 }
 
@@ -175,4 +205,81 @@ img {
 .mask-container .mask-img {
   width: 100%;
   height: 100%;
+}
+
+.section {
+  display: block;
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  position: relative;
+}
+
+.medium {
+  padding-left: calc(var(--container-padding) * 2);
+  padding-right: calc(var(--container-padding) * 2);
+}
+.container-custom {
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  max-width: 100em;
+  margin: 0px auto;
+}
+.default-header {
+  padding-top: calc(var(--section-padding) * 1.33);
+  padding-bottom: calc(var(--section-padding) * 0.66);
+}
+
+.work-filters .filter-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 calc(var(--container-padding) * 0.96) 0
+    calc(var(--container-padding) * 0.96);
+}
+.small-work-grid .work-items {
+  padding-bottom: calc(var(--section-padding) * 0.5);
+}
+@media screen and (max-width: 840px) {
+  .about-image {
+    padding-top: calc(var(--section-padding) * 0.85);
+  }
+}
+.about-image {
+  padding-top: calc(var(--section-padding) * 0.75);
+  padding-bottom: 0;
+  background: var(--color-white);
+}
+
+@media screen and (max-width: 720px) {
+  .default-header {
+    padding-top: calc(var(--section-padding) * 1.95);
+    padding-bottom: calc(var(--section-padding) * 0.75);
+  }
+}
+.contact-header {
+  background: var(--color-dark);
+  padding-bottom: calc(var(--section-padding) / 3);
+}
+@media screen and (max-width: 540px) {
+  :root {
+    --color-border: rgba(28, 29, 32, 0.225);
+    --color-border-light: rgba(255, 255, 255, 0.225);
+    --container-padding: clamp(1.25em, 4vw, 2.5em);
+    --section-padding: max(2.5em, 12vh);
+  }
+  .container-custom.medium,
+  .container-custom.small {
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+  }
+}
+@media screen and (max-width: 720px) {
+  :root {
+    --section-padding: 12vh;
+  }
+}
+@media screen and (max-width: 1200px) {
+  :root {
+    --container-padding: 6vw;
+  }
 }

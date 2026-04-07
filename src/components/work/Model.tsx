@@ -138,7 +138,7 @@ const Model: FC<ModelProps> = ({ model, projects }) => {
         variants={scaleAnimation}
         initial="initial"
         animate={active ? "open" : "closed"}
-        className="w-20 h-20 bg-[#1C1D20] fixed left-1/2 top-1/2 
+        className="w-20 h-20 bg-(--color-dark) fixed left-1/2 top-1/2 
         rounded-full
         pointer-events-none z-30"
       />
@@ -151,7 +151,7 @@ const Model: FC<ModelProps> = ({ model, projects }) => {
         className="fixed left-1/2 top-1/2 
         pointer-events-none z-30"
       >
-        <IoIosArrowRoundForward size={20} color="#fff" />
+        <IoIosArrowRoundForward size={20} color="var(--color-white)" />
       </motion.div>
     </>
   );

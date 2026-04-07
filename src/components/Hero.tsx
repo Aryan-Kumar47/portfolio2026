@@ -1,14 +1,12 @@
-import React from "react";
 import ParallaxImage from "./UI/ParallaxImage";
 import Image from "next/image";
-import ArrowText from "./UI/ArrowText";
 import { geraldine } from "../utlis/fonts";
 import Text from "./UI/Text";
 
 export default function Hero() {
   return (
     <>
-      <div className=" bg-[#1C1D20] h-screen flex flex-col pt-[10vh] pb-[5vh] justify-between px-[4vw] relative">
+      <section aria-label="Introduction" className=" bg-[#1C1D20] h-screen flex flex-col pt-[10vh] pb-[5vh] justify-between px-[4vw] relative">
         <div className="flex md:flex-row flex-col justify-between items-center text-white">
           <Text animateOnScroll={false} delay={0.8}>
             <h1 className="md:text-[8rem] text-[4rem] text-white">
@@ -28,7 +26,7 @@ export default function Hero() {
             <ParallaxImage className="" startY={-100} endY={100}>
               <Image
                 src="/me/10.png"
-                alt="connect"
+                alt="Aryan Kumar — Software Developer"
                 width={1000}
                 height={1000}
                 className="w-full h-full object-cover object-center md:mt-20 -mt-10"
@@ -61,13 +59,13 @@ export default function Hero() {
           </Text>
 
           <Text animateOnScroll={false} delay={0.8}>
-            <h1 className="md:text-[8rem] text-[4rem] text-white">
+            <p className="md:text-[8rem] text-[4rem] text-white leading-[1.1]">
               <span className={`${geraldine.className} pl-3`}>solve,</span>{" "}
               <span className={``}>Deliver</span>
-            </h1>
+            </p>
           </Text>
         </div>
-      </div>
+      </section>
     </>
   );
 }
