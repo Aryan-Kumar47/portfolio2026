@@ -251,7 +251,7 @@ export default function Test() {
                 </Text>
                 <Text scrub>
                   <span
-                    className={`${geraldine.className} underline text-6xl md:text-8xl`}
+                    className={`${geraldine.className} text-6xl md:text-8xl`}
                   >
                     I use
                   </span>

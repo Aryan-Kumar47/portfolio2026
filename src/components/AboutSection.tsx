@@ -43,8 +43,8 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
           <div
             className={`flex md:flex-row flex-col justify-between items-start w-full`}
           >
-            <div className="w-full md:w-1/2">
-              <p className="md:text-[clamp(1em,1vw,100vw)] text-[clamp(1em,4vw,100vw)] leading-none uppercase flex flex-wrap md:px-20 md:pl-[calc(10%+64px+32px)] px-0">
+            <div className="w-full md:max-w-[50ch]">
+              <p className="md:text-[clamp(1em,1vw,100vw)] text-[clamp(1em,4vw,100vw)] leading-none uppercase flex flex-wrap">
                 <Text
                   animateOnScroll={source === "Home"}
                   delay={source === "About" ? 1 : 0}
@@ -122,11 +122,11 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
       <div className="pt-(--section-padding)">
         <div className="container-custom">
           <div className="flex gap-10 relative">
-            <div className="w-full md:w-1/2">
-              <ArrowIcon className="o-ui-arrow-about min-w-9 min-h-9 absolute left-0 top-0" />
-              <div className="uppercase mt-10 md:px-[calc(10%+64px+32px)] font-bold">
+            <div className="w-full md:max-w-[50ch]">
+              <ArrowIcon className="o-ui-arrow-about min-w-9 min-h-9 absolute left-0 -top-10" />
+              <div className="uppercase mt-10 font-bold">
                 <Text>
-                  <div className="text-xs text-gray-500 mb-8 font-semibold">
+                  <div className="text-xs text-(--color-gray) mb-8 font-semibold">
                     things i{" "}
                     <span className={`${geraldine.className} capitalize`}>
                       can
