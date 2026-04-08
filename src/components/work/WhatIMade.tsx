@@ -44,10 +44,10 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
       className={`flex flex-col overflow-hidden ${source === "Work" ? "pb-(--section-padding)" : "section"} select-none`}
     >
       <div
-        className={`w-full container-custom flex flex-col gap-[calc(var(--gap-padding)*2)] relative`}
+        className={`w-full flex flex-col gap-[calc(var(--gap-padding)*2)] relative`}
       >
         {source === "Home" && (
-          <div className="">
+          <div className="w-full container-custom">
             <div
               className={
                 "flex w-full flex-row gap-5 sm:gap-10 justify-between items-center relative "
@@ -70,7 +70,7 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
         )}
 
         <div
-          className={`flex flex-col h-fit items-center justify-center relative`}
+          className={`flex flex-col h-fit items-center justify-center relative w-full container-custom`}
         >
           <div
             onMouseEnter={hide}

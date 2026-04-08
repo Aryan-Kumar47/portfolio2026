@@ -1,58 +1,30 @@
 "use client";
-import React, { FC, useEffect } from "react";
-import gsap from "gsap";
-import WhatIMade, { ModelInterface } from "@/src/components/work/WhatIMade";
-import { backstreetFont, GilroyLight } from "@/src/utlis/fonts";
+import React, { FC, useState } from "react";
+import { backstreetFont } from "@/src/utlis/fonts";
 import ArrowBadge from "@/src/components/UI/ArrowBadge";
 import Text from "@/src/components/UI/Text";
 import Footer from "@/src/components/Footer";
-
-interface pageProps {}
-
-const colors: string[] = [
-  "#e49366",
-  "#798e7b",
-  "#b692a1",
-  "#bfccd8",
-  "#666d73",
-];
+import WorkProjectList from "@/src/components/work/WorkProjectList";
+import WorkProjectGrid from "@/src/components/work/WorkProjectGrid";
+import ViewToggle, { ViewMode } from "@/src/components/work/ViewToggle";
+import WhatIMade from "@/src/components/work/WhatIMade";
 
 const phrase =
-  "Each project is demonstration of my skills and capabilities in both front-end and back-end development.";
-const page: FC<pageProps> = ({}) => {
-  useEffect(() => {
-    const t2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".project-scroll",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
-    t2.fromTo(
-      ".project-scroll",
-      {
-        y: "0px",
-      },
-      {
-        y: "-200px",
-      },
-    );
-  });
+  "Each project is a demonstration of my skills and capabilities in both front-end and back-end development.";
+
+const WorkPage: FC = () => {
+  const [view, setView] = useState<ViewMode>("list");
+
   return (
     <>
       <Footer />
-      <div className={`w-full bg-white relative`}>
+      <main className={`w-full bg-white relative`}>
+        {/* Header */}
         <div className="section default-header">
           <div className="container-custom medium">
-            <div
-              className={`  w-full flex items-center justify-between gap-x-4`}
-            >
+            <div className="w-full flex items-center justify-between gap-x-4">
               <Text delay={0.9}>
-                {/* <h1 className="text-[clamp(2.84em,6.125vw,7em)] leading-[1.165] font-bold">
-                Creating next level digital products
-              </h1> */}
-                <h1 className="md:text-[7.7vw] text-[16.7vw] font-medium">
+                <h1 className="md:text-[7.7vw] text-[16.7vw] font-medium leading-[1.1] tracking-[-0.02em]">
                   Pro
                   <span
                     className={`${backstreetFont.className} text-[#fb923c]`}
@@ -76,11 +48,24 @@ const page: FC<pageProps> = ({}) => {
             </Text>
           </div>
         </div>
+
+        {/* Toggle bar */}
+        {/* <div className="container-custom medium flex justify-end mb-(--gap-padding)">
+          <ViewToggle view={view} onChange={setView} />
+        </div> */}
+
+        {/* Project list / grid */}
+        {/* <section
+          aria-label="All Projects"
+          className="container-custom pb-(--section-padding)"
+        >
+          {view === "list" ? <WorkProjectList /> : <WorkProjectGrid />}
+        </section> */}
         <WhatIMade source="Work" />
-      </div>
+      </main>
       <div className="footer_trigger w-full mb-[100vh] pointer-events-none" />
     </>
   );
 };
 
-export default page;
+export default WorkPage;

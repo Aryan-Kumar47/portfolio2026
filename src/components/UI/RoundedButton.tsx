@@ -161,7 +161,7 @@ const RoundedButton: FC<RoundedButtonProps> = ({
           <div
             onMouseEnter={handleMouseEnter}
             className={cn(
-              "relative overflow-hidden cursor-pointer rounded-full flex justify-center items-center text-[#191921] will-change-transform",
+              "relative overflow-hidden cursor-pointer rounded-full flex justify-center items-center will-change-transform",
               className,
             )}
             style={{ backgroundColor: backgroundColor }}
@@ -186,7 +186,7 @@ const RoundedButton: FC<RoundedButtonProps> = ({
           onMouseEnter={handleMouseEnter}
           onMouseLeave={leave}
           className={cn(
-            "relative overflow-hidden cursor-pointer rounded-full flex justify-center items-center text-[#191921] will-change-transform",
+            "relative overflow-hidden cursor-pointer rounded-full flex justify-center items-center will-change-transform",
             className,
           )}
           style={{ backgroundColor: backgroundColor }}

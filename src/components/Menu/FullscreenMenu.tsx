@@ -88,7 +88,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
       {/* Overlay */}
       <div
         onClick={() => setOpen(false)}
-        className={`absolute block md:hidden inset-0 bg-black/80 transition-opacity duration-400 ${
+        className={`absolute block md:hidden inset-0 bg-(--color-dark)/80 transition-opacity duration-400 ${
           open ? "opacity-100" : "opacity-0"
         }`}
       />
@@ -96,7 +96,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
       {/* Menu */}
       <div
         ref={menuRef}
-        className="relative w-[calc(100%-12px)] mx-auto md:w-full bg-[#1C1D20] px-[4vw] -translate-y-ful overflow-hidden rounded-2xl border border-gray-500"
+        className="relative w-[calc(100%-12px)] mx-auto md:w-full bg-(--color-dark) px-[4vw] -translate-y-ful overflow-hidden rounded-2xl border border-(--color-border)"
       >
         {/* Links */}
         <ul className="flex flex-col items-center pt-[15vh]">
@@ -138,7 +138,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
           <Magnetic customText="Contact me through mail!">
             <a
               href="mailto:hi@abhishekjha.me"
-              className="block w-full text-center text-black bg-white
+              className="block w-full text-center text-(--color-dark) bg-white
           py-5 rounded-full text-lg
           transition-all duration-500 ease-[cubic-bezier(.075,.82,.165,1)]"
             >

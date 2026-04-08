@@ -39,7 +39,7 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
   return (
     <section id="about-section" className={`bg-white section`}>
       <div className="">
-        <div className="container-custom">
+        <div className="container-custom medium">
           <div
             className={`flex md:flex-row flex-col justify-between items-start w-full`}
           >
@@ -120,7 +120,7 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
         </div>
       </div>
       <div className="pt-(--section-padding)">
-        <div className="container-custom">
+        <div className="container-custom medium">
           <div className="flex gap-10 relative">
             <div className="w-full md:max-w-[50ch]">
               <ArrowIcon className="o-ui-arrow-about min-w-9 min-h-9 absolute left-0 -top-10" />
