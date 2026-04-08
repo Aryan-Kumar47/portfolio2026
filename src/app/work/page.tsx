@@ -24,7 +24,11 @@ const WorkPage: FC = () => {
           <div className="container-custom medium">
             <div className="w-full flex items-center justify-between gap-x-4">
               <Text delay={0.9}>
-                <h1 className="md:text-[7.7vw] text-[16.7vw] font-medium leading-[1.1] tracking-[-0.02em]">
+                <h1 className="text-[calc(clamp(3.25em,7vw,8em)*.875)] leading-[1.06] tracking-[-0.02em]">
+                  <span>Creating next level</span> <br />
+                  <span>digital products</span>
+                </h1>
+                {/* <h1 className="md:text-[7.7vw] text-[16.7vw] leading-[1.1] tracking-[-0.02em]">
                   Pro
                   <span
                     className={`${backstreetFont.className} text-[#fb923c]`}
@@ -32,20 +36,20 @@ const WorkPage: FC = () => {
                     j
                   </span>
                   ects
-                </h1>
+                </h1> */}
               </Text>
-              <ArrowBadge
+              {/* <ArrowBadge
                 animation="scale"
                 animateOnView={false}
                 delay={1}
                 className="bg-[#fb923c]"
-              />
+              /> */}
             </div>
-            <Text delay={0.9}>
+            {/* <Text delay={0.9}>
               <p className="text-[calc(clamp(2em,8vw,3.5em)*0.75)] text-gray-800 max-w-[50ch] leading-[1.3] mt-8">
                 {phrase}
               </p>
-            </Text>
+            </Text> */}
           </div>
         </div>
 
@@ -61,6 +65,22 @@ const WorkPage: FC = () => {
         >
           {view === "list" ? <WorkProjectList /> : <WorkProjectGrid />}
         </section> */}
+        <div className="w-full container-custom">
+          <div className="w-full flex pb-(--gap-padding)">
+            <div className="pl-(--container-padding) w-[44%]">
+              <h5>Project</h5>
+            </div>
+            <div className="w-[20%]">
+              <h5>Type</h5>
+            </div>
+            <div className="w-[22%]">
+              <h5>Services</h5>
+            </div>
+            <div className="w-[14%] pr-(--container-padding)">
+              <h5>Year</h5>
+            </div>
+          </div>
+        </div>
         <WhatIMade source="Work" />
       </main>
       <div className="footer_trigger w-full mb-[100vh] pointer-events-none" />

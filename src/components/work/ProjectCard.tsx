@@ -61,7 +61,7 @@ const ProjectCard: React.FC<IProject> = ({
         >
           <ParallaxImage startY={-40} endY={40}>
             <div
-              className="w-full aspect-square bg-cover bg-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
+              className="w-full aspect-square bg-cover bg-center transition-transform duration-700 ease-(--ease) group-hover:scale-110"
               style={{
                 backgroundImage: `url("${image}")`,
               }}

@@ -68,9 +68,9 @@ const Text: React.FC<TextProps> = ({
 
       const animationProps = {
         y: "0%",
-        duration: 1,
+        duration: 0.5,
         stagger: type === "words" ? 0.03 : 0.1,
-        ease: "power4.out",
+        ease: "var(--ease)",
         delay,
       };
 

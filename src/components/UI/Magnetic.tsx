@@ -19,7 +19,7 @@ const Magnetic: FC<MagneticProps> = ({
   children,
   strength = 0.3,
   duration = 1,
-  ease = "elastic.out(1, 0.3)",
+  ease = "var(--ease)",
   inner = false,
   className,
   customText,

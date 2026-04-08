@@ -34,7 +34,7 @@ const ArrowText: React.FC = () => {
     tl.to(curveRef.current, {
       strokeDashoffset: 0,
       duration: 1.2,
-      ease: "power2.out",
+      ease: "var(--ease)",
     });
 
     // Then arrow head
@@ -43,7 +43,7 @@ const ArrowText: React.FC = () => {
       {
         strokeDashoffset: 0,
         duration: 0.4,
-        ease: "power2.out",
+        ease: "var(--ease)",
       },
       "-=0.2",
     );

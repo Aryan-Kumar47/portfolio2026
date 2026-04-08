@@ -23,8 +23,8 @@ const scaleAnimation: Variants = {
     x: "-50%",
     y: "-50%",
     transition: {
-      duration: 0.4,
-      ease: [0.76, 0, 0.24, 1] as [number, number, number, number],
+      duration: 0.3,
+      ease: [0.7, 0, 0.3, 1] as [number, number, number, number],
     },
   },
   closed: {
@@ -32,8 +32,8 @@ const scaleAnimation: Variants = {
     x: "-50%",
     y: "-50%",
     transition: {
-      duration: 0.4,
-      ease: [0.32, 0, 0.67, 0] as [number, number, number, number],
+      duration: 0.3,
+      ease: [0.7, 0, 0.3, 1] as [number, number, number, number],
     },
   },
 };
@@ -49,30 +49,30 @@ const Model: FC<ModelProps> = ({ model, projects }) => {
     if (!container.current || !cursor.current || !cursorLabel.current) return;
 
     const moveContainerX = gsap.quickTo(container.current, "left", {
-      duration: 0.8,
-      ease: "power3",
+      duration: 0.3,
+      transition: "var(--ease)",
     });
     const moveContainerY = gsap.quickTo(container.current, "top", {
-      duration: 0.8,
-      ease: "power3",
+      duration: 0.3,
+      transition: "var(--ease)",
     });
 
     const moveCursorX = gsap.quickTo(cursor.current, "left", {
-      duration: 0.5,
-      ease: "power3",
+      duration: 0.35,
+      transition: "var(--ease)",
     });
     const moveCursorY = gsap.quickTo(cursor.current, "top", {
-      duration: 0.5,
-      ease: "power3",
+      duration: 0.35,
+      transition: "var(--ease)",
     });
 
     const moveCursorLabelX = gsap.quickTo(cursorLabel.current, "left", {
       duration: 0.3,
-      ease: "power3",
+      transition: "var(--ease)",
     });
     const moveCursorLabelY = gsap.quickTo(cursorLabel.current, "top", {
       duration: 0.3,
-      ease: "power3",
+      transition: "var(--ease)",
     });
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -108,8 +108,7 @@ const Model: FC<ModelProps> = ({ model, projects }) => {
         overflow-hidden pointer-events-none shadow-lg z-20"
       >
         <div
-          className="h-full w-full absolute transition-[top] duration-[0.4s] 
-          ease-[cubic-bezier(0.34,0,0.64,1)]"
+          className="h-full w-full absolute transition-all duration-300 ease-(--ease)"
           style={{ top: `${index * -100}%` }}
         >
           {projects.map((project, i) => (

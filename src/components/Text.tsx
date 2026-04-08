@@ -230,7 +230,7 @@ export default function Test() {
 
   return (
     <>
-      <div ref={containerRef} className="pt-(--section-padding)">
+      <div ref={containerRef} className="">
         <section className="spotlight relative h-[calc(100vh+30px)] overflow-hidden bg-(--color-dark) text-white">
           <div
             ref={mainHeader}

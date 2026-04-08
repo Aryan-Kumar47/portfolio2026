@@ -38,6 +38,16 @@ const GilroyLight = localFont({
   src: [{ path: "../font/gilroy-free/Gilroy-Light.otf" }],
 });
 
+const hafferFont = localFont({
+  src: [{ path: "../fonts/Haffer-TRIAL-VF.ttf" }],
+  variable: "--haffer",
+});
+
+const neueMontreal = localFont({
+  src: [{ path: "../fonts/NeueMontreal-Regular.otf" }],
+  variable: "--neue",
+});
+
 export {
   editorialItalic,
   PPMoriRegular,
@@ -48,4 +58,6 @@ export {
   backstreetFont,
   GilroyLight,
   geraldine,
+  hafferFont,
+  neueMontreal,
 };

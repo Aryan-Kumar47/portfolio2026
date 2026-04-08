@@ -32,8 +32,8 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
 
   useScrollParallaxY({
     trigger: ".about-button",
-    fromY: 50,
-    toY: -50,
+    fromY: 150,
+    toY: -10,
   });
 
   return (
@@ -44,19 +44,19 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
             className={`flex md:flex-row flex-col justify-between items-start w-full`}
           >
             <div className="w-full md:max-w-[50ch]">
-              <p className="md:text-[clamp(1em,1vw,100vw)] text-[clamp(1em,4vw,100vw)] leading-none uppercase flex flex-wrap">
+              <p className="uppercase flex flex-wrap">
                 <Text
                   animateOnScroll={source === "Home"}
                   delay={source === "About" ? 1 : 0}
                 >
-                  <span className="flex flex-col font-bold">
+                  <span className="flex flex-col">
                     <span>
-                      <span>i am</span>
-                      <span
-                        className={`${backstreetFont.className} text-[#455CE9] leading-[1.7] capitalize md:text-[clamp(1.5em,1vw,100vw)] text-[clamp(1em,3vw,100vw)] ml-px`}
+                      <span>i am aryan kumar</span>
+                      {/* <span
+                        className={`${backstreetFont.className} text-[1.3em] text-[#455CE9] capitalize ml-px`}
                       >
                         Aryan Kumar.
-                      </span>{" "}
+                      </span> */}
                     </span>
                     <span>
                       i build functional, scalable, optimized, modern,
@@ -68,31 +68,27 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
               </p>
               <div className="w-full flex justify-center items-center md:mt-20 mt-10">
                 <div className=" w-fit about-button">
-                  <div className=" w-fit about-button">
-                    <RounderButton
-                      href={"/about"}
-                      customText={
-                        source === "Home" ? "Know More About Me" : "Me"
-                      }
-                      // hoverBackgroundColor="#f43f5e"
-                      className="rounded-[50%] h-44 w-44"
-                    >
-                      {source === "Home" ? (
-                        <div className="text-white">About Me</div>
-                      ) : (
-                        <Image
-                          src="/me/10.png"
-                          alt="connect"
-                          width={1000}
-                          height={1000}
-                          className=" rounded-full"
-                          unoptimized
-                        />
-                        // <ParallaxImage className="" startY={-100} endY={100}>
-                        // </ParallaxImage>
-                      )}
-                    </RounderButton>
-                  </div>
+                  <RounderButton
+                    href={"/about"}
+                    customText={source === "Home" ? "Know More About Me" : "Me"}
+                    // hoverBackgroundColor="#f43f5e"
+                    className="rounded-[50%] h-44 w-44"
+                  >
+                    {source === "Home" ? (
+                      <div className="text-white">About Me</div>
+                    ) : (
+                      <Image
+                        src="/me/10.png"
+                        alt="connect"
+                        width={1000}
+                        height={1000}
+                        className=" rounded-full"
+                        unoptimized
+                      />
+                      // <ParallaxImage className="" startY={-100} endY={100}>
+                      // </ParallaxImage>
+                    )}
+                  </RounderButton>
                 </div>
               </div>
             </div>
@@ -109,9 +105,7 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
                   >
                     Mobile
                   </h2>
-                  <p className={`${geraldine.className} text-xs mt-2`}>
-                    developer
-                  </p>
+                  <p className={`${geraldine.className} mt-2`}>developer</p>
                 </div>
               </Text>
               <ArrowIcon className="rotate-90 o-ui-arrow-project1 min-w-9 min-h-9 absolute right-0 top-0" />
@@ -124,19 +118,19 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
           <div className="flex gap-10 relative">
             <div className="w-full md:max-w-[50ch]">
               <ArrowIcon className="o-ui-arrow-about min-w-9 min-h-9 absolute left-0 -top-10" />
-              <div className="uppercase mt-10 font-bold">
+              <div className="uppercase mt-10">
                 <Text>
-                  <div className="text-xs text-(--color-gray) mb-8 font-semibold">
+                  <h5 className="pb-(--gap-padding)">
                     things i{" "}
                     <span className={`${geraldine.className} capitalize`}>
                       can
                     </span>{" "}
                     help you with ...
-                  </div>
-                  <div className="text-xs max-w-112.5 text-black">
+                  </h5>
+                  <p className="max-w-[15em] uppercase tracking-[0.05em]">
                     web & mobile • UI & UX • front-end development • back-end
                     development • interaction • animation
-                  </div>
+                  </p>
                 </Text>
               </div>
             </div>

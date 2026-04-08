@@ -56,12 +56,12 @@ export default function ConnectUI() {
               <p>Linkedin</p>
             </div>
 
-            <div className="absolute top-1/2 right-0 -translate-x-1/4 -translate-y-1/2 w-[3.6rem] flex justify-center rounded-full bg-[#3b3b3b] items-center h-[3.6rem] overflow-hidden group-hover:scale-110 transition-all duration-[0.8s] ease-[cubic-bezier(.18,.71,.11,1)]">
+            <div className="absolute top-1/2 right-0 -translate-x-1/4 -translate-y-1/2 w-[3.6rem] flex justify-center rounded-full bg-[#3b3b3b] items-center h-[3.6rem] overflow-hidden group-hover:scale-110 transition-all duration-[0.8s] ease-(--ease)">
               <div className="relative w-full h-full">
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-[0.8s] ease-[cubic-bezier(.18,.71,.11,1)] group-hover:translate-x-[300%]">
+                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-[0.8s] ease-(--ease) group-hover:translate-x-[300%]">
                   <RiLinkedinLine size={20} color="#fff" />
                 </span>
-                <span className="absolute top-1/2 left-1/2 -translate-x-[300%] -translate-y-1/2 transition-all duration-[0.8s] ease-[cubic-bezier(.18,.71,.11,1)] group-hover:translate-x-[-50%]">
+                <span className="absolute top-1/2 left-1/2 -translate-x-[300%] -translate-y-1/2 transition-all duration-[0.8s] ease-(--ease) group-hover:translate-x-[-50%]">
                   <IoIosArrowRoundForward size={20} color="#fff" />
                 </span>
               </div>

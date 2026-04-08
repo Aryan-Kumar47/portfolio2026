@@ -105,7 +105,7 @@ const RoundedButton: FC<RoundedButtonProps> = ({
             top: "-25%",
             width: "150%",
             duration: 0.4,
-            ease: "power3.in",
+            ease: "var(--ease)",
           },
           "enter",
         )

@@ -41,14 +41,17 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
   return (
     <section
       aria-label="Selected Projects"
-      className={`flex flex-col overflow-hidden ${source === "Work" ? "pb-(--section-padding)" : "section"} select-none`}
+      className={`flex flex-col overflow-hidden pb-[calc(var(--section-padding)*0.75)] select-none`}
     >
-      <div
-        className={`w-full flex flex-col gap-[calc(var(--gap-padding)*2)] relative`}
-      >
+      <div className={`w-full flex flex-col relative`}>
         {source === "Home" && (
-          <div className="w-full container-custom">
-            <div
+          <div className="w-full container-custom medium">
+            <div className="w-full pb-(--gap-padding)">
+              <div className="">
+                <h5>Recent work</h5>
+              </div>
+            </div>
+            {/* <div
               className={
                 "flex w-full flex-row gap-5 sm:gap-10 justify-between items-center relative "
               }
@@ -65,7 +68,7 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
                 </h2>
               </Text>
               <ArrowIcon className="rotate-90 o-ui-arrow-project min-w-9 min-h-9 absolute right-10 top-10" />
-            </div>
+            </div> */}
           </div>
         )}
 
@@ -82,9 +85,14 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
                 return (
                   <div
                     key={`home_project_${index}`}
-                    className="overflow-hidden item w-full transition-all duration-200 ease-linear"
+                    className={`overflow-hidden item w-full transition-all duration-200 ease-linear `}
                   >
-                    <Project {...project} setModel={setModel} index={index} />
+                    <Project
+                      {...project}
+                      setModel={setModel}
+                      index={index}
+                      source={source}
+                    />
                   </div>
                 );
               },
@@ -100,7 +108,7 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
             </ul>
           </div>
           {source === "Home" && (
-            <div className="w-full flex justify-center items-center md:px-[calc(7vw+5rem)] px-[3vw] mt-32 mb-11">
+            <div className="w-full flex justify-center items-center md:px-[calc(7vw+5rem)] px-[3vw] pt-[calc(var(--section-padding)/2)]">
               <Magnetic className="w-full md:max-w-[80%] max-w-[90%] ">
                 <TransitionLink
                   customText="Explore More"
@@ -111,12 +119,12 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
                     <p>More Works</p>
                   </div>
 
-                  <div className="absolute top-1/2 right-0 -translate-x-1/4 -translate-y-1/2 w-[3.6rem] flex justify-center rounded-full bg-[#3b3b3b] items-center h-[3.6rem] overflow-hidden group-hover:scale-110 transition-all duration-[0.8s] ease-[cubic-bezier(.18,.71,.11,1)]">
+                  <div className="absolute top-1/2 right-0 -translate-x-1/4 -translate-y-1/2 w-[3.6rem] flex justify-center rounded-full bg-[#3b3b3b] items-center h-[3.6rem] overflow-hidden group-hover:scale-110 transition-all duration-[0.8s] ease-(--ease)">
                     <div className="relative w-full h-full">
-                      <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-[0.8s] ease-[cubic-bezier(.18,.71,.11,1)] group-hover:translate-x-[300%]">
+                      <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-[0.8s] ease-(--ease) group-hover:translate-x-[300%]">
                         <MdOutlineWorkOutline size={20} color="#fff" />
                       </span>
-                      <span className="absolute top-1/2 left-1/2 -translate-x-[300%] -translate-y-1/2 transition-all duration-[0.8s] ease-[cubic-bezier(.18,.71,.11,1)] group-hover:translate-x-[-50%]">
+                      <span className="absolute top-1/2 left-1/2 -translate-x-[300%] -translate-y-1/2 transition-all duration-[0.8s] ease-(--ease) group-hover:translate-x-[-50%]">
                         <IoIosArrowRoundForward size={20} color="#fff" />
                       </span>
                     </div>

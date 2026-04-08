@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "../components/SmoothScroll";
 import Transition from "../components/Transition";
-import { GilroyLight } from "../utlis/fonts";
+import { GilroyLight, hafferFont, neueMontreal } from "../utlis/fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aryankumar.dev"),
@@ -61,7 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${GilroyLight.className} antialiased`}>
+      <body className={`${neueMontreal.className} antialiased`}>
         <SmoothScroll>{children}</SmoothScroll>
         <Transition />
       </body>

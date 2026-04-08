@@ -31,7 +31,7 @@ export default function ArrowBadge({
     const vars: gsap.TweenVars = {
       duration: 1,
       delay,
-      ease: "power3.out",
+      ease: "var(--ease)",
     };
 
     if (animateOnView) {

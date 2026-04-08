@@ -31,12 +31,12 @@ const About: FC<pageProps> = ({}) => {
                   out
                 </h1>
               </Text>
-              <ArrowBadge
+              {/* <ArrowBadge
                 animation="scale"
                 animateOnView={false}
                 delay={1}
                 className="bg-purple-600"
-              />
+              /> */}
             </div>
             <Text delay={0.9}>
               <p className="text-[calc(clamp(3.25em,5vw,4.5em)*0.65)] leading-[1.3] mt-8">

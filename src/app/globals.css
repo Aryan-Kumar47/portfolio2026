@@ -26,6 +26,7 @@ html body::-webkit-scrollbar {
   --color-text-light: #fff;
   --alert-error: #ff4444;
   --alert-success: #24c958;
+  --ease: cubic-bezier(0.7, 0, 0.3, 1);
   --animation-primary: all 0.5s cubic-bezier(0.7, 0, 0.3, 1);
   --animation-fast: all 0.3s cubic-bezier(0.7, 0, 0.3, 1);
   --animation-smooth: all 0.7s cubic-bezier(0.7, 0, 0.3, 1);
@@ -49,7 +50,7 @@ html {
 body {
   background-color: var(--color-white);
   color: var(--color-text);
-  line-height: 1.6;
+  line-height: 1.3;
   font-weight: 450;
   font-style: normal;
   font-size: 16px;
@@ -288,3 +289,22 @@ img {
     --container-padding: 6vw;
   }
 }
+
+h5 {
+  font-weight: 450;
+  font-style: normal;
+  font-size: 0.6em;
+  line-height: 1.065;
+  margin-bottom: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+}
+
+/* h4 {
+  font-weight: 450;
+  font-style: normal;
+  font-size: clamp(1.55em, 2.3vw, 2.5em);
+  line-height: 1.45;
+  margin-bottom: 1em;
+} */

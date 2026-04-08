@@ -359,9 +359,9 @@ const page: FC<pageProps> = ({}) => {
             >
               <div className="w-fit z-1">
                 <Magnetic hoverEffect={false}>
-                  <div className="p-6 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)] bg-white -mr-4 rounded-full">
+                  <div className="p-6 transition-all duration-300 ease-(--ease) bg-white -mr-4 rounded-full">
                     <HiOutlineDocumentText
-                      className=" text-black group-hover:scale-125 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)]"
+                      className=" text-black group-hover:scale-125 transition-all duration-300 ease-(--ease)"
                       size={30}
                     />
                   </div>

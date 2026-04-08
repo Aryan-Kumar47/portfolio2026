@@ -69,9 +69,9 @@ const Footer: FC<FooterProps> = ({}) => {
                 <p className="text-nowrap md:text-[5vw] text-[4vw]">{email}</p>
               </div>
               <Magnetic hoverEffect={false}>
-                <div className="md:p-12 p-6 bg-white -ml-4 rounded-full transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)]">
+                <div className="md:p-12 p-6 bg-white -ml-4 rounded-full transition-all duration-300 ease-(--ease)">
                   <CiMail
-                    className="stroke-[0.2] text-2xl md:text-6xl group-hover:scale-125 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)] text-black"
+                    className="stroke-[0.2] text-2xl md:text-6xl group-hover:scale-125 transition-all duration-300 ease-(--ease) text-black"
                     // size={60}
                   />
                 </div>
@@ -87,9 +87,9 @@ const Footer: FC<FooterProps> = ({}) => {
               >
                 <div className="w-fit z-1">
                   <Magnetic hoverEffect={false}>
-                    <div className="p-6 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)] bg-white -mr-4 rounded-full">
+                    <div className="p-6 transition-all duration-300 ease-(--ease) bg-white -mr-4 rounded-full">
                       <HiOutlineDocumentText
-                        className=" text-black group-hover:scale-125 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)]"
+                        className=" text-black group-hover:scale-125 transition-all duration-300 ease-(--ease)"
                         size={30}
                       />
                     </div>
@@ -197,10 +197,10 @@ const Footer: FC<FooterProps> = ({}) => {
                       behavior: "smooth",
                     });
                   }}
-                  className="p-6 group hover:scale-110 bg-white transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)] rounded-full"
+                  className="p-6 group hover:scale-110 bg-white transition-all duration-300 ease-(--ease) rounded-full"
                 >
                   <HiArrowLongUp
-                    className="group-hover:stroke-0 group-hover:scale-150 transition-all duration-300 ease-[cubic_bezier(0.76_0_0.24_2)] text-black"
+                    className="group-hover:stroke-0 group-hover:scale-150 transition-all duration-300 ease-(--ease) text-black"
                     size={30}
                   />
                 </div>

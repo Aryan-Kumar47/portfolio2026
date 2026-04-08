@@ -43,11 +43,7 @@ const SmoothScroll: FC<SmoothScrollProps> = ({ children }) => {
       <CursorProvider>
         <Menu />
         <div className={`antialiased flex flex-col`}>
-          <div
-            id="main-content"
-            // className="flex flex-1 flex-col duration-1000 ease-[cubic-bezier(0.18, 0.71, 0.11, 1)] transition-all"
-            ref={contentRef}
-          >
+          <div id="main-content" ref={contentRef}>
             <div className={`relative bg-white`}>{children}</div>
             {/* <Footer /> */}
             {/* <div className=" w-full mb-[100vh] footer_trigger" /> */}

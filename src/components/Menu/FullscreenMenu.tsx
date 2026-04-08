@@ -140,7 +140,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
               href="mailto:hi@abhishekjha.me"
               className="block w-full text-center text-(--color-dark) bg-white
           py-5 rounded-full text-lg
-          transition-all duration-500 ease-[cubic-bezier(.075,.82,.165,1)]"
+          transition-all duration-500 ease-(--ease)"
             >
               {email}
             </a>

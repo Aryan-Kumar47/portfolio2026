@@ -32,7 +32,7 @@ export default function AnimatedLine({
       scaleX: 1,
       duration,
       delay,
-      ease: "power3.out",
+      ease: "var(--ease)",
     };
 
     if (animateOnScroll) {

@@ -23,7 +23,7 @@ const HeroNav: React.FC<HeroNavProps> = ({ open, setOpen }) => {
               className=" group flex relative px-4 -ml-4 w-fit"
             >
               <div
-                className={`name text-[16px] font-bold flex overflow-hidden w-30 text-nowrap py-2 rounded-full `}
+                className={`name text-[16px] flex overflow-hidden w-30 text-nowrap py-2 rounded-full `}
               >
                 <p className={""}>Design & Code by</p>
               </div>
@@ -41,7 +41,7 @@ const HeroNav: React.FC<HeroNavProps> = ({ open, setOpen }) => {
                     //   customText={link.msg}
                   >
                     <Magnetic strength={0.7}>
-                      <span className="flex text-[16px] font-bold flex-col justify-center items-center group">
+                      <span className="flex text-[16px] flex-col justify-center items-center group">
                         <span>{link.name}</span>
                         <span
                           className={`w-[clamp(5.82px,0.436vw,6.91px)] h-[clamp(5.82px,0.436vw,6.91px)] rounded-full mt-2 ${pathname === link.href ? "opacity-100" : "opacity-0 group-hover:opacity-100"} ${pathname === "/" || pathname === "/contact" ? "bg-white" : "bg-[#1c1d20]"}`}
