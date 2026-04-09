@@ -137,7 +137,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
         >
           <Magnetic customText="Contact me through mail!">
             <a
-              href="mailto:hi@abhishekjha.me"
+              href={`mailto:${email}`}
               className="block w-full text-center text-(--color-dark) bg-white
           py-5 rounded-full text-lg
           transition-all duration-500 ease-(--ease)"

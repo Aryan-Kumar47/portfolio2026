@@ -28,7 +28,7 @@ const Project: FC<ProjectProps> = ({
         setModel({ active: false, index: index });
       }}
       className={`flex w-full pt-[calc(var(--section-padding)/3.5)] pb-[calc(var(--section-padding)/3)] ${source === "Work" ? "max-h-[calc(clamp(1.75em,2.3vw,2.5em)+4.4em)]" : ""} ${
-        index === 0 ? "border-y-[0.5px]" : "border-b-[0.5px]"
+        index === 0 ? "border-y" : "border-b"
       } border-(--color-border)  cursor-pointer  group`}
     >
       <TransitionLink

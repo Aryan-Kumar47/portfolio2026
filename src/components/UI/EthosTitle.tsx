@@ -1,7 +1,7 @@
 import React from "react";
 import Text from "./Text";
 import Heading from "./Heading";
-import { editorialLightItalic, PPMoriRegular } from "@/src/utlis/fonts";
+import { geraldine } from "@/src/utlis/fonts";
 
 export default function EthosTitle({
   text,
@@ -21,7 +21,7 @@ export default function EthosTitle({
   colorFinal?: string;
 }) {
   return (
-    <h2
+    <h1
       className={`relative text-center text-[14vw] md:text-[10vw] font-semibold leading-[1.1] ethos-title flex ${p ? "justify-between" : "justify-center"} items-center`}
     >
       {p && (
@@ -32,27 +32,27 @@ export default function EthosTitle({
         </Text>
       )}
       {/* Line 1 */}
-      <div className="block overflow-hidden leading-[1em] h-[0.85em]">
+      <div className="block overflow-hidden leading-none">
         {animation ? (
           <Heading
             colorAccent={colorAccent}
             colorInitial={colorInitial}
             colorFinal={colorFinal}
           >
-            <h1
-              className={`animate-text ${italic ? editorialLightItalic.className : PPMoriRegular.className}`}
+            <h2
+              className={`animate-text ${italic ? `${geraldine.className}` : ""}`}
             >
               {text}
-            </h1>
+            </h2>
           </Heading>
         ) : (
-          <h1
-            className={`animate-text ${p ? "pl-2" : "pl-0"} ${italic ? editorialLightItalic.className : PPMoriRegular.className}`}
+          <h2
+            className={`animate-text ${italic ? `${geraldine.className} px-2` : ""}`}
           >
             {text}
-          </h1>
+          </h2>
         )}
       </div>
-    </h2>
+    </h1>
   );
 }

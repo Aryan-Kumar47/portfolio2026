@@ -1,5 +1,5 @@
 import React from "react";
-import { backstreetFont, geraldine } from "../utlis/fonts";
+import { geraldine } from "../utlis/fonts";
 import { useScrollRotate } from "../hooks/useScrollRotate";
 import { useScrollParallaxY } from "../hooks/useScrollParallaxY";
 import RounderButton from "./UI/RoundedButton";
@@ -96,16 +96,16 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
               <Text>
                 <div className="text-center w-full">
                   <h2
-                    className={`text-8xl leading-[1.2] tracking-[-0.02em] ${geraldine.className}`}
+                    className={`text-8xl pt-4 tracking-[-0.02em] ${geraldine.className}`}
                   >
                     Web &
                   </h2>
                   <h2
-                    className={`text-8xl flex justify-center items-center gap-x-6 -mt-5 leading-[1.2] tracking-[-0.02em]`}
+                    className={`text-8xl flex justify-center items-center gap-x-6 tracking-[-0.02em]`}
                   >
                     Mobile
                   </h2>
-                  <p className={`${geraldine.className} mt-2`}>developer</p>
+                  <p className={``}>developer</p>
                 </div>
               </Text>
               <ArrowIcon className="rotate-90 o-ui-arrow-project1 min-w-9 min-h-9 absolute right-0 top-0" />

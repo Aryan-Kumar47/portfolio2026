@@ -1,6 +1,5 @@
 "use client";
 import React, { FC, useState } from "react";
-import { backstreetFont } from "@/src/utlis/fonts";
 import ArrowBadge from "@/src/components/UI/ArrowBadge";
 import Text from "@/src/components/UI/Text";
 import Footer from "@/src/components/Footer";
@@ -24,9 +23,12 @@ const WorkPage: FC = () => {
           <div className="container-custom medium">
             <div className="w-full flex items-center justify-between gap-x-4">
               <Text delay={0.9}>
-                <h1 className="text-[calc(clamp(3.25em,7vw,8em)*.875)] leading-[1.06] tracking-[-0.02em]">
+                {/* <h1 className="text-[calc(clamp(3.25em,7vw,8em)*.875)] leading-[1.06] tracking-[-0.02em]">
                   <span>Creating next level</span> <br />
                   <span>digital products</span>
+                </h1> */}
+                <h1 className="text-[calc(clamp(3.25em,7vw,8em)*.875)] leading-[1.06] tracking-[-0.02em]">
+                  Projects
                 </h1>
                 {/* <h1 className="md:text-[7.7vw] text-[16.7vw] leading-[1.1] tracking-[-0.02em]">
                   Pro
@@ -65,7 +67,7 @@ const WorkPage: FC = () => {
         >
           {view === "list" ? <WorkProjectList /> : <WorkProjectGrid />}
         </section> */}
-        <div className="w-full container-custom">
+        <div className="w-full container-custom hidden md:block">
           <div className="w-full flex pb-(--gap-padding)">
             <div className="pl-(--container-padding) w-[44%]">
               <h5>Project</h5>

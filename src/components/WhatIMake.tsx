@@ -6,9 +6,9 @@ interface WhatIMakeI {
 
 export default function WhatIMake({ source = "Home" }: WhatIMakeI) {
   return (
-    <div className="relative pb-(--section-padding) flex justify-center items-center flex-col text-(--color-text)">
+    <div className="relative section flex justify-center items-center flex-col text-(--color-text) h-full">
       <div
-        className={`absolute w-full -top-[46vh] ${source === "About" ? "container-custom medium" : "container-custom"}`}
+        className={`w-full ${source === "About" ? "container-custom medium" : "container-custom absolute -top-[46vh]"}`}
       >
         <EthosTitle text="Flexible" />
         <EthosTitle

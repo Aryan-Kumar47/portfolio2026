@@ -60,7 +60,7 @@ export default function AnimatedLine({
       <div
         ref={lineRef}
         className={cn(
-          `w-full h-[0.5px] bg-(--color-dark) will-change-transform ${className}`,
+          `w-full h-px bg-(--color-dark) will-change-transform ${className}`,
         )}
       />
     </div>

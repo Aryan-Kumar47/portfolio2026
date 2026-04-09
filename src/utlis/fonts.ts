@@ -47,6 +47,14 @@ const neueMontreal = localFont({
   src: [{ path: "../fonts/NeueMontreal-Regular.otf" }],
   variable: "--neue",
 });
+const pacifico = localFont({
+  src: [{ path: "../fonts/Pacifico-Regular.ttf" }],
+  variable: "--pacifico",
+});
+const satisfy = localFont({
+  src: [{ path: "../fonts/Satisfy-Regular.ttf" }],
+  variable: "--satisfy",
+});
 
 export {
   editorialItalic,
@@ -60,4 +68,6 @@ export {
   geraldine,
   hafferFont,
   neueMontreal,
+  pacifico,
+  satisfy,
 };

@@ -3,7 +3,6 @@ import React, { FC } from "react";
 import { projects } from "./projects";
 import Project from "./Project";
 import Model from "./Model";
-import { backstreetFont } from "@/src/utlis/fonts";
 import { useCursorContext } from "@/src/context/CursorContext";
 import { useScrollRotate } from "@/src/hooks/useScrollRotate";
 import Text from "../UI/Text";

@@ -10,7 +10,7 @@ import TransitionLink from "@/src/components/TransitionLink";
 import Magnetic from "@/src/components/UI/Magnetic";
 import RoundedButton from "@/src/components/UI/RoundedButton";
 import { useCursorContext } from "@/src/context/CursorContext";
-import { geraldine, GilroyLight } from "@/src/utlis/fonts";
+import { geraldine } from "@/src/utlis/fonts";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { usePathname } from "next/navigation";
@@ -96,9 +96,7 @@ const page: FC<pageProps> = ({}) => {
     }
   };
   return (
-    <div
-      className={`bg-(--color-dark) min-h-svh text-white ${GilroyLight.className}`}
-    >
+    <div className={`bg-(--color-dark) min-h-svh text-white`}>
       <div className="flex flex-col h-full justify-between">
         <div className="section default-header contact-header">
           <div className="container-custom medium">

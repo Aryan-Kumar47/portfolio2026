@@ -108,7 +108,7 @@ const Model: FC<ModelProps> = ({ model, projects }) => {
         overflow-hidden pointer-events-none shadow-lg z-20"
       >
         <div
-          className="h-full w-full absolute transition-all duration-300 ease-(--ease)"
+          className="h-full w-full absolute transition-all duration-500 ease-(--ease)"
           style={{ top: `${index * -100}%` }}
         >
           {projects.map((project, i) => (

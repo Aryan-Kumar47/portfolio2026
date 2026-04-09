@@ -4,7 +4,6 @@ import React, { FC, use, useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { HiMiniArrowUpRight } from "react-icons/hi2";
 import { IProject, projects } from "@/src/components/work/projects";
-import { GilroyLight } from "@/src/utlis/fonts";
 import RoundedButton from "@/src/components/UI/RoundedButton";
 import Footer from "@/src/components/Footer";
 interface pageProps {
