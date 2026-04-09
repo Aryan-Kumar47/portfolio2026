@@ -15,8 +15,8 @@ type AnimatedLineProps = {
 
 export default function AnimatedLine({
   className = "",
-  duration = 1.2,
-  delay = 0,
+  duration = 0.3,
+  delay = 0.9,
   direction = "left",
   animateOnScroll = true,
 }: AnimatedLineProps) {

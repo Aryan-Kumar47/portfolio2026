@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useMemo } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -165,7 +166,9 @@ export default function Loose({
               }}
               style={{ aspectRatio: img.aspectRatio }}
             >
-              <img
+              <Image
+                height={baseHeight}
+                width={baseHeight * 2}
                 className="w-full h-full object-cover"
                 src={img.src}
                 alt={`my-img-${i}`}

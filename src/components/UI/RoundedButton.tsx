@@ -15,6 +15,7 @@ interface RoundedButtonProps extends ButtonHTMLAttributes<
   customText?: string;
   isChildPadding?: boolean;
   border?: boolean;
+  target?: string;
 }
 
 const RoundedButton: FC<RoundedButtonProps> = ({
@@ -26,6 +27,7 @@ const RoundedButton: FC<RoundedButtonProps> = ({
   children,
   isChildPadding = true,
   border = false,
+  target = "_self",
   ...props
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -157,7 +159,7 @@ const RoundedButton: FC<RoundedButtonProps> = ({
       className={`rounded-full ${border ? "border border-[#888888]/50" : ""}`}
     >
       {href ? (
-        <TransitionLink href={href} customText={customText}>
+        <TransitionLink target={target} href={href} customText={customText}>
           <div
             onMouseEnter={handleMouseEnter}
             className={cn(

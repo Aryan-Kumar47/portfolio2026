@@ -7,6 +7,8 @@ import Text from "./UI/Text";
 import ArrowIcon from "./UI/ArrowIcon";
 import Image from "next/image";
 import ParallaxImage from "./UI/ParallaxImage";
+import { linkedin } from "./Menu/data";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 interface AboutSectionI {
   source?: "Home" | "About";
@@ -49,46 +51,38 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
                   animateOnScroll={source === "Home"}
                   delay={source === "About" ? 1 : 0}
                 >
-                  <span className="flex flex-col">
-                    <span>
-                      <span>i am aryan kumar</span>
-                      {/* <span
-                        className={`${backstreetFont.className} text-[1.3em] text-[#455CE9] capitalize ml-px`}
-                      >
-                        Aryan Kumar.
-                      </span> */}
-                    </span>
-                    <span>
-                      i build functional, scalable, optimized, modern,
-                      responsive & easy to use web & mobile application &
-                      website from scratch.
-                    </span>
+                  <span>
+                    The combination of my passion for design, code & interaction
+                    positions me in a unique place in the web & mobile design &
+                    development world.
                   </span>
                 </Text>
               </p>
               <div className="w-full flex justify-center items-center md:mt-20 mt-10">
                 <div className=" w-fit about-button">
-                  <RounderButton
-                    href={"/about"}
-                    customText={source === "Home" ? "Know More About Me" : "Me"}
-                    // hoverBackgroundColor="#f43f5e"
-                    className="rounded-[50%] h-44 w-44"
-                  >
-                    {source === "Home" ? (
+                  {source === "Home" ? (
+                    <RounderButton
+                      href={"/about"}
+                      customText={
+                        source === "Home"
+                          ? "Know More About Me"
+                          : "Connect On Linkedin"
+                      }
+                      className="rounded-[50%] h-44 w-44"
+                    >
                       <div className="text-white">About Me</div>
-                    ) : (
-                      <Image
-                        src="/me/10.png"
-                        alt="connect"
-                        width={1000}
-                        height={1000}
-                        className=" rounded-full"
-                        unoptimized
-                      />
-                      // <ParallaxImage className="" startY={-100} endY={100}>
-                      // </ParallaxImage>
-                    )}
-                  </RounderButton>
+                    </RounderButton>
+                  ) : (
+                    <RounderButton
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={linkedin}
+                      customText={"Connect On Linkedin"}
+                      className="rounded-[50%] h-44 w-44"
+                    >
+                      <span className="text-white">linkedin</span>
+                    </RounderButton>
+                  )}
                 </div>
               </div>
             </div>

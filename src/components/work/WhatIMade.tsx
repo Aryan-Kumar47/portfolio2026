@@ -50,24 +50,6 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
                 <h5>Recent work</h5>
               </div>
             </div>
-            {/* <div
-              className={
-                "flex w-full flex-row gap-5 sm:gap-10 justify-between items-center relative "
-              }
-            >
-              <Text>
-                <h2 className="md:text-[7.7vw] leading-[1.2] tracking-[-0.02em] text-[16.7vw]">
-                  Pro
-                  <span
-                    className={`${backstreetFont.className} text-[#455CE9]`}
-                  >
-                    j
-                  </span>
-                  ect<span className={``}>s</span>
-                </h2>
-              </Text>
-              <ArrowIcon className="rotate-90 o-ui-arrow-project min-w-9 min-h-9 absolute right-10 top-10" />
-            </div> */}
           </div>
         )}
 
@@ -118,12 +100,12 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
                     <p>More Works</p>
                   </div>
 
-                  <div className="absolute top-1/2 right-0 -translate-x-1/4 -translate-y-1/2 w-[3.6rem] flex justify-center rounded-full bg-[#3b3b3b] items-center h-[3.6rem] overflow-hidden group-hover:scale-110 transition-all duration-[0.8s] ease-(--ease)">
+                  <div className="absolute top-1/2 right-0 -translate-x-1/4 -translate-y-1/2 w-[3.6rem] flex justify-center rounded-full bg-[#3b3b3b] items-center h-[3.6rem] overflow-hidden group-hover:scale-110 transition-all duration-300 ease-(--ease)">
                     <div className="relative w-full h-full">
-                      <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-[0.8s] ease-(--ease) group-hover:translate-x-[300%]">
+                      <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ease-(--ease) group-hover:translate-x-[300%]">
                         <MdOutlineWorkOutline size={20} color="#fff" />
                       </span>
-                      <span className="absolute top-1/2 left-1/2 -translate-x-[300%] -translate-y-1/2 transition-all duration-[0.8s] ease-(--ease) group-hover:translate-x-[-50%]">
+                      <span className="absolute top-1/2 left-1/2 -translate-x-[300%] -translate-y-1/2 transition-all duration-300 ease-(--ease) group-hover:translate-x-[-50%]">
                         <IoIosArrowRoundForward size={20} color="#fff" />
                       </span>
                     </div>
