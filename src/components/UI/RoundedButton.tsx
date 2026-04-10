@@ -1,14 +1,14 @@
 "use client";
 
 import gsap from "gsap";
-import React, { ButtonHTMLAttributes, FC, useEffect, useRef } from "react";
+import React, { ButtonHTMLAttributes, FC, useCallback, useRef } from "react";
+import { useGSAP } from "@gsap/react";
 import { cn } from "@/src/utlis/cn";
 import TransitionLink from "../TransitionLink";
 import { useCursorContext } from "@/src/context/CursorContext";
 
-interface RoundedButtonProps extends ButtonHTMLAttributes<
-  HTMLDivElement | HTMLButtonElement
-> {
+interface RoundedButtonProps
+  extends ButtonHTMLAttributes<HTMLDivElement | HTMLButtonElement> {
   backgroundColor?: string;
   hoverBackgroundColor?: string;
   href?: string;
@@ -30,40 +30,36 @@ const RoundedButton: FC<RoundedButtonProps> = ({
   target = "_self",
   ...props
 }) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const innerRef = useRef<HTMLDivElement | null>(null);
-  const circleRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
   const timeline = useRef<GSAPTimeline | null>(null);
-  let timeoutId: string | number | NodeJS.Timeout | null | undefined = null;
   const { leave, enter } = useCursorContext();
 
-  useEffect(() => {
-    const container = containerRef.current;
-    const inner = innerRef.current;
-    const circle = circleRef.current;
+  useGSAP(
+    () => {
+      const container = containerRef.current;
+      const inner = innerRef.current;
+      const circle = circleRef.current;
 
-    if (!container || !inner || !circle) return;
+      if (!container || !inner || !circle) return;
 
-    const hasMouse = window.matchMedia("(pointer: fine)").matches;
-    if (!hasMouse) return;
+      const hasMouse = window.matchMedia("(pointer: fine)").matches;
+      if (!hasMouse) return;
 
-    const ctx = gsap.context(() => {
-      // ===== Magnetic Movement =====
+      // Magnetic movement
       const xOuter = gsap.quickTo(container, "x", {
         duration: 0.6,
         ease: "elastic.out(1, 0.3)",
       });
-
       const yOuter = gsap.quickTo(container, "y", {
         duration: 0.6,
         ease: "elastic.out(1, 0.3)",
       });
-
       const xInner = gsap.quickTo(inner, "x", {
         duration: 0.6,
         ease: "elastic.out(1, 0.3)",
       });
-
       const yInner = gsap.quickTo(inner, "y", {
         duration: 0.6,
         ease: "elastic.out(1, 0.3)",
@@ -72,13 +68,10 @@ const RoundedButton: FC<RoundedButtonProps> = ({
       const handleMouseMove = (e: MouseEvent) => {
         const { clientX, clientY } = e;
         const { width, height, left, top } = container.getBoundingClientRect();
-
         const x = clientX - (left + width / 2);
         const y = clientY - (top + height / 2);
-
         xOuter(x * 0.2);
         yOuter(y * 0.2);
-
         xInner(x * 0.25);
         yInner(y * 0.25);
       };
@@ -88,52 +81,33 @@ const RoundedButton: FC<RoundedButtonProps> = ({
         yOuter(0);
         xInner(0);
         yInner(0);
-        if (timeoutId) {
-          clearTimeout(timeoutId);
-          timeoutId = null;
-        }
         timeline.current?.play();
       };
 
       container.addEventListener("mousemove", handleMouseMove);
       container.addEventListener("mouseleave", handleMouseLeave);
 
-      // ===== Hover Fill Animation =====
+      // Hover fill animation
       timeline.current = gsap
         .timeline({ paused: true })
         .to(
           circle,
-          {
-            top: "-25%",
-            width: "150%",
-            duration: 0.4,
-            ease: "var(--ease)",
-          },
+          { top: "-25%", width: "150%", duration: 0.4, ease: "power3.in" },
           "enter",
         )
         .to(
           container,
-          {
-            borderColor: hoverBackgroundColor,
-            color: "#fff",
-          },
+          { borderColor: hoverBackgroundColor, color: "#fff" },
           "enter",
         )
         .to(
           circle,
-          {
-            top: "-150%",
-            width: "125%",
-            duration: 0.25,
-          },
+          { top: "-150%", width: "125%", duration: 0.25 },
           "exit",
         )
         .to(
           container,
-          {
-            borderColor: "rgba(136,136,136,0.5)",
-            color: "#191921",
-          },
+          { borderColor: "rgba(136,136,136,0.5)", color: "#191921" },
           "exit",
         );
 
@@ -141,71 +115,64 @@ const RoundedButton: FC<RoundedButtonProps> = ({
         container.removeEventListener("mousemove", handleMouseMove);
         container.removeEventListener("mouseleave", handleMouseLeave);
       };
-    }, container);
+    },
+    { scope: containerRef, dependencies: [hoverBackgroundColor] },
+  );
 
-    return () => ctx.revert();
-  }, [hoverBackgroundColor]);
-
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     timeline.current?.tweenFromTo("enter", "exit");
-    if (!href) {
-      enter(customText);
-    }
-  };
+    if (!href) enter(customText);
+  }, [href, enter, customText]);
+
+  const innerClasses = cn(
+    "relative overflow-hidden cursor-pointer rounded-full flex justify-center items-center",
+    className,
+  );
+
+  const innerContent = (
+    <>
+      <div
+        ref={circleRef}
+        style={{ backgroundColor: hoverBackgroundColor }}
+        className="absolute top-full w-full h-[150%] rounded-full"
+      />
+      <div
+        ref={innerRef}
+        className={cn(
+          "relative z-10 flex justify-center items-center text-nowrap",
+          isChildPadding && "px-9 py-3",
+        )}
+      >
+        {children}
+      </div>
+    </>
+  );
 
   return (
     <div
       ref={containerRef}
-      className={`rounded-full ${border ? "border border-[#888888]/50" : ""}`}
+      className={cn("rounded-full", border && "border border-[#888888]/50")}
     >
       {href ? (
         <TransitionLink target={target} href={href} customText={customText}>
           <div
             onMouseEnter={handleMouseEnter}
-            className={cn(
-              "relative overflow-hidden cursor-pointer rounded-full flex justify-center items-center will-change-transform",
-              className,
-            )}
-            style={{ backgroundColor: backgroundColor }}
+            className={innerClasses}
+            style={{ backgroundColor }}
             {...props}
           >
-            <div
-              ref={circleRef}
-              style={{ backgroundColor: hoverBackgroundColor }}
-              className="absolute top-full w-full h-[150%] rounded-full"
-            />
-
-            <div
-              ref={innerRef}
-              className="px-9 py-3 relative z-10 flex justify-center items-center text-nowrap"
-            >
-              {children}
-            </div>
+            {innerContent}
           </div>
         </TransitionLink>
       ) : (
         <button
           onMouseEnter={handleMouseEnter}
           onMouseLeave={leave}
-          className={cn(
-            "relative overflow-hidden cursor-pointer rounded-full flex justify-center items-center will-change-transform",
-            className,
-          )}
-          style={{ backgroundColor: backgroundColor }}
+          className={innerClasses}
+          style={{ backgroundColor }}
           {...props}
         >
-          <div
-            ref={circleRef}
-            style={{ backgroundColor: hoverBackgroundColor }}
-            className="absolute top-full w-full h-[150%] rounded-full"
-          />
-
-          <div
-            ref={innerRef}
-            className={`${isChildPadding ? "px-9 py-3" : ""} relative z-10 flex justify-center items-center text-nowrap`}
-          >
-            {children}
-          </div>
+          {innerContent}
         </button>
       )}
     </div>

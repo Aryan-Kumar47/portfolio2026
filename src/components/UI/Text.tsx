@@ -14,6 +14,12 @@ interface TextProps {
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
+const SPLIT_TYPE_MAP = {
+  lines: "lines",
+  words: "words",
+  linesWords: "lines,words",
+} as const;
+
 const Text: React.FC<TextProps> = ({
   children,
   animateOnScroll = true,
@@ -23,86 +29,66 @@ const Text: React.FC<TextProps> = ({
   type = "lines",
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const splitRef = useRef<SplitText[]>([]);
-  const targets = useRef<HTMLElement[]>([]);
 
   useGSAP(
     () => {
       if (!containerRef.current) return;
 
-      splitRef.current = [];
-      targets.current = [];
+      const elements = containerRef.current.hasAttribute("data-copy-wrapper")
+        ? (Array.from(containerRef.current.children) as HTMLElement[])
+        : [containerRef.current];
 
-      let elements: HTMLElement[] = [];
-
-      if (containerRef.current.hasAttribute("data-copy-wrapper")) {
-        elements = Array.from(containerRef.current.children) as HTMLElement[];
-      } else {
-        elements = [containerRef.current];
-      }
+      const splits: SplitText[] = [];
+      const targets: HTMLElement[] = [];
 
       elements.forEach((element) => {
         const split = SplitText.create(element, {
-          type: type === "linesWords" ? "lines,words" : type,
+          type: SPLIT_TYPE_MAP[type],
           mask: "lines",
           linesClass: "line++",
           wordsClass: "word++",
         });
 
-        splitRef.current.push(split);
+        splits.push(split);
 
-        if (type === "lines") {
-          targets.current.push(...(split.lines as HTMLElement[]));
-        }
-
-        if (type === "words") {
-          targets.current.push(...(split.words as HTMLElement[]));
-        }
-
-        if (type === "linesWords") {
-          targets.current.push(...(split.words as HTMLElement[]));
-        }
+        const items =
+          type === "lines"
+            ? (split.lines as HTMLElement[])
+            : (split.words as HTMLElement[]);
+        targets.push(...items);
       });
 
-      gsap.set(targets.current, { y: "120%" });
+      gsap.set(targets, { y: "120%" });
 
-      const animationProps = {
+      gsap.to(targets, {
         y: "0%",
         duration: 0.5,
         stagger: type === "words" ? 0.03 : 0.1,
-        ease: "var(--ease)",
+        ease: "power3.out",
         delay,
-      };
-
-      if (animateOnScroll) {
-        gsap.to(targets.current, {
-          ...animationProps,
+        ...(animateOnScroll && {
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 75%",
             once,
             scrub,
           },
-        });
-      } else {
-        gsap.to(targets.current, animationProps);
-      }
+        }),
+      });
 
       return () => {
-        splitRef.current.forEach((split) => split?.revert());
+        splits.forEach((split) => split.revert());
       };
     },
     {
       scope: containerRef,
-      dependencies: [type, animateOnScroll, delay],
+      dependencies: [type, animateOnScroll, delay, once, scrub],
     },
   );
 
   if (React.Children.count(children) === 1) {
     const child = children as ReactElement<any>;
-    return React.cloneElement(child, {
-      ref: containerRef,
-    });
+    return React.cloneElement(child, { ref: containerRef });
   }
 
   return (

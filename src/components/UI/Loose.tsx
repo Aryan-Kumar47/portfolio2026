@@ -1,6 +1,8 @@
-import React, { useEffect, useRef, useMemo } from "react";
+"use client";
+import { useRef, useMemo, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,160 +20,147 @@ type WaveConfig = {
   phase: number;
 };
 
-type ConfigType = {
-  waves: {
-    base: WaveConfig;
-    flow: WaveConfig;
-    detail: WaveConfig;
-  };
-  clipMax: number;
-  clipPower: number;
+const WAVES = {
+  base: { amp: 0.1, freq: 1.0, speed: 1.0, phase: 5.0 } as WaveConfig,
+  flow: { amp: 0.15, freq: 5.0, speed: 5.0, phase: 10.0 } as WaveConfig,
+  detail: { amp: 0.025, freq: 5.0, speed: 1.5, phase: 2.5 } as WaveConfig,
 };
+const CLIP_MAX = 20;
+const CLIP_POWER = 2;
 
 export default function Loose({
   baseHeight = 375,
   images,
   aspectRatios = ["3/2", "4/3", "5/4", "7/5"],
 }: LooseProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const vwRef = useRef(0);
 
-  const CONFIG: ConfigType = useMemo(
-    () => ({
-      waves: {
-        base: { amp: 0.1, freq: 1.0, speed: 1.0, phase: 5.0 },
-        flow: { amp: 0.15, freq: 5.0, speed: 5.0, phase: 10.0 },
-        detail: { amp: 0.025, freq: 5.0, speed: 1.5, phase: 2.5 },
-      },
-      clipMax: 20,
-      clipPower: 2,
-    }),
+  const imagesData = useMemo(
+    () =>
+      images.map((src, i) => {
+        const shrinkStart = Math.floor(images.length * 0.75);
+        const shrinkFactor =
+          i >= shrinkStart
+            ? (i - shrinkStart + 1) / (images.length - shrinkStart)
+            : 0;
+        return {
+          src,
+          aspectRatio: aspectRatios[i % aspectRatios.length],
+          shrinkFactor,
+        };
+      }),
+    [images, aspectRatios],
+  );
+
+  const updateSizes = useCallback(() => {
+    const sizeFactor = Math.min(window.innerWidth / 750, 1);
+    vwRef.current = containerRef.current?.offsetWidth ?? 0;
+
+    imageRefs.current.forEach((el, i) => {
+      if (!el || !imagesData[i]) return;
+      const height =
+        baseHeight * sizeFactor * (1 - imagesData[i].shrinkFactor * 0.5);
+      el.style.height = `${Math.round(height)}px`;
+    });
+  }, [baseHeight, imagesData]);
+
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+      const els = imageRefs.current;
+
+      updateSizes();
+
+      // Cache vw on resize instead of reading DOM every frame
+      const onResize = () => {
+        updateSizes();
+        ScrollTrigger.refresh();
+      };
+      window.addEventListener("resize", onResize);
+
+      els.forEach((el, index) => {
+        if (!el) return;
+
+        const norm =
+          imagesData.length > 1 ? index / (imagesData.length - 1) : 0;
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top bottom",
+          end: "bottom top",
+          refreshPriority: -1,
+          invalidateOnRefresh: true,
+          onUpdate: ({ progress }) => {
+            const vw = vwRef.current;
+            if (!vw) return;
+
+            const { base, flow, detail } = WAVES;
+
+            const bw = Math.sin(
+              norm * base.freq + (1 - progress) * base.speed + base.phase,
+            );
+            const fw =
+              0.5 +
+              Math.sin(norm * flow.freq + flow.phase + progress + flow.speed);
+            const dw =
+              0.5 +
+              Math.sin(
+                norm * detail.freq + detail.phase + progress * detail.speed,
+              );
+
+            const tx =
+              (vw - el.offsetWidth / 1.3) / 2 -
+              vw * 0.1 +
+              bw * vw * base.amp +
+              fw * vw * flow.amp +
+              dw * vw * detail.amp;
+
+            const edge = Math.abs(progress - 0.5) * 2;
+            const clip = Math.pow(edge, CLIP_POWER) * CLIP_MAX;
+
+            gsap.set(el, {
+              x: tx,
+              clipPath: `inset(0 ${clip}% 0 ${clip}%)`,
+            });
+          },
+        });
+      });
+
+      return () => {
+        window.removeEventListener("resize", onResize);
+      };
+    },
+    { scope: containerRef, dependencies: [imagesData, updateSizes] },
+  );
+
+  const setImageRef = useCallback(
+    (i: number) => (el: HTMLDivElement | null) => {
+      imageRefs.current[i] = el;
+    },
     [],
   );
 
-  // 🔥 Unified image source (array OR generator)
-  const imagesData = useMemo(() => {
-    const sourceArray = images;
-
-    return sourceArray.map((src, i) => {
-      const shrinkStartIndex = Math.floor(sourceArray.length * 0.75);
-      const shrinkFactor =
-        i >= shrinkStartIndex
-          ? (i - shrinkStartIndex + 10) /
-            (sourceArray.length - shrinkStartIndex)
-          : 0;
-
-      return {
-        src,
-        aspectRatio: aspectRatios[i % aspectRatios.length],
-        shrinkFactor,
-      };
-    });
-  }, [images, aspectRatios]);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const imageElements = imageRefs.current;
-
-    function updateImageSizes() {
-      const sizeFactor = Math.min(window.innerWidth / 750, 1);
-
-      imageElements.forEach((el, i) => {
-        if (!el) return;
-
-        const shrinkStartIndex = Math.floor(imagesData.length * 0.75);
-        const shrinkFactor =
-          i >= shrinkStartIndex
-            ? (i - shrinkStartIndex + 1) /
-              (imagesData.length - shrinkStartIndex)
-            : 0;
-
-        const height = baseHeight * sizeFactor * (1 - shrinkFactor * 0.5);
-
-        el.style.height = `${Math.round(height)}px`;
-      });
-    }
-
-    updateImageSizes();
-    window.addEventListener("resize", updateImageSizes);
-    const vw = containerRef.current.offsetWidth;
-
-    const triggers = imageElements.map((el, index) => {
-      if (!el) return null;
-
-      const normalizedIndex =
-        imagesData.length > 1 ? index / (imagesData.length - 1) : 0;
-
-      return ScrollTrigger.create({
-        trigger: el,
-        start: "top bottom",
-        end: "bottom top",
-        onUpdate: ({ progress }: { progress: number }) => {
-          const { base, flow, detail } = CONFIG.waves;
-          console.log(vw);
-
-          const baseWave = Math.sin(
-            normalizedIndex * base.freq +
-              (1 - progress) * base.speed +
-              base.phase,
-          );
-
-          const flowWave =
-            0.5 +
-            Math.sin(
-              normalizedIndex * flow.freq + flow.phase + progress + flow.speed,
-            );
-
-          const detailWave =
-            0.5 +
-            Math.sin(
-              normalizedIndex * detail.freq +
-                detail.phase +
-                progress * detail.speed,
-            );
-
-          const translateX =
-            (vw - el.offsetWidth / 1.3) / 2 -
-            vw * 0.1 +
-            baseWave * vw * base.amp +
-            flowWave * vw * flow.amp +
-            detailWave * vw * detail.amp;
-
-          const centerOffset = Math.abs(progress - 0.5) * 2;
-          const clipAmount =
-            Math.pow(centerOffset, CONFIG.clipPower) * CONFIG.clipMax;
-
-          el.style.transform = `translateX(${translateX}px)`;
-          el.style.clipPath = `inset(0 ${clipAmount}% 0 ${clipAmount}%)`;
-        },
-      });
-    });
-
-    return () => {
-      window.removeEventListener("resize", updateImageSizes);
-      triggers.forEach((t) => t && t.kill());
-    };
-  }, [CONFIG, imagesData, baseHeight]);
-
   return (
-    <section className="w-full h-full overflow-hidden section">
+    <section className="w-full h-full section">
       <div className="container-custom medium">
         <div ref={containerRef} className="flex flex-col items-start">
           {imagesData.map((img, i) => (
             <div
-              key={i}
-              className="relative overflow-hidden [clip-path:inset(0_20%_0_20%)] will-change-[transform,clip-path]"
-              ref={(el) => {
-                imageRefs.current[i] = el;
-              }}
+              key={`${img.src}-${i}`}
+              className=" relative overflow-hidden [clip-path:inset(0_20%_0_20%)]"
+              ref={setImageRef(i)}
               style={{ aspectRatio: img.aspectRatio }}
             >
               <Image
                 height={baseHeight}
-                width={baseHeight * 2}
+                width={Math.round(baseHeight * 1.5)}
                 className="w-full h-full object-cover"
                 src={img.src}
-                alt={`my-img-${i}`}
+                alt={`Gallery image ${i + 1}`}
+                loading="lazy"
+                unoptimized
               />
             </div>
           ))}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { geraldine } from "../utlis/fonts";
 import { useScrollRotate } from "../hooks/useScrollRotate";
 import { useScrollParallaxY } from "../hooks/useScrollParallaxY";
@@ -37,19 +37,37 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
     fromY: 150,
     toY: -10,
   });
+  const textRef = useRef<HTMLParagraphElement | null>(null);
+  const [isAboveFold, setIsAboveFold] = useState(false);
+
+  useEffect(() => {
+    const checkPosition = () => {
+      if (textRef.current) {
+        const rect = textRef.current.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          setIsAboveFold(true);
+        }
+      }
+    };
+
+    checkPosition();
+  }, []);
 
   return (
-    <section id="about-section" className={`bg-white section`}>
+    <section
+      id="about-section"
+      className={`bg-white ${source === "About" ? "pt-[calc(var(--section-padding)*0.75)] relative pb-(--section-padding) block" : "section"}`}
+    >
       <div className="">
         <div className="container-custom medium">
           <div
             className={`flex md:flex-row flex-col justify-between items-start w-full`}
           >
             <div className="w-full md:max-w-[50ch]">
-              <p className="uppercase flex flex-wrap">
+              <p ref={textRef} className="uppercase flex flex-wrap">
                 <Text
-                  animateOnScroll={source === "Home"}
-                  delay={source === "About" ? 1 : 0}
+                  animateOnScroll={!isAboveFold}
+                  delay={source === "About" && isAboveFold ? 1 : 0}
                 >
                   <span>
                     The combination of my passion for design, code & interaction

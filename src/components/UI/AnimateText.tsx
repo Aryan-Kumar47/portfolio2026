@@ -1,8 +1,9 @@
 "use client";
 
-import React, { JSX, useEffect, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { cn } from "@/src/utlis/cn";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,18 +18,22 @@ interface AnimateTextProps {
 
 const AnimateText: React.FC<AnimateTextProps> = ({
   children,
-  className = "",
+  className,
   as: Tag = "h1",
   start = "top 50%",
   end = "bottom 50%",
 }) => {
   const textRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    const el = textRef.current;
-    if (!el) return;
+  const setRef = useCallback((el: HTMLElement | null) => {
+    textRef.current = el;
+  }, []);
 
-    const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
+      const el = textRef.current;
+      if (!el) return;
+
       el.setAttribute("data-text", children.trim());
 
       ScrollTrigger.create({
@@ -41,16 +46,12 @@ const AnimateText: React.FC<AnimateTextProps> = ({
           el.style.setProperty("--clip-value", `${clipValue}%`);
         },
       });
-    }, el);
-
-    return () => ctx.revert();
-  }, [children, start, end]);
+    },
+    { dependencies: [children, start, end] },
+  );
 
   return (
-    <Tag
-      ref={textRef as any}
-      className={cn(`animate-text text-[10rem] leading-[1.2] ${className}`)}
-    >
+    <Tag ref={setRef} className={cn("animate-text", className)}>
       {children}
     </Tag>
   );

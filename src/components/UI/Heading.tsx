@@ -143,7 +143,7 @@ const Heading: React.FC<AnimatedCopyProps> = ({
   }
 
   return (
-    <div ref={containerRef} data-copy-wrapper="true">
+    <div ref={containerRef} className="" data-copy-wrapper="true">
       {children}
     </div>
   );

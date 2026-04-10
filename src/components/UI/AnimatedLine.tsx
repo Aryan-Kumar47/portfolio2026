@@ -1,6 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { cn } from "@/src/utlis/cn";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,55 +15,44 @@ type AnimatedLineProps = {
 };
 
 export default function AnimatedLine({
-  className = "",
+  className,
   duration = 0.3,
   delay = 0.9,
   direction = "left",
   animateOnScroll = true,
 }: AnimatedLineProps) {
-  const lineRef = useRef<HTMLDivElement | null>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const el = lineRef.current;
-    if (!el) return;
+  useGSAP(
+    () => {
+      if (!lineRef.current) return;
 
-    const origin = direction === "left" ? "left center" : "right center";
+      const origin = direction === "left" ? "left center" : "right center";
 
-    const config: gsap.TweenVars = {
-      scaleX: 1,
-      duration,
-      delay,
-      ease: "var(--ease)",
-    };
-
-    if (animateOnScroll) {
-      config.scrollTrigger = {
-        trigger: el,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      };
-    }
-
-    const animation = gsap.fromTo(
-      el,
-      { scaleX: 0, transformOrigin: origin },
-      config,
-    );
-
-    return () => {
-      if (animation.scrollTrigger) animation.scrollTrigger.kill();
-      animation.kill();
-    };
-  }, [duration, delay, direction, animateOnScroll]);
+      gsap.fromTo(
+        lineRef.current,
+        { scaleX: 0, transformOrigin: origin },
+        {
+          scaleX: 1,
+          duration,
+          delay,
+          ease: "power3.out",
+          ...(animateOnScroll && {
+            scrollTrigger: {
+              trigger: lineRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }),
+        },
+      );
+    },
+    { scope: lineRef, dependencies: [duration, delay, direction, animateOnScroll] },
+  );
 
   return (
     <div className="overflow-hidden">
-      <div
-        ref={lineRef}
-        className={cn(
-          `w-full h-px bg-(--color-dark) will-change-transform ${className}`,
-        )}
-      />
+      <div ref={lineRef} className={cn("w-full h-px bg-(--color-dark)", className)} />
     </div>
   );
 }

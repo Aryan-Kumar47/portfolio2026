@@ -19,9 +19,11 @@ const MenuButton: React.FC<MenuButtonProps> = ({ open, setOpen }) => {
         isChildPadding={false}
         border
       >
-        <div className={`relative flex justify-between items-center h-24 w-24`}>
+        <div
+          className={`relative flex justify-between items-center w-[clamp(4em,5.5vw,5em)] h-[clamp(4em,5.5vw,5em)]`}
+        >
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="relative w-10 h-5 cursor-pointer">
+            <div className="relative w-[calc(clamp(4em,5.5vw,5em)/2)] h-5 cursor-pointer">
               <span
                 className={`absolute left-0 top-[20%] h-0.5 w-full bg-white origin-left transition-transform duration-400 ease-in-out
             ${open ? "scale-x-0" : "scale-x-100"}`}
@@ -33,21 +35,18 @@ const MenuButton: React.FC<MenuButtonProps> = ({ open, setOpen }) => {
               />
 
               <span
-                className={`absolute left-[33%] top-[5%] h-0.5 w-[58%] bg-white origin-top-left transition-all duration-400 ease-in-out
-            ${
-              open
-                ? "rotate-45 scale-x-100 opacity-100"
-                : "rotate-45 scale-x-0 opacity-0"
-            }`}
+                className={`absolute left-1/2 top-1/2 h-0.5 w-[68%]
+  bg-white origin-center -translate-x-1/2 -translate-y-1/2
+  transition-all duration-400 ease-in-out
+  ${open ? "rotate-45 opacity-100" : "rotate-45 scale-x-0 opacity-0"}`}
               />
 
+              {/* X line 2 */}
               <span
-                className={`absolute left-[33%] bottom-[5%] h-0.5 w-[58%] bg-white origin-bottom-left transition-all duration-400 ease-in-out
-            ${
-              open
-                ? "-rotate-45 scale-x-100 opacity-100"
-                : "-rotate-45 scale-x-0 opacity-0"
-            }`}
+                className={`absolute left-1/2 top-1/2 h-0.5 w-[68%]
+  bg-white origin-center -translate-x-1/2 -translate-y-1/2
+  transition-all duration-400 ease-in-out
+  ${open ? "-rotate-45 opacity-100" : "-rotate-45 scale-x-0 opacity-0"}`}
               />
             </div>
           </div>

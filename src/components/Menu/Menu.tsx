@@ -113,10 +113,6 @@ const Menu: React.FC = () => {
   //     return () => directionTrigger.kill();
   //   }, []);
 
-  useEffect(() => {
-    console.log(open);
-  }, [open]);
-
   return (
     <>
       <HeroNav open={open} setOpen={setOpen} />

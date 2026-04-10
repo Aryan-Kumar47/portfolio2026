@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { cn } from "@/src/utlis/cn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,36 +19,34 @@ export default function ParallaxImage({
   children,
   startY = -100,
   endY = 100,
-  className = "",
+  className,
 }: ParallaxImageProps) {
   const elRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const el = elRef.current;
-    if (!el) return;
+  useGSAP(
+    () => {
+      if (!elRef.current) return;
 
-    const ctx = gsap.context(() => {
       gsap.fromTo(
-        el,
+        elRef.current,
         { y: startY },
         {
           y: endY,
           ease: "none",
           scrollTrigger: {
-            trigger: el,
+            trigger: elRef.current,
             start: "top bottom",
             end: "bottom top",
             scrub: true,
           },
         },
       );
-    }, el);
-
-    return () => ctx.revert();
-  }, [startY, endY]);
+    },
+    { scope: elRef, dependencies: [startY, endY] },
+  );
 
   return (
-    <div ref={elRef} className={className}>
+    <div ref={elRef} className={cn(className)}>
       {children}
     </div>
   );
