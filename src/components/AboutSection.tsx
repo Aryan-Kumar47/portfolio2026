@@ -70,9 +70,12 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
                   delay={source === "About" && isAboveFold ? 1 : 0}
                 >
                   <span>
-                    The combination of my passion for design, code & interaction
+                    My work is driven by clarity, performance, and attention to
+                    detail. I focus on creating reliable digital experiences
+                    that feel simple, fast, and intentional.
+                    {/* The combination of my passion for design, code & interaction
                     positions me in a unique place in the web & mobile design &
-                    development world.
+                    development world. */}
                   </span>
                 </Text>
               </p>

@@ -26,6 +26,7 @@ export default function ParallaxImage({
   useGSAP(
     () => {
       if (!elRef.current) return;
+      if (!startY && !endY) return;
 
       gsap.fromTo(
         elRef.current,

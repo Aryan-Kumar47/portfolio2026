@@ -10,6 +10,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 interface ModelProps {
   model: ModelInterface;
   projects: IProject[];
+  source?: "Home" | "Work" | "Archive";
 }
 
 const scaleAnimation: Variants = {
@@ -38,7 +39,7 @@ const scaleAnimation: Variants = {
   },
 };
 
-const Model: FC<ModelProps> = ({ model, projects }) => {
+const Model: FC<ModelProps> = ({ model, projects, source }) => {
   const { active, index } = model;
 
   const container = useRef<HTMLDivElement | null>(null);
@@ -46,7 +47,8 @@ const Model: FC<ModelProps> = ({ model, projects }) => {
   const cursorLabel = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!container.current || !cursor.current || !cursorLabel.current) return;
+    if (!cursor.current || !cursorLabel.current) return;
+    // if (!container.current || !cursor.current || !cursorLabel.current) return;
 
     const moveContainerX = gsap.quickTo(container.current, "left", {
       duration: 0.3,
@@ -78,8 +80,10 @@ const Model: FC<ModelProps> = ({ model, projects }) => {
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
 
-      moveContainerX(clientX);
-      moveContainerY(clientY);
+      if (container.current) {
+        moveContainerX(clientX);
+        moveContainerY(clientY);
+      }
 
       moveCursorX(clientX);
       moveCursorY(clientY);
@@ -98,39 +102,41 @@ const Model: FC<ModelProps> = ({ model, projects }) => {
   return (
     <>
       {/* Image Modal */}
-      <motion.div
-        ref={container}
-        variants={scaleAnimation}
-        initial="initial"
-        animate={active ? "open" : "closed"}
-        className="h-96 w-96 fixed top-1/2 left-1/2 
+      {source === "Archive" ? null : (
+        <motion.div
+          ref={container}
+          variants={scaleAnimation}
+          initial="initial"
+          animate={active ? "open" : "closed"}
+          className="h-96 w-96 fixed top-1/2 left-1/2 
         flex items-center justify-center 
         overflow-hidden pointer-events-none shadow-lg z-20"
-      >
-        <div
-          className="h-full w-full absolute transition-all duration-500 ease-(--ease)"
-          style={{ top: `${index * -100}%` }}
         >
-          {projects.map((project, i) => (
-            <div
-              key={`modal_${i}`}
-              className="relative h-full flex items-center justify-center"
-              style={{ backgroundColor: project.bgColor }}
-            >
-              <div className="">
-                <Image
-                  src={`/${project.image}`}
-                  // src={"/test.jpg"}
-                  height={2160}
-                  width={2160}
-                  alt="project-image"
-                  className="object-contain"
-                />
+          <div
+            className="h-full w-full absolute transition-all duration-500 ease-(--ease)"
+            style={{ top: `${index * -100}%` }}
+          >
+            {projects.map((project, i) => (
+              <div
+                key={`modal_${i}`}
+                className="relative h-full flex items-center justify-center"
+                style={{ backgroundColor: project.bgColor }}
+              >
+                <div className="">
+                  <Image
+                    src={`/${project.image}`}
+                    // src={"/test.jpg"}
+                    height={2160}
+                    width={2160}
+                    alt="project-image"
+                    className="object-contain"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
       <motion.div
         ref={cursor}
@@ -150,7 +156,11 @@ const Model: FC<ModelProps> = ({ model, projects }) => {
         className="fixed left-1/2 top-1/2 
         pointer-events-none z-30"
       >
-        <IoIosArrowRoundForward size={20} color="var(--color-white)" />
+        <IoIosArrowRoundForward
+          size={30}
+          color="var(--color-white)"
+          className="-rotate-45"
+        />
       </motion.div>
     </>
   );

@@ -1,58 +1,33 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { IProject } from "./projects";
 import TransitionLink from "../TransitionLink";
 import ParallaxImage from "../UI/ParallaxImage";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const ProjectCard: React.FC<IProject> = ({
-  name,
+interface ProjectProps extends IProject {
+  source?: "Home" | "Work" | "Archive";
+}
+
+const ProjectCard: React.FC<ProjectProps> = ({
+  title,
   image,
   role,
   year,
-  link,
+  meta,
   bgColor,
+  source,
 }) => {
-  const cardRef = useRef<HTMLLIElement | null>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const el = cardRef.current;
-
-    if (!el) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        {
-          opacity: 0,
-          y: 60,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            once: true,
-          },
-        },
-      );
-    }, el);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <li ref={cardRef} className="w-full md:w-1/2 opacity-0">
+    <li className="w-full md:w-1/2 opacity-100">
       <TransitionLink
-        href={`/work/${name.replaceAll(" ", "_")}`}
-        className="group block overflow-hidden no-underline"
+        target={source === "Archive" ? "_blank" : "_self"}
+        href={
+          source === "Archive"
+            ? `${meta?.links?.website || meta?.links?.android}`
+            : `/work/${title.replaceAll(" ", "_").toLowerCase()}`
+        }
+        className="block overflow-hidden no-underline"
       >
         {/* Image */}
         <div
@@ -61,7 +36,7 @@ const ProjectCard: React.FC<IProject> = ({
         >
           <ParallaxImage startY={-40} endY={40}>
             <div
-              className="w-full aspect-square bg-cover bg-center transition-transform duration-700 ease-(--ease) group-hover:scale-110"
+              className="w-full aspect-square bg-cover bg-center"
               style={{
                 backgroundImage: `url("${image}")`,
               }}
@@ -72,7 +47,7 @@ const ProjectCard: React.FC<IProject> = ({
         {/* Title */}
         <div className="mt-(--gap-padding)">
           <h4 className="text-2xl md:text-3xl font-semibold">
-            <span className="relative">{name}</span>
+            <span className="relative">{title}</span>
           </h4>
           <div className="h-px w-full bg-(--color-border) my-[calc(var(--gap-padding)/2)]" />
         </div>

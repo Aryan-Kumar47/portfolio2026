@@ -12,9 +12,9 @@ const HeroNav: React.FC<HeroNavProps> = ({ open, setOpen }) => {
   const pathname = usePathname();
   return (
     <header
-      className={`absolute top-0 left-0 right-0 z-51 md:p-10 p-8 ${pathname === "/" || pathname === "/contact" || open ? "text-white" : "text-[#1c1d20]"}`}
+      className={`absolute top-0 left-0 right-0 z-50 md:p-10 p-8 ${pathname === "/" || pathname === "/contact" ? "text-white" : "text-[#1c1d20]"}`}
     >
-      <div className="flex justify-between items-center text-xs">
+      <div className="flex justify-between items-center">
         <div>
           <Magnetic>
             <TransitionLink

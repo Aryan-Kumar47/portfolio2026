@@ -15,8 +15,8 @@ export default function Home() {
         <Hero />
         <AboutSection />
         <WhatIMade />
-        <Test />
-        <WhatIMake />
+        {/* <Test />
+        <WhatIMake /> */}
       </main>
       <div className="footer_trigger w-full mb-[100vh] pointer-events-none" />
     </>

@@ -1,22 +1,18 @@
 "use client";
 import React, { FC } from "react";
-import { projects } from "./projects";
+import { archiveProject, projects } from "./projects";
 import Project from "./Project";
 import Model from "./Model";
 import { useCursorContext } from "@/src/context/CursorContext";
 import { useScrollRotate } from "@/src/hooks/useScrollRotate";
-import Text from "../UI/Text";
-import ArrowIcon from "../UI/ArrowIcon";
 import Magnetic from "../UI/Magnetic";
 import TransitionLink from "../TransitionLink";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { MdOutlineWorkOutline } from "react-icons/md";
-import AnimatedLine from "../UI/AnimatedLine";
 import ProjectCard from "./ProjectCard";
-import ArrowBadge from "../UI/ArrowBadge";
 
 interface WhatIMakeProps {
-  source?: "Home" | "Work";
+  source?: "Home" | "Work" | "Archive";
 }
 
 export interface ModelInterface {
@@ -37,6 +33,7 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
     active: false,
     index: 0,
   });
+  const works = source === "Archive" ? archiveProject : projects;
   return (
     <section
       aria-label="Selected Projects"
@@ -61,7 +58,7 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
             onMouseLeave={visible}
             className="w-full flex-col md:flex hidden list justify-center relative"
           >
-            {(source === "Home" ? projects.slice(0, 4) : projects).map(
+            {(source === "Home" ? works.slice(0, 4) : works).map(
               (project, index) => {
                 return (
                   <div
@@ -81,9 +78,11 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
           </div>
           <div className="block md:hidden w-full">
             <ul className="flex flex-col gap-y-12 w-full">
-              {(source === "Home" ? projects.slice(0, 4) : projects).map(
+              {(source === "Home" ? works.slice(0, 4) : works).map(
                 (project, index) => {
-                  return <ProjectCard key={index} {...project} />;
+                  return (
+                    <ProjectCard key={index} {...project} source={source} />
+                  );
                 },
               )}
             </ul>
@@ -116,7 +115,7 @@ const WhatIMade: FC<WhatIMakeProps> = ({ source = "Home" }) => {
           )}
         </div>
       </div>
-      <Model model={model} projects={projects} />
+      <Model source={source} model={model} projects={works} />
     </section>
   );
 };

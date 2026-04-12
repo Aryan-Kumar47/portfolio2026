@@ -143,7 +143,7 @@ export default function Loose({
   );
 
   return (
-    <section className="w-full h-full section">
+    <section className="w-full h-full">
       <div className="container-custom medium">
         <div ref={containerRef} className="flex flex-col items-start">
           {imagesData.map((img, i) => (
@@ -160,7 +160,7 @@ export default function Loose({
                 src={img.src}
                 alt={`Gallery image ${i + 1}`}
                 loading="lazy"
-                unoptimized
+                // unoptimized
               />
             </div>
           ))}

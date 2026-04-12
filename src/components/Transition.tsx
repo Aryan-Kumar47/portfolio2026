@@ -41,9 +41,13 @@ export default function Transition() {
           />
         </svg>
 
-        <div className="transition-logo text-2xl flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <h1>Aryan Kumar</h1>
-          <p className={`${geraldine.className}`}>software developer</p>
+        <div className="transition-logo flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <h1 className="text-[calc(clamp(3.25em,7vw,8em)*.875)] leading-[1.06] tracking-[-0.02em]">
+            Aryan Kumar
+          </h1>
+          <p className={`${geraldine.className} text-[2em]`}>
+            software developer
+          </p>
         </div>
       </div>
     </>

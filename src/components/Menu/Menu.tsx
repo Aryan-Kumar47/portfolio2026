@@ -9,30 +9,27 @@ import HeroNav from "./HeroNav";
 const Menu: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const openRef = useRef(open);
+  const nav = "#mobile-nav";
   gsap.registerPlugin(ScrollTrigger);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
+  const show = () =>
+    gsap.to(nav, { scale: 1, duration: 0.3, ease: "power1.out" });
 
-    const mediaQuery = window.matchMedia("(max-width: 1024px)");
-
-    if (open && mediaQuery.matches) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, [open]);
+  const hide = () =>
+    gsap.to(nav, { scale: 0, duration: 0.3, ease: "power1.out" });
 
   useEffect(() => {
+    const isBelowMd = window.matchMedia("(max-width: 767px)").matches;
+    const isInTopRange = window.scrollY < 88;
     openRef.current = open;
+    if ((isBelowMd && isInTopRange) || (!isBelowMd && isInTopRange)) hide();
+    if (openRef.current && isBelowMd) {
+      show();
+    }
   }, [open]);
 
   useEffect(() => {
-    const nav = "#mobile-nav";
+    const isBelowMd = window.matchMedia("(max-width: 767px)").matches;
 
     gsap.to(nav, {
       scrollTrigger: {
@@ -40,19 +37,22 @@ const Menu: React.FC = () => {
         start: 0,
         end: "88px",
         onLeave: () => {
-          gsap.to(nav, {
-            scale: 1,
-            duration: 0.25,
-            ease: "power1.out",
-          });
+          show();
         },
         onEnterBack: () => {
-          (gsap.to(nav, {
-            scale: 0,
-            duration: 0.25,
-            ease: "power1.out",
-          }),
-            setOpen(false));
+          if (!openRef.current) {
+            hide();
+          }
+          if (openRef.current && !isBelowMd) {
+            setOpen(false);
+          }
+        },
+        onRefresh: (self) => {
+          if (self.progress < 1 && !openRef.current) {
+            hide();
+          } else {
+            show();
+          }
         },
       },
     });

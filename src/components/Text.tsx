@@ -234,28 +234,30 @@ export default function Test() {
         <section className="spotlight relative h-[calc(100vh+30px)] overflow-hidden bg-(--color-dark) text-white">
           <div
             ref={mainHeader}
-            className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-6xl md:text-8xl will-change-transform"
+            className="absolute inset-0 z-10 flex flex-col items-center justify-center"
           >
-            <div className="">
+            <div className="space-y-[calc(var(--gap-padding)/5)]">
               <Text scrub>
-                <h2 className={`leading-[1.2] tracking-[-0.02em]`}>
+                <h2
+                  className={`text-[calc(clamp(3.25em,7vw,8em)*.875)] leading-[1.2] tracking-[-0.02em]`}
+                >
                   Technologies{" "}
                 </h2>
               </Text>
-              <div className="flex justify-between items-center px-4">
+              <div className="flex justify-center items-center">
                 <Text scrub>
-                  <p className="text-xs w-[30ch] text-start font-bold">
+                  <p className="w-[30ch] text-center">
                     My toolkit includes industry-standard frameworks,
                     programming languages, and development tools.
                   </p>
                 </Text>
-                <Text scrub>
+                {/* <Text scrub>
                   <span
                     className={`${geraldine.className} text-6xl md:text-8xl`}
                   >
                     I use
                   </span>
-                </Text>
+                </Text> */}
               </div>
             </div>
           </div>
@@ -294,14 +296,8 @@ export default function Test() {
 
             <div className="absolute inset-0 flex items-center justify-center text-center px-(--container-padding)">
               <div className="relative">
-                <p
-                  ref={maskHeaderRef}
-                  className={`text-sm md:text-sm font-light max-w-3xl text-(--color-text)`}
-                >
-                  What I{" "}
-                  <span className={`${editorialLightItalic.className}`}>
-                    Craft
-                  </span>
+                <p ref={maskHeaderRef} className={` text-(--color-text)`}>
+                  What I Craft
                 </p>
                 <div
                   ref={maskSubHeaderRef}
