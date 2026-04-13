@@ -34,6 +34,7 @@ export default function ParallaxImage({
         {
           y: endY,
           ease: "none",
+          immediateRender: false,
           scrollTrigger: {
             trigger: elRef.current,
             start: "top bottom",

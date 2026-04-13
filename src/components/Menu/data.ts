@@ -12,8 +12,8 @@ export const instagram = "";
 
 export const navLinks = [
   { name: "Home", href: "/", msg: "Me" },
-  { name: "Work", href: "/work", msg: "View My Work" },
-  { name: "About", href: "/about", msg: "Know About Me" },
+  { name: "Work", href: "/work", msg: "My Work" },
+  { name: "About", href: "/about", msg: "About Myself" },
   { name: "Contact", href: "/contact", msg: "Contact Me" },
 ];
 

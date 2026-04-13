@@ -11,6 +11,7 @@ import Text from "@/src/components/UI/Text";
 import ParallaxImage from "@/src/components/UI/ParallaxImage";
 import { useScrollParallaxY } from "@/src/hooks/useScrollParallaxY";
 import { div } from "framer-motion/client";
+import ImageHover from "@/src/components/UI/ImageHover";
 interface pageProps {
   params: {
     id: string;
@@ -113,33 +114,34 @@ const Page: FC<PageProps> = ({ params }) => {
         <div className="container-custom">
           <div className="relative">
             <div className="overflow-hidden">
-              <Image
-                className=" w-full aspect-square sm:aspect-16/11 object-cover object-center"
-                src={`/${project?.image}`}
-                height={2160}
-                width={2160}
-                alt={`${project?.title ?? "Project"} screenshot`}
-              />
+              <ImageHover
+                symbols={id.replace(/_/g, "").split("")}
+                blockSize={30}
+                clusterSize={5}
+              >
+                <Image
+                  className=" w-full aspect-square sm:aspect-16/11 object-cover object-center"
+                  src={`/${project?.image}`}
+                  height={2160}
+                  width={2160}
+                  alt={`${project?.title ?? "Project"} screenshot`}
+                />
+              </ImageHover>
             </div>
-            <div
-              className={`w-fit absolute top-0 right-0 flex justify-end items-end -translate-y-1/2 -translate-x-1/2`}
-            >
-              <div className="link-button">
-                <RoundedButton
-                  target="_blank"
-                  backgroundColor="var(--color-blue)"
-                  hoverBackgroundColor="var(--color-blur-dark)"
-                  rel="noopener noreferrer"
-                  href={
-                    project?.meta?.links?.website ||
-                    project?.meta?.links?.android
-                  }
-                  customText={"View Project Live"}
-                  className="rounded-[50%] w-[clamp(9em,12vw,11em)] h-[clamp(9em,12vw,11em)]"
-                >
-                  <span className="text-white">View</span>
-                </RoundedButton>
-              </div>
+            <div className="link-button w-fit absolute top-0 right-0 -translate-y-1/2 -translate-x-1/2 z-2">
+              <RoundedButton
+                target="_blank"
+                backgroundColor="var(--color-blue)"
+                hoverBackgroundColor="var(--color-blue-dark)"
+                rel="noopener noreferrer"
+                href={
+                  project?.meta?.links?.website || project?.meta?.links?.android
+                }
+                customText={"View Project Live"}
+                className="rounded-[50%] w-[clamp(9em,12vw,11em)] h-[clamp(9em,12vw,11em)]"
+              >
+                <span className="text-white">View</span>
+              </RoundedButton>
             </div>
           </div>
         </div>
@@ -246,22 +248,18 @@ const Page: FC<PageProps> = ({ params }) => {
                 </div>
               ))}
             </div>
-            <div
-              className={`w-fit absolute top-0 right-0 flex justify-end items-end -translate-y-1/2 -translate-x-1/2`}
-            >
-              <div className="link-button-2">
-                <RoundedButton
-                  target="_blank"
-                  backgroundColor="var(--color-blue)"
-                  hoverBackgroundColor="var(--color-blur-dark)"
-                  rel="noopener noreferrer"
-                  href={project?.meta?.links?.android}
-                  customText={"View Project Live"}
-                  className="rounded-[50%] w-[clamp(9em,12vw,11em)] h-[clamp(9em,12vw,11em)]"
-                >
-                  <span className="text-white">View</span>
-                </RoundedButton>
-              </div>
+            <div className="link-button-2 w-fit absolute top-0 right-0 flex justify-end items-end -translate-y-1/2 -translate-x-1/2">
+              <RoundedButton
+                target="_blank"
+                backgroundColor="var(--color-blue)"
+                hoverBackgroundColor="var(--color-blue-dark)"
+                rel="noopener noreferrer"
+                href={project?.meta?.links?.android}
+                customText={"View Project Live"}
+                className="rounded-[50%] w-[clamp(9em,12vw,11em)] h-[clamp(9em,12vw,11em)]"
+              >
+                <span className="text-white">View</span>
+              </RoundedButton>
             </div>
           </div>
         )}

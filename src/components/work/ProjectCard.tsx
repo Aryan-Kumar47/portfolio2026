@@ -3,7 +3,6 @@
 import React from "react";
 import { IProject } from "./projects";
 import TransitionLink from "../TransitionLink";
-import ParallaxImage from "../UI/ParallaxImage";
 
 interface ProjectProps extends IProject {
   source?: "Home" | "Work" | "Archive";
@@ -31,21 +30,19 @@ const ProjectCard: React.FC<ProjectProps> = ({
       >
         {/* Image */}
         <div
-          className="relative w-full overflow-hidden "
+          className="relative w-full overflow-hidden"
           style={{ backgroundColor: bgColor }}
         >
-          <ParallaxImage startY={-40} endY={40}>
-            <div
-              className="w-full aspect-square bg-cover bg-center"
-              style={{
-                backgroundImage: `url("${image}")`,
-              }}
-            />
-          </ParallaxImage>
+          <div
+            className="w-full aspect-square bg-cover bg-center"
+            style={{
+              backgroundImage: `url("${image}")`,
+            }}
+          />
         </div>
 
         {/* Title */}
-        <div className="mt-(--gap-padding)">
+        <div className="pt-(--gap-padding) pb-[calc(var(--gap-padding)/6)]">
           <h4 className="text-2xl md:text-3xl font-semibold">
             <span className="relative">{title}</span>
           </h4>

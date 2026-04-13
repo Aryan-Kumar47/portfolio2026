@@ -27,6 +27,8 @@ export const useScrollRotate = ({
   toY = -100,
 }: RotateOptions) => {
   useEffect(() => {
+    if (!trigger) return;
+
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {

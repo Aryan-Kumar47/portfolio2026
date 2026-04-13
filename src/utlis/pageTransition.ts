@@ -43,6 +43,7 @@ CustomEase.create("cubic-default-scribble", "0.75, 0.15, 0.15, 1");
 
 export function pageTransitionIn(): gsap.core.Timeline {
   const randomColor = getNonRepeatingRandomTheme();
+  // const randomColor = "var(--color-dark)";
   const tl = gsap.timeline({
     onStart: () => {
       disableScroll();
