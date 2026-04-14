@@ -32,10 +32,7 @@ const scaleAnimation: Variants = {
 };
 
 /** Create a paired quickTo(left) + quickTo(top) for a single element */
-function createPositionQuickTo(
-  el: HTMLElement,
-  duration: number,
-) {
+function createPositionQuickTo(el: HTMLElement, duration: number) {
   const moveX = gsap.quickTo(el, "left", { duration, ease: "power3.out" });
   const moveY = gsap.quickTo(el, "top", { duration, ease: "power3.out" });
   return (x: number, y: number) => {
@@ -57,13 +54,13 @@ const Model: FC<ModelProps> = ({ model, projects, source }) => {
     const labelEl = cursorLabelRef.current;
     if (!cursorEl || !labelEl) return;
 
-    const moveCursor = createPositionQuickTo(cursorEl, 0.35);
-    const moveLabel = createPositionQuickTo(labelEl, 0.3);
+    const moveCursor = createPositionQuickTo(cursorEl, 0.85);
+    const moveLabel = createPositionQuickTo(labelEl, 0.7);
 
     // Container quickTo is only needed when image preview exists
     const containerEl = containerRef.current;
     const moveContainer = containerEl
-      ? createPositionQuickTo(containerEl, 0.3)
+      ? createPositionQuickTo(containerEl, 0.7)
       : null;
 
     const handleMouseMove = (e: MouseEvent) => {

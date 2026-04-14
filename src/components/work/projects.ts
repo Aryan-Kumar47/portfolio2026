@@ -9,6 +9,7 @@ export interface IProject {
   image?: string;
   industry?: string;
   mobileImages?: string[];
+  service?: string[];
 
   meta?: {
     tech?: string[];
@@ -114,6 +115,7 @@ export const projects: IProject[] = [
     product: ["CRM", "Backend", "Website"],
     image: "project/moovato.jpg",
     industry: "Logistics",
+    service: ["Frontend Development", "Backend Development"],
 
     meta: {
       tech: [
@@ -209,6 +211,11 @@ export const projects: IProject[] = [
       "project/alpha2.png",
       "project/alpha3.png",
     ],
+    service: [
+      "Frontend Development",
+      "Backend Development",
+      "Mobile Development",
+    ],
 
     meta: {
       tech: [
@@ -295,6 +302,11 @@ export const projects: IProject[] = [
       "project/flotix1.png",
       "project/flotix2.png",
       "project/flotix3.png",
+    ],
+    service: [
+      "Frontend Development",
+      "Backend Development",
+      "Mobile Development",
     ],
 
     meta: {

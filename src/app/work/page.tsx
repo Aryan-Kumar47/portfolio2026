@@ -45,7 +45,7 @@ const WorkPage: FC = () => {
         <div className="flex justify-center items-center pb-[calc(var(--section-padding)*0.75)]">
           <RoundedButton
             href={"/archive"}
-            customText={"Let's build something."}
+            customText={"More Work."}
             className="rounded-full h-20 w-44"
           >
             <div className="text-white">Archive</div>

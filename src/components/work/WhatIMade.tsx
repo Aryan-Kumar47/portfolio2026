@@ -10,6 +10,7 @@ import TransitionLink from "../TransitionLink";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import ProjectCard from "./ProjectCard";
+import { useMediaQuery } from "@/src/hooks/useMediaQuery";
 
 interface WhatIMadeProps {
   source?: "Home" | "Work" | "Archive";
@@ -44,10 +45,12 @@ const WhatIMade: FC<WhatIMadeProps> = ({ source = "Home" }) => {
 
   // Compute display list once
   const allWorks = source === "Archive" ? archiveProject : projects;
-  const displayWorks = useMemo(
-    () => (isHome ? allWorks.slice(0, 4) : allWorks),
-    [isHome, allWorks],
-  );
+  const isLg = useMediaQuery("(min-width: 1024px)");
+
+  const displayWorks = useMemo(() => {
+    const slice = isLg ? 4 : 2;
+    return isHome ? allWorks.slice(0, slice) : allWorks;
+  }, [isHome, allWorks, isLg]);
 
   const handleModelUpdate = useCallback(
     (value: ModelInterface) => setModel(value),
@@ -57,7 +60,7 @@ const WhatIMade: FC<WhatIMadeProps> = ({ source = "Home" }) => {
   return (
     <section
       aria-label="Selected Projects"
-      className="flex flex-col overflow-hidden pb-[calc(var(--section-padding)*0.75)] select-none"
+      className="flex flex-col overflow-hidden select-none"
     >
       <div className="w-full flex flex-col relative">
         {/* Section label — Home only */}
@@ -74,7 +77,7 @@ const WhatIMade: FC<WhatIMadeProps> = ({ source = "Home" }) => {
           <div
             onMouseEnter={hide}
             onMouseLeave={visible}
-            className="w-full flex-col md:flex hidden list justify-center relative"
+            className="w-full flex-col lg:flex hidden list justify-center relative pb-[calc(var(--section-padding)/2)]"
           >
             {displayWorks.map((project, index) => (
               <div
@@ -92,7 +95,7 @@ const WhatIMade: FC<WhatIMadeProps> = ({ source = "Home" }) => {
           </div>
 
           {/* Mobile — cards */}
-          <ul className="flex flex-col gap-y-12 w-full md:hidden">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-12 w-full lg:hidden">
             {displayWorks.map((project) => (
               <ProjectCard
                 key={`card_${project.title}`}
@@ -114,7 +117,7 @@ const WhatIMade: FC<WhatIMadeProps> = ({ source = "Home" }) => {
 
 /** Extracted to avoid re-rendering with parent state changes */
 const MoreWorksButton: FC = () => (
-  <div className="w-full flex justify-center items-center md:px-[calc(7vw+5rem)] px-[3vw] pt-[calc(var(--section-padding)/2)]">
+  <div className="w-full flex justify-center items-center md:px-[calc(7vw+5rem)] px-[3vw] pb-[calc(var(--section-padding)/2)]">
     <Magnetic className="w-full md:max-w-[80%] max-w-[90%]">
       <TransitionLink
         customText="Explore More"

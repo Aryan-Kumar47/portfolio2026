@@ -17,7 +17,7 @@ export const CursorProvider = ({ children }: { children: React.ReactNode }) => {
       >
         <span
           ref={cursor.textRef}
-          className="absolute -left-3.5 top-1/2 -translate-y-1/2 opacity-0 scale-0 rounded-full px-4 pl-13.75 py-3.75 bg-white/60 backdrop-blur-md border border-white/20 shadow-lg text-nowrap pointer-events-none text-xs text-black"
+          className="absolute -left-3.5 top-1/2 -translate-y-1/2 opacity-0 scale-0 rounded-full px-4 pl-13.75 py-3.75 bg-white/20 backdrop-blur-xs border border-white/20 shadow-lg text-nowrap pointer-events-none text-xs text-black"
         >
           click to enable sound
         </span>

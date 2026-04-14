@@ -130,7 +130,9 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
 
           <div className="ml-[calc(var(--gap-padding)/-4)] flex flex-wrap relative">
             <div className="pl-[calc(var(--gap-padding)*0.5)]">
-              <h5 className="mb-[1em] ">Socials</h5>
+              <h5 className="mb-[1em] pl-[calc(var(--gap-padding)/2)]">
+                Socials
+              </h5>
               <ul
                 className={`transform  transition-all duration-800 ease-(--ease) will-change-transform ${open ? "translate-x-0" : "translate-x-[20vw]"}`}
               >
@@ -140,7 +142,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`group relative inline-block text-white  ${i === 0 ? "pr-[calc(var(--gap-padding)/3)]" : "px-[calc(var(--gap-padding)/3)]"}`}
+                      className={`group relative inline-block text-white  px-[calc(var(--gap-padding)/3)]`}
                     >
                       <Magnetic>
                         <div>

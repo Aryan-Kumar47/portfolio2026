@@ -16,7 +16,7 @@ interface ParallaxOptions {
 
 export const useScrollParallaxY = ({
   trigger,
-  start = "top 80%",
+  start = "top bottom",
   end = "bottom top",
   scrub = 1,
   fromY = 50,

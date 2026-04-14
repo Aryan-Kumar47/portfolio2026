@@ -33,7 +33,7 @@ export const useCustomScrollbar = ({
       if (hideTimeout) clearTimeout(hideTimeout);
       hideTimeout = setTimeout(() => {
         if (isDragging) return;
-        thumb.style.opacity = "0.5";
+        thumb.style.opacity = "0";
       }, 1000);
     };
 

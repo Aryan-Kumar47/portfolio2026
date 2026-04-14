@@ -76,37 +76,42 @@ const Page: FC<PageProps> = ({ params }) => {
         <div className="pt-[calc(var(--section-padding)/1.75)] pb-[calc(var(--section-padding)/1.25)] -mt-px">
           <div className="container-custom medium">
             <div className="flex flex-wrap relative">
-              <div className="block w-full order-2 relative md:w-[calc(33.333%-var(--gap-padding))] md:mr-[calc(var(--gap-padding)*1.5)]">
+              <div className="block w-full md:mb-0 mb-[8vw] order-2 relative md:w-[calc(33.333%-var(--gap-padding))] md:mr-[calc(var(--gap-padding)*1.5)]">
                 <h5>Industry</h5>
                 <div className="my-[1.75em] mb-[1.5em] h-px w-full bg-(--color-border)"></div>
                 <li className="inline-flex">
-                  <p className="font-[450] text-[1em] leading-[1.66] mb-[1em] text-(--text)">
+                  <p className="font-[450] text-[1em] leading-[1.66] text-(--text)">
                     {project?.industry}
                   </p>
                 </li>
               </div>
 
-              <div className="block w-full order-2 relative md:w-[calc(33.333%-var(--gap-padding))] md:mr-[calc(var(--gap-padding)*1.5)]">
+              <div className="block w-full md:mb-0 mb-[8vw] order-2 relative md:w-[calc(33.333%-var(--gap-padding))] md:mr-[calc(var(--gap-padding)*1.5)]">
                 <h5>Service</h5>
                 <div className="my-[1.75em] mb-[1.5em] h-px w-full bg-(--color-border)"></div>
-                <li className="inline-flex">
-                  <p className="font-[450] text-[1em] leading-[1.66] mb-[1em] text-(--text)">
-                    {project?.type}
-                  </p>
-                </li>
+                <ul className="">
+                  {project?.service?.map((item, i) => (
+                    <li key={`service_${i}`} className="list-none py-0">
+                      <p className="font-[450] text-[1em] leading-[1.66] text-(--text)">
+                        {item}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="block w-full order-2 relative md:w-[calc(33.333%-var(--gap-padding))]">
+              <div className="block w-full md:mb-0 mb-[8vw] order-2 relative md:w-[calc(33.333%-var(--gap-padding))]">
                 <h5>Platforms</h5>
                 <div className="my-[1.75em] mb-[1.5em] h-px w-full bg-(--color-border)"></div>
-                {project?.product?.map((item, i) => (
-                  <li key={`platforms_${i}`} className="inline-flex">
-                    <p className="font-[450] text-[1em] leading-[1.66] mb-[1em] text-(--text)">
-                      {i > 0 && <span>, </span>}
-                      {item}
-                    </p>
-                  </li>
-                ))}
+                <ul className="">
+                  {project?.product?.map((item, i) => (
+                    <li key={`platforms_${i}`} className="list-none py-0">
+                      <p className="font-[450] text-[1em] leading-[1.66] text-(--text)">
+                        {item}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -174,12 +179,9 @@ const Page: FC<PageProps> = ({ params }) => {
           <div className="container-custom">
             <div className="flex flex-wrap relative mb-[calc(var(--section-padding)/2)]">
               <div className="block w-full relative ">
-                <h2 className="text-[clamp(1.55em,2.3vw,2.5em)] font-medium leading-[1.065] mb-[1em]">
+                <h2 className="mb-[0.66em] text-[clamp(2.44em,3.75vw,3.375em)] font-medium leading-[1.065]">
                   {project?.sections?.techStack?.heading}
                 </h2>
-                {/* <h2 className="mb-[0.66em] text-[clamp(2.44em,3.75vw,3.375em)] font-medium leading-[1.065]">
-                  {project?.sections?.techStack?.heading}
-                </h2> */}
               </div>
             </div>
             <div className="flex flex-wrap relative">
@@ -234,18 +236,12 @@ const Page: FC<PageProps> = ({ params }) => {
           >
             <div className="flex flex-wrap relative container-custom w-full gap-x-(--gap-padding)">
               {project?.mobileImages.map((item, i) => (
-                <div key={`mobile_imgaes_${i}`} className="flex flex-1">
-                  <div className="overflow-hidden rounded-xl w-full">
-                    <Image
-                      key={`mobile_image_${i}`}
-                      className="w-full object-contain object-center"
-                      src={`/${item}`}
-                      height={2160}
-                      width={2160}
-                      alt={`${project?.title ?? "Project"} screenshot`}
-                    />
-                  </div>
-                </div>
+                <MobileImage
+                  key={`mobile_imgaes_${i}`}
+                  item={item}
+                  title={project.title}
+                  index={i}
+                />
               ))}
             </div>
             <div className="link-button-2 w-fit absolute top-0 right-0 flex justify-end items-end -translate-y-1/2 -translate-x-1/2">
@@ -266,6 +262,30 @@ const Page: FC<PageProps> = ({ params }) => {
       </div>
       <div className="footer_trigger w-full mb-[100vh] pointer-events-none" />
     </>
+  );
+};
+const MobileImage = ({ item, title, index }: any) => {
+  const imageClass = `mobile-image-${index}`;
+  console.log(item, index);
+  useScrollParallaxY({
+    trigger: `.${imageClass}`,
+    fromY: 80 + index * 60,
+    toY: -80,
+    // start: `top ${80 - index * 10}%`,
+  });
+
+  return (
+    <div className={`flex flex-1 ${imageClass}`}>
+      <div className="overflow-hidden rounded-xl w-full">
+        <Image
+          className="w-full object-contain object-center"
+          src={`/${item}`}
+          height={2160}
+          width={2160}
+          alt={`${title ?? "Project"}_screenshot`}
+        />
+      </div>
+    </div>
   );
 };
 
