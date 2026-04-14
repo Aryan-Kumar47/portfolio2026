@@ -72,7 +72,6 @@ body {
   left: 0;
   color: #000;
   clip-path: inset(0 0 var(--clip-value) 0);
-  will-change: clip-path;
 }
 
 .mask-ellipse {

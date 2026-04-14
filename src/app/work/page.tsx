@@ -1,17 +1,13 @@
 "use client";
-import { FC, useState } from "react";
+import { FC } from "react";
 import Text from "@/src/components/UI/Text";
-import Footer from "@/src/components/Footer";
 import WhatIMade from "@/src/components/work/WhatIMade";
 import RoundedButton from "@/src/components/UI/RoundedButton";
-
-const phrase =
-  "Each project is a demonstration of my skills and capabilities in both front-end and back-end development.";
+import Footer from "@/src/components/Footer";
 
 const WorkPage: FC = () => {
   return (
     <>
-      <Footer />
       <main className={`w-full bg-white relative`}>
         <div className="section default-header">
           <div className="container-custom medium">
@@ -46,13 +42,13 @@ const WorkPage: FC = () => {
           <RoundedButton
             href={"/archive"}
             customText={"More Work."}
-            className="rounded-full h-20 w-44"
+            className="rounded-full h-[4.25em] w-44"
           >
             <div className="text-white">Archive</div>
           </RoundedButton>
         </div>
       </main>
-      <div className="footer_trigger w-full mb-[100vh] pointer-events-none" />
+      <Footer />
     </>
   );
 };

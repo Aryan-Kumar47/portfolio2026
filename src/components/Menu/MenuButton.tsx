@@ -41,7 +41,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ open, setOpen }) => {
               <span
                 className={`absolute left-1/2 top-1/2 h-0.5 w-[68%]
   bg-white origin-center -translate-x-1/2 -translate-y-1/2
-  transition-all duration-400 ease-in-out
+  transition-[transform,opacity] duration-400 ease-in-out
   ${open ? "rotate-45 opacity-100" : "rotate-45 scale-x-0 opacity-0"}`}
               />
 
@@ -49,7 +49,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ open, setOpen }) => {
               <span
                 className={`absolute left-1/2 top-1/2 h-0.5 w-[68%]
   bg-white origin-center -translate-x-1/2 -translate-y-1/2
-  transition-all duration-400 ease-in-out
+  transition-[transform,opacity] duration-400 ease-in-out
   ${open ? "-rotate-45 opacity-100" : "-rotate-45 scale-x-0 opacity-0"}`}
               />
             </div>

@@ -1,18 +1,13 @@
 "use client";
-import { FC, useState } from "react";
+import { FC } from "react";
 import Text from "@/src/components/UI/Text";
-import Footer from "@/src/components/Footer";
 import WhatIMade from "@/src/components/work/WhatIMade";
-import RoundedButton from "@/src/components/UI/RoundedButton";
-
-const phrase =
-  "Each project is a demonstration of my skills and capabilities in both front-end and back-end development.";
+import Footer from "@/src/components/Footer";
 
 const ArchivePage: FC = () => {
   return (
     <>
-      <Footer />
-      <main className={`w-full bg-white relative`}>
+      <main className="w-full bg-white relative">
         <div className="section default-header">
           <div className="container-custom medium">
             <div className="w-full flex items-center justify-between gap-x-4">
@@ -43,7 +38,7 @@ const ArchivePage: FC = () => {
         </div>
         <WhatIMade source="Archive" />
       </main>
-      <div className="footer_trigger w-full mb-[100vh] pointer-events-none" />
+      <Footer />
     </>
   );
 };

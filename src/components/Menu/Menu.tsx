@@ -4,13 +4,15 @@ import MenuButton from "./MenuButton";
 import FullscreenMenu from "./FullscreenMenu";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
 import HeroNav from "./HeroNav";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Menu: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
   const openRef = useRef(open);
   const nav = "#mobile-nav";
-  gsap.registerPlugin(ScrollTrigger);
 
   const show = () =>
     gsap.to(nav, { scale: 1, duration: 0.3, ease: "power1.out" });
@@ -28,7 +30,7 @@ const Menu: React.FC = () => {
     }
   }, [open]);
 
-  useEffect(() => {
+  useGSAP(() => {
     const isBelowMd = window.matchMedia("(max-width: 767px)").matches;
 
     gsap.to(nav, {
@@ -56,62 +58,7 @@ const Menu: React.FC = () => {
         },
       },
     });
-  }, []);
-
-  //   useEffect(() => {
-  //     const nav = "#mobile-nav";
-  //     const firstViewport = window.innerHeight;
-
-  //     gsap.set(nav, { yPercent: -translate });
-
-  //     let lastDirection = 0;
-
-  //     const directionTrigger = ScrollTrigger.create({
-  //       start: 0,
-  //       end: "max",
-  //       onUpdate: (self) => {
-  //         const scrollY = self.scroll();
-
-  //         // 🔹 First viewport → always hidden + close menu
-  //         if (scrollY <= firstViewport) {
-  //           gsap.to(nav, {
-  //             yPercent: -translate,
-  //             duration: 0.25,
-  //             ease: "power2.out",
-  //           });
-
-  //           if (openRef.current) {
-  //             setOpen(false);
-  //           }
-
-  //           return;
-  //         }
-
-  //         if (self.direction !== lastDirection) {
-  //           lastDirection = self.direction;
-
-  //           // 🔥 If menu is open → ALWAYS keep nav visible
-  //           if (openRef.current) {
-  //             gsap.to(nav, {
-  //               yPercent: 0,
-  //               duration: 0.25,
-  //               ease: "power2.out",
-  //             });
-  //             return;
-  //           }
-
-  //           // 🔹 Normal scroll behavior
-  //           gsap.to(nav, {
-  //             yPercent: self.direction === 1 ? -translate : 0,
-  //             duration: 0.25,
-  //             ease: "power2.out",
-  //           });
-  //         }
-  //       },
-  //     });
-
-  //     return () => directionTrigger.kill();
-  //   }, []);
+  });
 
   return (
     <>

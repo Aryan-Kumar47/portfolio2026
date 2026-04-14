@@ -96,7 +96,7 @@ const page: FC<pageProps> = ({}) => {
     }
   };
   return (
-    <div className={`bg-(--color-dark) min-h-svh text-white`}>
+    <main className={`bg-(--color-dark) min-h-svh text-white`}>
       <div className="flex flex-col h-full justify-between">
         <div className="section default-header contact-header">
           <div className="container-custom medium">
@@ -357,9 +357,9 @@ const page: FC<pageProps> = ({}) => {
             >
               <div className="w-fit z-1">
                 <Magnetic hoverEffect={false}>
-                  <div className="p-6 transition-all duration-300 ease-(--ease) bg-white -mr-4 rounded-full">
+                  <div className="p-6 transition-transform duration-300 ease-(--ease) bg-white -mr-4 rounded-full">
                     <HiOutlineDocumentText
-                      className=" text-black group-hover:scale-125 transition-all duration-300 ease-(--ease)"
+                      className=" text-black group-hover:scale-125 transition-transform duration-300 ease-(--ease)"
                       size={30}
                     />
                   </div>
@@ -384,7 +384,7 @@ const page: FC<pageProps> = ({}) => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

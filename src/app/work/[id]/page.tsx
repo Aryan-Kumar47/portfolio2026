@@ -1,17 +1,13 @@
 "use client";
 import Image from "next/image";
-import React, { FC, use, useEffect, useState } from "react";
-import { RxCross2 } from "react-icons/rx";
-import { HiMiniArrowUpRight } from "react-icons/hi2";
-import { RiArrowRightUpLine } from "react-icons/ri";
+import { FC, use, useEffect, useState } from "react";
 import { IProject, projects } from "@/src/components/work/projects";
 import RoundedButton from "@/src/components/UI/RoundedButton";
-import Footer from "@/src/components/Footer";
+
 import Text from "@/src/components/UI/Text";
-import ParallaxImage from "@/src/components/UI/ParallaxImage";
 import { useScrollParallaxY } from "@/src/hooks/useScrollParallaxY";
-import { div } from "framer-motion/client";
 import ImageHover from "@/src/components/UI/ImageHover";
+import Footer from "@/src/components/Footer";
 interface pageProps {
   params: {
     id: string;
@@ -48,8 +44,7 @@ const Page: FC<PageProps> = ({ params }) => {
 
   return (
     <>
-      <Footer />
-      <div className={`relative bg-white`}>
+      <main className={`relative bg-white`}>
         {/* <div
           className="flex justify-center items-center w-full pt-[calc(clamp(5em,21vh,12em)*1.33)]
   max-[720px]:pt-[calc(12vh*1.95)]"
@@ -127,8 +122,8 @@ const Page: FC<PageProps> = ({ params }) => {
                 <Image
                   className=" w-full aspect-square sm:aspect-16/11 object-cover object-center"
                   src={`/${project?.image}`}
-                  height={2160}
-                  width={2160}
+                  height={800}
+                  width={800}
                   alt={`${project?.title ?? "Project"} screenshot`}
                 />
               </ImageHover>
@@ -259,14 +254,13 @@ const Page: FC<PageProps> = ({ params }) => {
             </div>
           </div>
         )}
-      </div>
-      <div className="footer_trigger w-full mb-[100vh] pointer-events-none" />
+      </main>
+      <Footer />
     </>
   );
 };
 const MobileImage = ({ item, title, index }: any) => {
   const imageClass = `mobile-image-${index}`;
-  console.log(item, index);
   useScrollParallaxY({
     trigger: `.${imageClass}`,
     fromY: 80 + index * 60,

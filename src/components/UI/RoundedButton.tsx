@@ -7,8 +7,9 @@ import { cn } from "@/src/utlis/cn";
 import TransitionLink from "../TransitionLink";
 import { useCursorContext } from "@/src/context/CursorContext";
 
-interface RoundedButtonProps
-  extends ButtonHTMLAttributes<HTMLDivElement | HTMLButtonElement> {
+interface RoundedButtonProps extends ButtonHTMLAttributes<
+  HTMLDivElement | HTMLButtonElement
+> {
   backgroundColor?: string;
   hoverBackgroundColor?: string;
   href?: string;
@@ -100,11 +101,7 @@ const RoundedButton: FC<RoundedButtonProps> = ({
           { borderColor: hoverBackgroundColor, color: "#fff" },
           "enter",
         )
-        .to(
-          circle,
-          { top: "-150%", width: "125%", duration: 0.25 },
-          "exit",
-        )
+        .to(circle, { top: "-150%", width: "125%", duration: 0.25 }, "exit")
         .to(
           container,
           { borderColor: "rgba(136,136,136,0.5)", color: "#191921" },
@@ -140,7 +137,7 @@ const RoundedButton: FC<RoundedButtonProps> = ({
         ref={innerRef}
         className={cn(
           "relative z-10 flex justify-center items-center text-nowrap",
-          isChildPadding && "px-9 py-3",
+          isChildPadding && "px-[2.5em] py-[2.125em",
         )}
       >
         {children}

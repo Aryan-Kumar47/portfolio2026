@@ -3,16 +3,10 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, SplitText } from "gsap/all";
 import { useRef } from "react";
-import {
-  editorialItalic,
-  editorialLightItalic,
-  geraldine,
-} from "../utlis/fonts";
+import { geraldine } from "../utlis/fonts";
 import Image from "next/image";
-import ParallaxImage from "./UI/ParallaxImage";
 import Text from "./UI/Text";
 import ArrowIcon from "./UI/ArrowIcon";
-import EthosTitle from "./UI/EthosTitle";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -123,7 +117,6 @@ export default function Test() {
       const maskEl = maskContainerRef.current;
       const maskImgEl = maskImageRef.current;
       const headerEl = maskHeaderRef.current;
-      const mainHeaderEl = mainHeader.current;
 
       const spotlightHeight = imagesEl.offsetHeight;
       const viewportHeight = window.innerHeight;
@@ -264,7 +257,7 @@ export default function Test() {
 
           <div
             ref={spotlightImages}
-            className="absolute top-0 left-0 h-[300vh] w-full flex flex-col justify-between translate-y-[5%] will-change-transform"
+            className="absolute top-0 left-0 h-[300vh] w-full flex flex-col justify-between translate-y-[5%]"
           >
             {skills.map((row, rowIndex) => (
               <div
@@ -291,7 +284,7 @@ export default function Test() {
           <div ref={maskContainerRef} className="mask-container">
             <div
               ref={maskImageRef}
-              className="h-full w-full bg-white will-change-transform"
+              className="h-full w-full bg-white"
             />
 
             <div className="absolute inset-0 flex items-center justify-center text-center px-(--container-padding)">
@@ -339,7 +332,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ skill }) => {
           fill="rgba(255,255,255,10)"
         />
       </svg>
-      <div className="relative p-10 w-40 h-40 rounded-full bg-white/5 backdrop-blur-lg border border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 flex flex-col items-center justify-center cursor-pointer">
+      <div className="relative p-10 w-40 h-40 rounded-full bg-white/5 backdrop-blur-lg border border-white/10 shadow-lg hover:shadow-2xl transition-[transform,box-shadow] duration-300 hover:-translate-y-2 flex flex-col items-center justify-center cursor-pointer">
         {/* Glow Effect */}
         <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-blue-500/10 to-purple-500/10 opacity-0 transition duration-300" />
 

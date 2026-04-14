@@ -9,20 +9,19 @@ import Text from "@/src/components/UI/Text";
 import AboutSection from "@/src/components/AboutSection";
 import Test from "@/src/components/Text";
 import WhatIMake from "@/src/components/WhatIMake";
-import Footer from "@/src/components/Footer";
 import Loose from "@/src/components/UI/Loose";
 import Skills from "@/src/components/Skills";
 import AnimateText from "@/src/components/UI/AnimateText";
 import Heading from "@/src/components/UI/Heading";
 import RoundedButton from "@/src/components/UI/RoundedButton";
+import Footer from "@/src/components/Footer";
 
 interface pageProps {}
 const phrase = `I’m Aryan Kumar, I design and engineer full-stack web & mobile applications.`;
 const About: FC<pageProps> = ({}) => {
   return (
     <>
-      <Footer />
-      <div className={`w-full relative bg-white`}>
+      <main className={`w-full relative bg-white`}>
         <div className="section default-header about-header">
           <div className="container-custom medium">
             <Text delay={0.9}>
@@ -109,8 +108,9 @@ const About: FC<pageProps> = ({}) => {
         {/* <Test /> */}
         {/* <WhatIMake source="About" /> */}
         {/* <div className="h-[50vh] bg-white"></div> */}
-      </div>
-      <div className="footer_trigger w-full mb-[100vh] pointer-events-none" />
+        <Footer />
+      </main>
+      <Footer />
     </>
   );
 };

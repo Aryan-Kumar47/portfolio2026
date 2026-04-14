@@ -36,8 +36,8 @@ const ProjectCard: React.FC<ProjectProps> = ({
         >
           <Image
             src={`/${image}`}
-            height={2160}
-            width={2160}
+            height={800}
+            width={800}
             alt={`${title}_preview`}
             className="w-full aspect-square bg-cover bg-center"
           />

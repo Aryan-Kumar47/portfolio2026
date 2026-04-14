@@ -22,7 +22,6 @@ export async function POST(req: NextRequest) {
         text: `Name : ${name}\nEmail : ${email}\n\n${message}`, // Plain text body
       });
       // If email sent successfully, return a success response
-      console.log("success");
       return NextResponse.json({ success: true }, { status: 200 });
     } catch (error) {
       // If error occurs, return an error response

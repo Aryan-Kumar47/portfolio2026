@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { cn } from "@/src/utlis/cn";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,47 +21,40 @@ export default function ArrowBadge({
   animateOnView = true,
   delay = 0,
   size = 40,
-  className = "",
+  className,
 }: ArrowBadgeProps) {
-  const ref = useRef<HTMLSpanElement | null>(null);
+  const ref = useRef<HTMLSpanElement>(null);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+  useGSAP(
+    () => {
+      if (!ref.current) return;
 
-    const vars: gsap.TweenVars = {
-      duration: 1,
-      delay,
-      ease: "var(--ease)",
-    };
+      const from = animation === "rotate" ? { rotate: -180 } : { scale: 0 };
+      const to = animation === "rotate" ? { rotate: 0 } : { scale: 1 };
 
-    if (animateOnView) {
-      vars.scrollTrigger = {
-        trigger: el,
-        start: "top 85%",
-        toggleActions: "play none none none",
-      };
-    }
-
-    let tween;
-
-    if (animation === "rotate") {
-      tween = gsap.fromTo(el, { rotate: -180 }, { rotate: 0, ...vars });
-    } else {
-      tween = gsap.fromTo(el, { scale: 0 }, { scale: 1, ...vars });
-    }
-
-    return () => {
-      tween.scrollTrigger?.kill();
-      tween.kill();
-    };
-  }, [animation, animateOnView, delay]);
+      gsap.fromTo(ref.current, from, {
+        ...to,
+        duration: 1,
+        delay,
+        ease: "power3.out",
+        ...(animateOnView && {
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }),
+      });
+    },
+    { scope: ref, dependencies: [animation, animateOnView, delay] },
+  );
 
   return (
     <span
       ref={ref}
       className={cn(
-        `inline-flex items-center justify-center rounded-full p-3 ${className}`,
+        "inline-flex items-center justify-center rounded-full p-3",
+        className,
       )}
       style={{ width: size, height: size }}
     >

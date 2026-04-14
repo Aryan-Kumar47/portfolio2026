@@ -30,6 +30,14 @@ const SmoothScroll: FC<SmoothScrollProps> = ({ children }) => {
     dependency: pathname,
   });
 
+  // // Recalculate all ScrollTrigger positions after route change
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     ScrollTrigger.refresh();
+  //   }, 500);
+  //   return () => clearTimeout(timeout);
+  // }, [pathname]);
+
   return (
     <ReactLenis
       root
@@ -45,8 +53,8 @@ const SmoothScroll: FC<SmoothScrollProps> = ({ children }) => {
         <div className={`antialiased flex flex-col`}>
           <div id="main-content" ref={contentRef}>
             <div className={`relative bg-white`}>{children}</div>
-            {/* <Footer /> */}
-            {/* <div className=" w-full mb-[100vh] footer_trigger" /> */}
+            {/* <Footer />
+            <div className="w-full mb-[100vh] footer_trigger pointer-events-none" /> */}
           </div>
 
           <div ref={scrollbarRef} className="scrollbar">

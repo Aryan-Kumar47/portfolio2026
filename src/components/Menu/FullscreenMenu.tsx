@@ -87,10 +87,10 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
       {/* Overlay */}
       <div
         onClick={() => setOpen(false)}
-        className={`fixed top-0 left-0 w-full h-full bg-[linear-gradient(to_right,hsla(220,13%,0%,0.3)_40%,hsla(220,13%,0%,1)_80%)]  transition-opacity duration-800 ease-(--ease) z-50 will-change-[opacity] ${open ? "opacity-35 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        className={`fixed top-0 left-0 w-full h-full bg-[linear-gradient(to_right,hsla(220,13%,0%,0.3)_40%,hsla(220,13%,0%,1)_80%)]  transition-opacity duration-800 ease-(--ease) z-50 ${open ? "opacity-35 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       />
       <div
-        className={`fixed top-0 right-0 h-screen w-full sm:w-fit bg-(--color-dark) text-white z-50 transform translate-y-0  transition-transform duration-800 ease-[cubic-bezier(.7,0,.2,1)] will-change-transform  ${open ? "translate-x-0" : "translate-x-[calc(100%+6vw)]"}`}
+        className={`fixed top-0 right-0 h-screen w-full sm:w-fit bg-(--color-dark) text-white z-50 transform translate-y-0  transition-transform duration-800 ease-[cubic-bezier(.7,0,.2,1)]  ${open ? "translate-x-0" : "translate-x-[calc(100%+6vw)]"}`}
       >
         {/* Menu */}
         <div
@@ -105,7 +105,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
               {navLinks.map((item, index) => (
                 <li
                   key={index}
-                  className={`w-full transform  transition-all duration-800 ease-(--ease) will-change-transform group ${open ? "translate-x-0" : "translate-x-[20vw]"} ${item.href === pathname ? "opacity-60 after:visible" : "after:hidden"} after:content-[''] after:absolute after:bg-white sm:after:left-[calc(var(--gap-padding)/-4)] after:right-[calc(var(--gap-padding)/4)] after:top-1/2 after:-translate-y-1/2 after:w-[calc(clamp(16px,1.2vw,19px)/1.65)] hover:after:block after:h-[calc(clamp(16px,1.2vw,19px)/1.65)] after:rounded-full`}
+                  className={`w-full transform transition-transform duration-800 ease-(--ease) group ${open ? "translate-x-0" : "translate-x-[20vw]"} ${item.href === pathname ? "opacity-60 after:visible" : "after:hidden"} after:content-[''] after:absolute after:bg-white sm:after:left-[calc(var(--gap-padding)/-4)] after:right-[calc(var(--gap-padding)/4)] after:top-1/2 after:-translate-y-1/2 after:w-[calc(clamp(16px,1.2vw,19px)/1.65)] hover:after:block after:h-[calc(clamp(16px,1.2vw,19px)/1.65)] after:rounded-full`}
                 >
                   <Magnetic>
                     <TransitionLink
@@ -134,7 +134,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
                 Socials
               </h5>
               <ul
-                className={`transform  transition-all duration-800 ease-(--ease) will-change-transform ${open ? "translate-x-0" : "translate-x-[20vw]"}`}
+                className={`transform transition-transform duration-800 ease-(--ease) ${open ? "translate-x-0" : "translate-x-[20vw]"}`}
               >
                 {footerSocialLinks.map((item, i) => (
                   <li key={i} className="inline-flex text-[0.85em]">
@@ -146,7 +146,9 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
                     >
                       <Magnetic>
                         <div>
-                          <div>{item.name}</div>
+                          <div className="h-[2.5em] flex justify-center items-center">
+                            {item.name}
+                          </div>
                           <span className="absolute left-1/2 -bottom-1 h-px w-full bg-white origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300 -translate-x-1/2"></span>
                         </div>
                       </Magnetic>
@@ -159,7 +161,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
 
           {/* Small text row */}
           {/* <div
-          className={`transition-all duration-800 ease-(--ease) will-change-transform ${open ? "translate-x-0" : "translate-x-[20vw]"}`}
+          className={`transition-transform duration-800 ease-(--ease) ${open ? "translate-x-0" : "translate-x-[20vw]"}`}
         >
           <div className="flex items-center justify-between text-xs uppercase opacity-60 pb-[1em] px-1.25">
             <p>✦✦</p>
@@ -176,7 +178,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
                 href={`mailto:${email}`}
                 className="block w-full text-center text-(--color-dark) bg-white
           py-5 rounded-full text-lg
-          transition-all duration-500 ease-(--ease)"
+          transition-[opacity,transform] duration-500 ease-(--ease)"
               >
                 {email}
               </a>
