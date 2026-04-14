@@ -4,7 +4,6 @@ import {
   footerSocialLinks,
   navLinks,
   portfolio2025,
-  resume,
 } from "@/src/components/Menu/data";
 import TransitionLink from "@/src/components/TransitionLink";
 import Magnetic from "@/src/components/UI/Magnetic";
@@ -15,15 +14,35 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { usePathname } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
-import { HiMiniArrowUpRight, HiOutlineDocumentText } from "react-icons/hi2";
 import { PiSpinnerGapBold } from "react-icons/pi";
 
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
   const pathname = usePathname();
+  const [status, setStatus] = useState("Send it!");
+  const [isLoading, setIsLoading] = useState<boolean>();
+  const [time, setTime] = useState("");
   const currentYear = new Date().getFullYear();
   const { enter, leave } = useCursorContext();
+
+  useEffect(() => {
+    const updateTime = () => {
+      const formatted = new Date().toLocaleTimeString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour: "numeric", // 👈 no leading zero (9 instead of 09)
+        minute: "2-digit",
+        hour12: true,
+      });
+
+      setTime(`${formatted} IST`);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -50,8 +69,7 @@ const page: FC<pageProps> = ({}) => {
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState("Send it!");
-  const [isLoading, setIsLoading] = useState<boolean>();
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -104,6 +122,21 @@ const page: FC<pageProps> = ({}) => {
               Let'<span className={`${geraldine.className}`}>s</span> start a
               project together
             </h1>
+            <div className="block lg:hidden">
+              <div className="pt-[calc(clamp(3.25em,7vw,8em)*.875*1.175)] h-[calc(var(--section-padding)*.75)] "></div>
+              <div className="">
+                <h5 className="mb-[1.5em]!">Email</h5>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`mailto:${email}`}
+                >
+                  <span className="text-white text-[calc(clamp(3.25em,7vw,8em)*.375)] leading-[1.06] tracking-[-0.02em]">
+                    {email}
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         <section className="flex gap-x-10 container-custom medium w-full">
@@ -186,7 +219,7 @@ const page: FC<pageProps> = ({}) => {
           <div className="hidden py-8 lg:py-16 lg:flex flex-col w-full lg:w-[27%] lg:pl-[calc(clamp(2.5em,8vw,8em)/2)]">
             {/* Contact Details */}
             <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50 mb-4">
-              Contact Details
+              Email
             </span>
 
             <ul className="flex flex-col items-start gap-y-3 pb-10">
@@ -214,7 +247,11 @@ const page: FC<pageProps> = ({}) => {
 
             <ul className="flex flex-col gap-y-2 pb-10 text-white/80">
               {navLinks.map((item, index) => (
-                <TransitionLink href={item.href} className="group w-fit">
+                <TransitionLink
+                  key={"navlinks_" + index}
+                  href={item.href}
+                  className="group w-fit"
+                >
                   <Magnetic>
                     <div>
                       <div>{item.name}</div>
@@ -232,7 +269,7 @@ const page: FC<pageProps> = ({}) => {
 
             <ul className="flex flex-col items-start gap-y-3">
               {footerSocialLinks.map((item, i) => (
-                <li key={i}>
+                <li key={"contact_footer_social" + i}>
                   <a
                     href={item.link}
                     target="_blank"
@@ -251,136 +288,62 @@ const page: FC<pageProps> = ({}) => {
             </ul>
           </div>
         </section>
-        <div className="md:flex-row flex-col flex lg:hidden flex-1 justify-between items-center py-8">
-          <div className="text-xs">
-            <div className="">
-              <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
-                <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
-                  Site Map
-                </span>
-              </div>
-              <ul className="flex flex-row gap-x-2 pb-5 text-white/80">
-                {navLinks.map((item, index) => (
-                  <TransitionLink href={item.href} className="group w-fit">
-                    <Magnetic>
-                      <div>
-                        <div>{item.name}</div>
-                        <span className="absolute left-1/2 -bottom-1 h-px w-full bg-white origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300 -translate-x-1/2"></span>
-                      </div>
-                    </Magnetic>
-                  </TransitionLink>
-                ))}
-              </ul>
+        <div className="flex lg:hidden w-full flex-wrap relative flex-col-reverse md:flex-row justify-between  pt-[calc(var(--section-padding)/1.3)] sm:pr-[calc(var(--gap-padding)/1.33)] pb-[calc(var(--gap-padding)/1.75)] sm:pl-[calc(var(--gap-padding)/1.33)]">
+          <div className="flex justify-between md:w-auto w-full relative md:px-0 px-(--container-padding) md:pb-0 pb-[calc(var(--gap-padding)*0.75)]">
+            <div className="pr-(--gap-padding)">
+              <h5 className="mb-[1.5em]!">Version</h5>
+              <p className="h-[2.5em flex justify-center items-center">
+                © {currentYear}
+              </p>
             </div>
             <div className="">
-              <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
-                <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
-                  Socials
-                </span>
-              </div>
-              <ul className="flex flex-row items-start gap-x-2 pb-5">
-                {footerSocialLinks.map((item, i) => (
-                  <li key={i}>
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative inline-block text-white"
-                    >
-                      <Magnetic>
-                        <div>
-                          <div>{item.name}</div>
-                          <span className="absolute left-1/2 -bottom-1 h-px w-full bg-white origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300 -translate-x-1/2"></span>
-                        </div>
-                      </Magnetic>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <h5 className="mb-[1.5em]!">Local time</h5>
+              <p className="h-[2.5em flex justify-center items-center">
+                {time}
+              </p>
             </div>
-            <div className="">
-              <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
-                <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
-                  More
-                </span>
-              </div>
-              <div className="flex flex-row gap-x-2 items-start pb-5">
-                <a
-                  href={portfolio2025}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-row justify-center items-center gap-x-2"
+          </div>
+          <div className="px-[calc(var(--container-padding)-var(--gap-padding)*0.333)] pb-[calc(var(--section-padding)/3)] md:px-0 md:pb-0">
+            <h5 className="md:pl-[calc(var(--gap-padding)*0.5)] pl-[calc(var(--gap-padding)/3)] mb-[1.5em]!">
+              Socials
+            </h5>
+            <ul className={``}>
+              {footerSocialLinks.map((item, i) => (
+                <li
+                  key={"contact_footer_social_mobile" + i}
+                  className="inline-flex"
                 >
-                  <Magnetic>
-                    <div>Portfolio 2025</div>
-                    <span className="absolute left-1/2 -bottom-1 h-px w-full bg-white origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300 -translate-x-1/2"></span>
-                  </Magnetic>{" "}
-                </a>
-              </div>
-            </div>
-            <div className="">
-              <div className="text-gray-400 flex items-center gap-x-0.5 flex-row mb-4">
-                <HiMiniArrowUpRight size={13} color="#455CE9" />{" "}
-                <span className="text-[0.6em] uppercase tracking-[0.05em] opacity-50">
-                  Contact Details
-                </span>
-              </div>
-              <ul className="flex flex-col items-start gap-x-2 pb-5">
-                <li>
                   <a
+                    href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href={`mailto:${email}`}
-                    className="capitalize link--metis link flex flex-row justify-center items-center gap-x-2 relative group"
+                    className={`group relative inline-block text-white px-[calc(var(--gap-padding)/3)]`}
                   >
                     <Magnetic>
                       <div>
-                        <div>{email}</div>
+                        <div className="h-[2.5em flex justify-center items-center">
+                          {item.name}
+                        </div>
                         <span className="absolute left-1/2 -bottom-1 h-px w-full bg-white origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300 -translate-x-1/2"></span>
                       </div>
-                    </Magnetic>{" "}
+                    </Magnetic>
                   </a>
                 </li>
-              </ul>
-            </div>
-          </div>
-          <div className="cursor-pointer">
-            <a
-              onMouseEnter={() => enter("View My Resume")}
-              onMouseLeave={leave}
-              target="_blank"
-              href={resume}
-              className="flex flex-row justify-center items-center group a cursor-pointer mt-1"
-            >
-              <div className="w-fit z-1">
-                <Magnetic hoverEffect={false}>
-                  <div className="p-6 transition-transform duration-300 ease-(--ease) bg-white -mr-4 rounded-full">
-                    <HiOutlineDocumentText
-                      className=" text-black group-hover:scale-125 transition-transform duration-300 ease-(--ease)"
-                      size={30}
-                    />
-                  </div>
-                </Magnetic>
-              </div>
-              <div className="py-4 text-nowrap pr-8 pl-12 text-center border border-gray-500 rounded-full">
-                <p>Resume&nbsp;&nbsp;</p>
-              </div>
-            </a>
+              ))}
+            </ul>
+            <div className="md:hidden block h-px bg-(--color-border-light) mt-(--gap-padding) w-[calc(100%-var(--gap-padding)*0.666)] ml-[calc(var(--gap-padding)*0.333)]"></div>
           </div>
         </div>
-        <div className="mt-20 lg:mt-40">
-          <div className="flex flex-row justify-center items-center gap-x-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-            <p className="text-xs">Available</p>
-          </div>
-          <div className="flex flex-row justify-center items-center mb-1">
-            <p className="text-gray-400 text-xs text-center leading-[1.6]">
-              &copy; {currentYear} — Designed & Developed by Aryan Kumar. <br />
-              All rights reserved.
+        <div className="hidden lg:flex w-full justify-between pt-[calc(var(--section-padding)/1.3)] sm:pr-[calc(var(--gap-padding)/1.33)] pb-[calc(var(--gap-padding)/1.75)] sm:pl-[calc(var(--gap-padding)/1.33)]">
+          <div className="pr-(--gap-padding)">
+            <h5 className="mb-[1.5em]!">Version</h5>
+            <p className="h-[2.5em flex justify-center items-center">
+              © {currentYear}
             </p>
+          </div>
+          <div className="">
+            <h5 className="mb-[1.5em]!">Local time</h5>
+            <p className="h-[2.5em flex justify-center items-center">{time}</p>
           </div>
         </div>
       </div>

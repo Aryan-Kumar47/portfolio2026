@@ -41,7 +41,7 @@ const Project: FC<ProjectProps> = ({
             : `/work/${title.replaceAll(" ", "_").toLowerCase()}`
         }
       >
-        <div className="pl-(--container-padding) w-[44%] group-hover:opacity-33 group-hover:translate-x-[calc(var(--container-padding)*-0.1)] transition-[opacity,transform] duration-300 ease-(--ease)">
+        <div className="pl-(--container-padding) w-[44%] group-hover:opacity-33 group-hover:translate-x-[calc(var(--container-padding)*-0.1)] transition-all duration-300 ease-(--ease)">
           <h4
             className={`${source === "Home" ? "text-[calc(clamp(3.25em,7vw,8em)*0.75)]" : "text-[clamp(1.55em,2.3vw,2.5em)]"} py-[0.1em] text-(--color-dark) leading-[1.1] tracking-[-0.01em]`}
           >
@@ -50,15 +50,15 @@ const Project: FC<ProjectProps> = ({
         </div>
         {source !== "Home" && (
           <>
-            <div className="text-[1em] w-[20%] sm:block hidden group-hover:opacity-33 group-hover:translate-x-[calc(var(--container-padding)*0.1)] transition-[opacity,transform] duration-300 ease-(--ease)">
+            <div className="text-[1em] w-[20%] sm:block hidden group-hover:opacity-33 group-hover:translate-x-[calc(var(--container-padding)*0.1)] transition-all duration-300 ease-(--ease)">
               <span>{industry}</span>
             </div>
-            <div className="text-[1em] w-[22%] sm:block hidden group-hover:opacity-33 group-hover:translate-x-[calc(var(--container-padding)*0.1)] transition-[opacity,transform] duration-300 ease-(--ease)">
+            <div className="text-[1em] w-[22%] sm:block hidden group-hover:opacity-33 group-hover:translate-x-[calc(var(--container-padding)*0.1)] transition-all duration-300 ease-(--ease)">
               <span>{role}</span>
             </div>
           </>
         )}
-        <div className="pr-[calc(var(--container-padding))] w-[14%] text-[1em] sm:block hidden group-hover:opacity-33 group-hover:translate-x-[calc(var(--container-padding)*0.1)] transition-[opacity,transform] duration-300 ease-(--ease)">
+        <div className="pr-[calc(var(--container-padding))] w-[14%] text-[1em] sm:block hidden group-hover:opacity-33 group-hover:translate-x-[calc(var(--container-padding)*0.1)] transition-all duration-300 ease-(--ease)">
           <span>{year}</span>
         </div>
       </TransitionLink>

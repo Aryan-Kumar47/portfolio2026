@@ -45,20 +45,6 @@ const Page: FC<PageProps> = ({ params }) => {
   return (
     <>
       <main className={`relative bg-white`}>
-        {/* <div
-          className="flex justify-center items-center w-full pt-[calc(clamp(5em,21vh,12em)*1.33)]
-  max-[720px]:pt-[calc(12vh*1.95)]"
-        >
-          <RoundedButton
-            backgroundColor="transparent"
-            hoverBackgroundColor="#fb923c"
-            href="/work"
-            className=" md:h-20 md:w-20 h-16 w-16 rounded-full"
-            border
-          >
-            <RxCross2 size={20} color="#000" />
-          </RoundedButton>
-        </div> */}
         <div className="section default-header pb-0!">
           <div className="container-custom medium">
             <Text delay={0.9}>
@@ -124,6 +110,7 @@ const Page: FC<PageProps> = ({ params }) => {
                   src={`/${project?.image}`}
                   height={800}
                   width={800}
+                  loading="eager"
                   alt={`${project?.title ?? "Project"} screenshot`}
                 />
               </ImageHover>
@@ -225,32 +212,31 @@ const Page: FC<PageProps> = ({ params }) => {
           </div>
         </div>
         {project?.mobileImages && project.meta?.links?.android && (
-          <div
-            style={{ backgroundColor: project?.bgColor }}
-            className="section"
-          >
-            <div className="flex flex-wrap relative container-custom w-full gap-x-(--gap-padding)">
-              {project?.mobileImages.map((item, i) => (
-                <MobileImage
-                  key={`mobile_imgaes_${i}`}
-                  item={item}
-                  title={project.title}
-                  index={i}
-                />
-              ))}
-            </div>
-            <div className="link-button-2 w-fit absolute top-0 right-0 flex justify-end items-end -translate-y-1/2 -translate-x-1/2">
-              <RoundedButton
-                target="_blank"
-                backgroundColor="var(--color-blue)"
-                hoverBackgroundColor="var(--color-blue-dark)"
-                rel="noopener noreferrer"
-                href={project?.meta?.links?.android}
-                customText={"View Project Live"}
-                className="rounded-[50%] w-[clamp(9em,12vw,11em)] h-[clamp(9em,12vw,11em)]"
-              >
-                <span className="text-white">View</span>
-              </RoundedButton>
+          <div style={{ backgroundColor: project?.bgColor }}>
+            <div className="section">
+              <div className="flex flex-wrap relative container-custom w-full gap-x-(--gap-padding)">
+                {project?.mobileImages.map((item, i) => (
+                  <MobileImage
+                    key={`mobile_imgaes_${i}`}
+                    item={item}
+                    title={project.title}
+                    index={i}
+                  />
+                ))}
+              </div>
+              <div className="link-button-2 w-fit absolute top-0 right-0 flex justify-end items-end -translate-y-1/2 -translate-x-1/2">
+                <RoundedButton
+                  target="_blank"
+                  backgroundColor="var(--color-blue)"
+                  hoverBackgroundColor="var(--color-blue-dark)"
+                  rel="noopener noreferrer"
+                  href={project?.meta?.links?.android}
+                  customText={"View Project Live"}
+                  className="rounded-[50%] w-[clamp(9em,12vw,11em)] h-[clamp(9em,12vw,11em)]"
+                >
+                  <span className="text-white">View</span>
+                </RoundedButton>
+              </div>
             </div>
           </div>
         )}

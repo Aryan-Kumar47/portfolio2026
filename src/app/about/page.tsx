@@ -108,7 +108,6 @@ const About: FC<pageProps> = ({}) => {
         {/* <Test /> */}
         {/* <WhatIMake source="About" /> */}
         {/* <div className="h-[50vh] bg-white"></div> */}
-        <Footer />
       </main>
       <Footer />
     </>

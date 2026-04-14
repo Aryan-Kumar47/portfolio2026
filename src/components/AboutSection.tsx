@@ -1,14 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { geraldine } from "../utlis/fonts";
 import { useScrollRotate } from "../hooks/useScrollRotate";
 import { useScrollParallaxY } from "../hooks/useScrollParallaxY";
 import RounderButton from "./UI/RoundedButton";
 import Text from "./UI/Text";
 import ArrowIcon from "./UI/ArrowIcon";
-import Image from "next/image";
-import ParallaxImage from "./UI/ParallaxImage";
 import { linkedin } from "./Menu/data";
-import { IoIosArrowRoundForward } from "react-icons/io";
 
 interface AboutSectionI {
   source?: "Home" | "About";

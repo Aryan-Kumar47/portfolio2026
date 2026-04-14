@@ -25,7 +25,7 @@ const HeroNav: React.FC<HeroNavProps> = ({ open, setOpen }) => {
               <div
                 className={`name text-[16px] flex overflow-hidden w-30 text-nowrap py-2 rounded-full `}
               >
-                <p className={""}>Design & Code by</p>
+                <p className={""}>Code by Aryan</p>
               </div>
             </TransitionLink>
           </Magnetic>

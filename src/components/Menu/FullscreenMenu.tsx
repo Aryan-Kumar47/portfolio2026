@@ -1,9 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { IoDocumentTextOutline } from "react-icons/io5";
-import { PiGithubLogoFill } from "react-icons/pi";
-import { TiSocialLinkedin } from "react-icons/ti";
-import { gsap } from "gsap";
-import { email, footerSocialLinks, navLinks, socialLinks } from "./data";
+import React, { useRef } from "react";
+import { footerSocialLinks, navLinks } from "./data";
 import Magnetic from "../UI/Magnetic";
 import TransitionLink from "../TransitionLink";
 import { usePathname } from "next/navigation";
@@ -16,71 +12,7 @@ interface FullscreenMenuProps {
 const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const linksRef = useRef<(HTMLAnchorElement | null)[]>([]);
-  const iconsRef = useRef<(HTMLAnchorElement | HTMLDivElement | null)[]>([]);
-  const tl = useRef<gsap.core.Timeline | null>(null);
   const pathname = usePathname();
-
-  // useEffect(() => {
-  //   if (!menuRef.current) return;
-
-  //   tl.current = gsap.timeline({ paused: true });
-  //   const width = menuRef.current.offsetWidth;
-  //   tl.current
-  //     .fromTo(
-  //       menuRef.current,
-  //       {
-  //         //   yPercent: 0,
-  //         // scale: 0,
-  //         borderRadius: "100%",
-  //       },
-  //       {
-  //         //   yPercent: 100,
-  //         // scale: 1,
-  //         duration: 0.6,
-  //         // transformOrigin: `${width - 48}px 48px`,
-  //         //   transformOrigin: "top right",
-  //         // borderRadius: "16px",
-  //         ease: "var(--ease)",
-  //       },
-  //     )
-  //     .from(
-  //       linksRef.current.filter(Boolean),
-  //       {
-  //         // yPercent: 120,
-  //         x: "15vw",
-  //         stagger: 0.1,
-  //         duration: 0.8,
-  //         ease: "var(--ease)",
-  //       },
-  //       "-=0.4",
-  //     )
-  //     .from(
-  //       iconsRef.current.filter(Boolean),
-  //       {
-  //         opacity: 0,
-  //         scale: 0,
-  //         stagger: 0.1,
-  //         duration: 0.5,
-  //       },
-  //       "-=0.5",
-  //     );
-
-  //   return () => {
-  //     tl.current?.kill();
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   if (!tl.current) return;
-
-  //   if (open) {
-  //     tl.current.timeScale(1);
-  //     tl.current.play();
-  //   } else {
-  //     tl.current.timeScale(1);
-  //     tl.current.reverse();
-  //   }
-  // }, [open]);
 
   return (
     <>
@@ -95,7 +27,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
         {/* Menu */}
         <div
           ref={menuRef}
-          className={`flex flex-col justify-between h-full pt-[calc(6.79px*15)] sm:pt-[15vh] pb-[calc(var(--gap-padding)*1.25)] sm:pb-[10vh] px-(--container-padding) sm:px-[7.5vw] relative transform `}
+          className={`flex flex-col justify-between h-svh pt-[calc(6.79px*15)] sm:pt-[15vh] pb-[calc(var(--gap-padding)*1.25)] sm:pb-[10vh] px-(--container-padding) sm:px-[7.5vw] relative transform `}
         >
           <div className="flex flex-wrap relative">
             <h5 className="pb-[3em]">Navigation</h5>
@@ -158,57 +90,6 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
               </ul>
             </div>
           </div>
-
-          {/* Small text row */}
-          {/* <div
-          className={`transition-transform duration-800 ease-(--ease) ${open ? "translate-x-0" : "translate-x-[20vw]"}`}
-        >
-          <div className="flex items-center justify-between text-xs uppercase opacity-60 pb-[1em] px-1.25">
-            <p>✦✦</p>
-            <p>for work — Contact below</p>
-            <p>✦✦</p>
-          </div>
-          <div
-            ref={(el) => {
-              iconsRef.current[0] = el;
-            }}
-          >
-            <Magnetic customText="Contact me through mail!">
-              <a
-                href={`mailto:${email}`}
-                className="block w-full text-center text-(--color-dark) bg-white
-          py-5 rounded-full text-lg
-          transition-[opacity,transform] duration-500 ease-(--ease)"
-              >
-                {email}
-              </a>
-            </Magnetic>
-          </div>
-        </div> */}
-
-          {/* Social icons */}
-          {/* <ul className="flex justify-around py-[3em]">
-          {socialLinks.map((item, i) => {
-            const Icon = item.Icon;
-            return (
-              <li key={i}>
-                <Magnetic customText={item.name}>
-                  <a
-                    ref={(el) => {
-                      iconsRef.current[i + 1] = el;
-                    }}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={item.link}
-                    className="inline-flex p-4 border rounded-full"
-                  >
-                    <Icon size={24} />
-                  </a>
-                </Magnetic>
-              </li>
-            );
-          })}
-        </ul> */}
         </div>
       </div>
     </>
