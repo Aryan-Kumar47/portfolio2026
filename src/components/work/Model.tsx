@@ -5,9 +5,7 @@ import { IProject } from "./projects";
 import Image from "next/image";
 import gsap from "gsap";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import CursorElement, {
-  CursorElementHandle,
-} from "../UI/CursorElement";
+import CursorElement, { CursorElementHandle } from "../UI/CursorElement";
 
 interface ModelProps {
   model: ModelInterface;
@@ -97,16 +95,8 @@ const Model: FC<ModelProps> = ({ model, projects, source }) => {
       />
 
       {/* Cursor label */}
-      <CursorElement
-        ref={labelRef}
-        followDuration={0.7}
-        className="z-30"
-      >
-        <IoIosArrowRoundForward
-          size={30}
-          color="var(--color-white)"
-          className="-rotate-45"
-        />
+      <CursorElement ref={labelRef} followDuration={0.7} className="z-30">
+        <div className="text-white">View</div>
       </CursorElement>
     </>
   );

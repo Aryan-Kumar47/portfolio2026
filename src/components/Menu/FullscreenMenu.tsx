@@ -39,22 +39,23 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
                   key={index}
                   className={`w-full transform transition-transform duration-800 ease-(--ease) group ${open ? "translate-x-0" : "translate-x-[20vw]"} ${item.href === pathname ? "opacity-60 after:visible" : "after:hidden"} after:content-[''] after:absolute after:bg-white sm:after:left-[calc(var(--gap-padding)/-4)] after:right-[calc(var(--gap-padding)/4)] after:top-1/2 after:-translate-y-1/2 after:w-[calc(clamp(16px,1.2vw,19px)/1.65)] hover:after:block after:h-[calc(clamp(16px,1.2vw,19px)/1.65)] after:rounded-full`}
                 >
-                  <Magnetic>
-                    <TransitionLink
-                      onClick={() => setOpen(false)}
-                      customText={item.msg}
-                      ref={(el: HTMLAnchorElement | null) => {
-                        linksRef.current[index] = el;
-                      }}
-                      href={`${item.href}`}
-                    >
+                  <TransitionLink
+                    onClick={() => setOpen(false)}
+                    customText={item.msg}
+                    ref={(el: HTMLAnchorElement | null) => {
+                      linksRef.current[index] = el;
+                    }}
+                    href={`${item.href}`}
+                    className="w-fit"
+                  >
+                    <Magnetic>
                       <span className="px-[calc(var(--gap-padding)/2)]">
                         <span className="text-[calc(clamp(3.25em,5vw,4em)*0.875)] leading-[1.4]">
                           {item.name}
                         </span>
                       </span>
-                    </TransitionLink>
-                  </Magnetic>
+                    </Magnetic>
+                  </TransitionLink>
                 </li>
               ))}
             </ul>

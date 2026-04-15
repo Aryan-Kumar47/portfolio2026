@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { FC, use, useEffect, useState } from "react";
+import { FC, use, useEffect, useRef, useState } from "react";
 import { IProject, projects } from "@/src/components/work/projects";
 import RoundedButton from "@/src/components/UI/RoundedButton";
 
@@ -8,6 +8,14 @@ import Text from "@/src/components/UI/Text";
 import { useScrollParallaxY } from "@/src/hooks/useScrollParallaxY";
 import ImageHover from "@/src/components/UI/ImageHover";
 import Footer from "@/src/components/Footer";
+import SocialFooter from "@/src/components/SocialFooter";
+import FooterCurve from "@/src/components/FooterCurve";
+import TransitionLink from "@/src/components/TransitionLink";
+import { notFound } from "next/navigation";
+import CursorElement, {
+  CursorElementHandle,
+} from "@/src/components/UI/CursorElement";
+import { IoIosArrowRoundForward } from "react-icons/io";
 interface pageProps {
   params: {
     id: string;
@@ -19,18 +27,28 @@ interface PageProps {
 }
 
 const Page: FC<PageProps> = ({ params }) => {
-  const { id } = use(params); // unwrap the promise
+  const { id } = use(params);
 
   const [project, setProject] = useState<IProject>();
+  const [nextProject, setNextProject] = useState<IProject>();
+  const labelRef = useRef<CursorElementHandle>(null);
+  const dotRef = useRef<CursorElementHandle>(null);
 
   useEffect(() => {
-    const ele = projects.find(
+    const index = projects.findIndex(
       (object) =>
         object.title.toLowerCase() === id.replace(/_/g, " ").toLowerCase(),
     );
 
-    setProject(ele);
+    if (index === -1) {
+      notFound();
+    }
+    setProject(projects[index]);
+
+    const next = projects[(index + 1) % projects.length];
+    setNextProject(next);
   }, [id]);
+
   useScrollParallaxY({
     trigger: ".link-button",
     fromY: 50,
@@ -41,6 +59,26 @@ const Page: FC<PageProps> = ({ params }) => {
     fromY: 50,
     toY: -50,
   });
+  useScrollParallaxY({
+    trigger: ".image-wraper",
+    fromY: 500,
+    toY: 0,
+  });
+
+  const handleMouseEnter = (e: React.MouseEvent) => {
+    labelRef.current?.show();
+    dotRef.current?.show();
+    dotRef.current?.moveTo(e.clientX, e.clientY);
+    labelRef.current?.moveTo(e.clientX, e.clientY);
+  };
+  const handleMouseLeave = () => {
+    labelRef.current?.hide();
+    dotRef.current?.hide();
+  };
+  const onMove = (e: React.MouseEvent) => {
+    dotRef.current?.moveTo(e.clientX, e.clientY);
+    labelRef.current?.moveTo(e.clientX, e.clientY);
+  };
 
   return (
     <>
@@ -241,7 +279,76 @@ const Page: FC<PageProps> = ({ params }) => {
           </div>
         )}
       </main>
-      <Footer />
+      <FooterCurve />
+      <footer
+        className={`select-none h-full bg-(--color-dark) text-white w-full relative`}
+      >
+        <div className="section pb-0!">
+          <div className="flex footer items-end relative w-full shadow-[0px_5px_0px_5px_var(--color-dark)]">
+            <div className="w-full">
+              <div className="flex flex-col container medium">
+                <div
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  onMouseMove={onMove}
+                >
+                  <TransitionLink
+                    href={`/work/${nextProject?.title.replaceAll(" ", "_").toLowerCase()}`}
+                    className="pb-[13em] md:pb-[calc(var(--section-padding)/1.25)] flex flex-wrap relative"
+                  >
+                    <div className="w-full relative block order-2">
+                      <p className="text-center mb-[calc(var(--section-padding)/4)]">
+                        Next Case
+                      </p>
+                      <h2 className="text-[calc(clamp(3.25em,7vw,8em)*1)] text-center">
+                        {nextProject?.title}
+                      </h2>
+                    </div>
+                    <div className="w-[50vw] absolute left-1/2 bottom-0 -translate-x-1/2 z-2 overflow-hidden">
+                      <div className="ab w-full translate-y-[20%] lg:translate-y-[30%]">
+                        <div className="w-full h-full image-wraper">
+                          <Image
+                            src={`/${nextProject?.image}`}
+                            height={800}
+                            width={800}
+                            alt={`${nextProject?.title} preview`}
+                            className="object-cover w-full h-full"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </TransitionLink>
+                </div>
+                <div className="row pb-[calc(var(--section-padding)*1)]  sm:pb-[calc(var(--section-padding)*0.75)] lg:pb-[calc(var(--section-padding)*0.475)]">
+                  <div className="block w-full h-px bg-(--color-border-light)" />{" "}
+                </div>
+                <div className="flex justify-center pb-[calc(var(--section-padding)/5)]">
+                <div className="md:w-fit w-full">
+                  <RoundedButton
+                    href={"/work"}
+                    customText={"More Work."}
+                    className="rounded-full h-[4.25em]"
+                    border
+                  >
+                    <div className="text-white">All work</div>
+                  </RoundedButton>
+                </div>
+                </div>
+              </div>
+              <SocialFooter />
+            </div>
+          </div>
+        </div>
+        <CursorElement
+          ref={dotRef}
+          followDuration={0.85}
+          className="w-24 h-24 bg-(--color-blue) rounded-full z-30"
+        />
+        <CursorElement ref={labelRef} followDuration={0.7} className="z-30">
+          <p>Next Case</p>
+        </CursorElement>
+      </footer>
+      {/* <Footer /> */}
     </>
   );
 };
@@ -251,7 +358,6 @@ const MobileImage = ({ item, title, index }: any) => {
     trigger: `.${imageClass}`,
     fromY: 80 + index * 60,
     toY: -80,
-    // start: `top ${80 - index * 10}%`,
   });
 
   return (

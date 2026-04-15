@@ -9,67 +9,26 @@ import Magnetic from "./UI/Magnetic";
 import TransitionLink from "./TransitionLink";
 import RoundedButton from "./UI/RoundedButton";
 import ParallaxSlider from "./UI/ParallaxSlider";
+import SocialFooter from "./SocialFooter";
+import FooterCurve from "./FooterCurve";
+import { useScrollParallaxY } from "../hooks/useScrollParallaxY";
 interface FooterProps {}
 
 const Footer: FC<FooterProps> = ({}) => {
-  const pathname = usePathname();
-  const wrapRef = useRef<HTMLDivElement | null>(null);
-  const currentYear = new Date().getFullYear();
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      const formatted = new Date().toLocaleTimeString("en-IN", {
-        timeZone: "Asia/Kolkata",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true,
-      });
-
-      setTime(`${formatted} IST`);
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-  useGSAP(
-    () => {
-      if (!wrapRef.current) return;
-      gsap.to(wrapRef.current, {
-        height: "0vh",
-        ease: "none",
-        scrollTrigger: {
-          trigger: wrapRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    },
-    { scope: wrapRef, dependencies: [pathname] },
-  );
+  useScrollParallaxY({
+    trigger: ".translate",
+    fromY: 150,
+    toY: -100,
+  });
   return (
     <>
-      <div className="w-full relative h-0 block z-2">
-        <div
-          ref={wrapRef}
-          className="w-full relative top-0 overflow-hidden -translate-y-px md:h-[10vh] h-[7.5vh]"
-        >
-          <div
-            className="w-[150%] absolute left-1/2 bg-white 
-                h-[750%] rounded-[50%] 
-                translate-x-[-50%] translate-y-[-86.666%] z-1"
-          ></div>
-        </div>
-      </div>
+      <FooterCurve />
       <footer
         className={`select-none h-full bg-(--color-dark) text-white w-full`}
       >
         <div className="section pb-0!">
           <div className="flex footer items-end relative w-full shadow-[0px_5px_0px_5px_var(--color-dark)]">
-            <div className="w-full">
+            <div className="w-full translate">
               <div className="">
                 <div className="select-none pb-[calc(var(--section-padding)/2)]">
                   <h1 className="text-[max(9em,15vw)]">
@@ -131,49 +90,7 @@ const Footer: FC<FooterProps> = ({}) => {
                   </div>
                 </div>
               </div>
-              <div className="flex w-full flex-wrap relative flex-col-reverse md:flex-row justify-between  pt-[calc(var(--section-padding)/1.3)] sm:pr-[calc(var(--gap-padding)/1.33)] pb-[calc(var(--gap-padding)/1.75)] sm:pl-[calc(var(--gap-padding)/1.33)]">
-                <div className="flex justify-between md:w-auto w-full relative md:px-0 px-(--container-padding) md:pb-0 pb-[calc(var(--gap-padding)*0.75)]">
-                  <div className="pr-(--gap-padding)">
-                    <h5 className="mb-[1.5em]!">Version</h5>
-                    <p className="h-[2.5em flex justify-center items-center">
-                      © {currentYear}
-                    </p>
-                  </div>
-                  <div className="">
-                    <h5 className="mb-[1.5em]!">Local time</h5>
-                    <p className="h-[2.5em flex justify-center items-center">
-                      {time}
-                    </p>
-                  </div>
-                </div>
-                <div className="px-[calc(var(--container-padding)-var(--gap-padding)*0.333)] pb-[calc(var(--section-padding)/3)] md:px-0 md:pb-0">
-                  <h5 className="md:pl-[calc(var(--gap-padding)*0.5)] pl-[calc(var(--gap-padding)/3)] mb-[1.5em]!">
-                    Navigation
-                  </h5>
-                  <ul className={``}>
-                    {navLinks.map((item, i) => {
-                      return pathname === item.href ? null : (
-                        <li key={i} className="inline-flex">
-                          <TransitionLink
-                            href={`${item.href}`}
-                            className={`group relative inline-block text-white px-[calc(var(--gap-padding)/3)]`}
-                          >
-                            <Magnetic>
-                              <div>
-                                <div className="h-[2.5em flex justify-center items-center">
-                                  {item.name}
-                                </div>
-                                <span className="absolute left-1/2 -bottom-1 h-px w-full bg-white origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300 -translate-x-1/2"></span>
-                              </div>
-                            </Magnetic>
-                          </TransitionLink>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                  <div className="md:hidden block h-px bg-(--color-border-light) mt-(--gap-padding) w-[calc(100%-var(--gap-padding)*0.666)] ml-[calc(var(--gap-padding)*0.333)]"></div>
-                </div>
-              </div>
+              <SocialFooter />
             </div>
           </div>
         </div>
