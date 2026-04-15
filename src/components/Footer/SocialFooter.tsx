@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { navLinks } from "./Menu/data";
+import { navLinks } from "../Menu/data";
 import { usePathname } from "next/navigation";
-import TransitionLink from "./TransitionLink";
-import Magnetic from "./UI/Magnetic";
+import TransitionLink from "../TransitionLink";
+import Magnetic from "../UI/Magnetic";
 
 export default function SocialFooter() {
   const [time, setTime] = useState("");

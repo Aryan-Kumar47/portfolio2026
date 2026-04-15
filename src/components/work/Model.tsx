@@ -64,7 +64,7 @@ const Model: FC<ModelProps> = ({ model, projects, source }) => {
       {!isArchive && (
         <CursorElement
           ref={imageRef}
-          followDuration={0.7}
+          followDuration={0.5}
           className="h-96 w-96 flex items-center justify-center overflow-hidden shadow-lg z-20"
         >
           <div ref={sliderRef} className="h-full w-full absolute top-0 left-0">
@@ -90,12 +90,12 @@ const Model: FC<ModelProps> = ({ model, projects, source }) => {
       {/* Cursor dot */}
       <CursorElement
         ref={dotRef}
-        followDuration={0.85}
+        followDuration={0.52}
         className="w-20 h-20 bg-(--color-dark) rounded-full z-30"
       />
 
       {/* Cursor label */}
-      <CursorElement ref={labelRef} followDuration={0.7} className="z-30">
+      <CursorElement ref={labelRef} followDuration={0.51} className="z-30">
         <div className="text-white">View</div>
       </CursorElement>
     </>

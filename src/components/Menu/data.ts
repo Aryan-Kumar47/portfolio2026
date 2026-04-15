@@ -1,7 +1,9 @@
-import { BsInstagram } from "react-icons/bs";
 import { IoDocumentTextOutline } from "react-icons/io5";
-import { PiGithubLogoFill } from "react-icons/pi";
-import { TiSocialLinkedin } from "react-icons/ti";
+import {
+  PiGithubLogoFill,
+  PiLinkedinLogoFill,
+  PiInstagramLogoFill,
+} from "react-icons/pi";
 
 export const email = "kumararyan101203@gmail.com";
 export const github = "https://github.com/Aryan-Kumar47";
@@ -25,7 +27,7 @@ export const socialLinks = [
   },
   {
     name: "Linkedin",
-    Icon: TiSocialLinkedin,
+    Icon: PiLinkedinLogoFill,
     link: linkedin,
   },
   {
@@ -35,7 +37,7 @@ export const socialLinks = [
   },
   {
     name: "Instagram",
-    Icon: BsInstagram,
+    Icon: PiInstagramLogoFill,
     link: instagram,
   },
 ];
@@ -47,12 +49,12 @@ export const footerSocialLinks = [
   },
   {
     name: "Linkedin",
-    Icon: TiSocialLinkedin,
+    Icon: PiLinkedinLogoFill,
     link: linkedin,
   },
   {
     name: "Instagram",
-    Icon: BsInstagram,
+    Icon: PiInstagramLogoFill,
     link: instagram,
   },
 ];

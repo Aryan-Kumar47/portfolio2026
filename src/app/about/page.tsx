@@ -14,7 +14,7 @@ import Skills from "@/src/components/Skills";
 import AnimateText from "@/src/components/UI/AnimateText";
 import Heading from "@/src/components/UI/Heading";
 import RoundedButton from "@/src/components/UI/RoundedButton";
-import Footer from "@/src/components/Footer";
+import Footer from "@/src/components/Footer/Footer";
 
 interface pageProps {}
 const phrase = `I’m Aryan Kumar, I design and engineer full-stack web & mobile applications.`;

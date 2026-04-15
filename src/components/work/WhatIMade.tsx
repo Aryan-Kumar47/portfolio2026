@@ -95,12 +95,15 @@ const WhatIMade: FC<WhatIMadeProps> = ({ source = "Home" }) => {
           </div>
 
           {/* Mobile — cards */}
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-12 w-full lg:hidden">
-            {displayWorks.map((project) => (
+          <ul
+            className={`grid grid-cols-1 ${source === "Work" ? "md:grid-cols-2" : ""} gap--12 w-full lg:hidden`}
+          >
+            {displayWorks.map((project, index) => (
               <ProjectCard
                 key={`card_${project.title}`}
                 {...project}
                 source={source}
+                index={index}
               />
             ))}
           </ul>

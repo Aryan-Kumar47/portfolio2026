@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { useCustomScrollbar } from "../hooks/useCustomScrollbar";
 import { CursorProvider } from "../context/CursorContext";
 import Menu from "./Menu/Menu";
-import Footer from "./Footer";
+import Footer from "./Footer/Footer";
 
 interface SmoothScrollProps {
   children: React.ReactNode;

@@ -7,9 +7,9 @@ import RoundedButton from "@/src/components/UI/RoundedButton";
 import Text from "@/src/components/UI/Text";
 import { useScrollParallaxY } from "@/src/hooks/useScrollParallaxY";
 import ImageHover from "@/src/components/UI/ImageHover";
-import Footer from "@/src/components/Footer";
-import SocialFooter from "@/src/components/SocialFooter";
-import FooterCurve from "@/src/components/FooterCurve";
+import Footer from "@/src/components/Footer/Footer";
+import SocialFooter from "@/src/components/Footer/SocialFooter";
+import FooterCurve from "@/src/components/Footer/FooterCurve";
 import TransitionLink from "@/src/components/TransitionLink";
 import { notFound } from "next/navigation";
 import CursorElement, {
@@ -41,6 +41,7 @@ const Page: FC<PageProps> = ({ params }) => {
     );
 
     if (index === -1) {
+      console.log("not found");
       notFound();
     }
     setProject(projects[index]);
@@ -61,8 +62,8 @@ const Page: FC<PageProps> = ({ params }) => {
   });
   useScrollParallaxY({
     trigger: ".image-wraper",
-    fromY: 500,
-    toY: 0,
+    fromY: "80%",
+    toY: "-20%",
   });
 
   const handleMouseEnter = (e: React.MouseEvent) => {
@@ -94,8 +95,8 @@ const Page: FC<PageProps> = ({ params }) => {
         </div>
         <div className="pt-[calc(var(--section-padding)/1.75)] pb-[calc(var(--section-padding)/1.25)] -mt-px">
           <div className="container-custom medium">
-            <div className="flex flex-wrap relative">
-              <div className="block w-full md:mb-0 mb-[8vw] order-2 relative md:w-[calc(33.333%-var(--gap-padding))] md:mr-[calc(var(--gap-padding)*1.5)]">
+            <div className="flex flex-wrap">
+              <div className="block w-full md:mb-0 mb-[8vw] md:w-[calc(33.333%-var(--gap-padding))] md:mr-[calc(var(--gap-padding)*1.5)]">
                 <h5>Industry</h5>
                 <div className="my-[1.75em] mb-[1.5em] h-px w-full bg-(--color-border)"></div>
                 <li className="inline-flex">
@@ -105,7 +106,7 @@ const Page: FC<PageProps> = ({ params }) => {
                 </li>
               </div>
 
-              <div className="block w-full md:mb-0 mb-[8vw] order-2 relative md:w-[calc(33.333%-var(--gap-padding))] md:mr-[calc(var(--gap-padding)*1.5)]">
+              <div className="block w-full md:mb-0 mb-[8vw] md:w-[calc(33.333%-var(--gap-padding))] md:mr-[calc(var(--gap-padding)*1.5)]">
                 <h5>Service</h5>
                 <div className="my-[1.75em] mb-[1.5em] h-px w-full bg-(--color-border)"></div>
                 <ul className="">
@@ -119,7 +120,7 @@ const Page: FC<PageProps> = ({ params }) => {
                 </ul>
               </div>
 
-              <div className="block w-full md:mb-0 mb-[8vw] order-2 relative md:w-[calc(33.333%-var(--gap-padding))]">
+              <div className="block w-full md:mb-0 mb-[8vw] md:w-[calc(33.333%-var(--gap-padding))]">
                 <h5>Platforms</h5>
                 <div className="my-[1.75em] mb-[1.5em] h-px w-full bg-(--color-border)"></div>
                 <ul className="">
@@ -286,7 +287,7 @@ const Page: FC<PageProps> = ({ params }) => {
         <div className="section pb-0!">
           <div className="flex footer items-end relative w-full shadow-[0px_5px_0px_5px_var(--color-dark)]">
             <div className="w-full">
-              <div className="flex flex-col container medium">
+              <div className="flex flex-col container-custom medium">
                 <div
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
@@ -294,9 +295,9 @@ const Page: FC<PageProps> = ({ params }) => {
                 >
                   <TransitionLink
                     href={`/work/${nextProject?.title.replaceAll(" ", "_").toLowerCase()}`}
-                    className="pb-[13em] md:pb-[calc(var(--section-padding)/1.25)] flex flex-wrap relative"
+                    className="pb-[13em] md:pb-[calc(var(--section-padding)/1.25)] flex flex-col relative"
                   >
-                    <div className="w-full relative block order-2">
+                    <div className="w-full relative block">
                       <p className="text-center mb-[calc(var(--section-padding)/4)]">
                         Next Case
                       </p>
@@ -304,8 +305,8 @@ const Page: FC<PageProps> = ({ params }) => {
                         {nextProject?.title}
                       </h2>
                     </div>
-                    <div className="w-[50vw] absolute left-1/2 bottom-0 -translate-x-1/2 z-2 overflow-hidden">
-                      <div className="ab w-full translate-y-[20%] lg:translate-y-[30%]">
+                    <div className="w-[70vw] sm:w-[50vw] md:w[-40vw] lg:w-[calc(clamp(10em,27.5vw,25em)*0.9)] absolute left-1/2 bottom-0 -translate-x-1/2 z-2 overflow-hidden">
+                      <div className="ab w-full translate-y-[60%] md:translate-y-[73%]">
                         <div className="w-full h-full image-wraper">
                           <Image
                             src={`/${nextProject?.image}`}
@@ -323,16 +324,16 @@ const Page: FC<PageProps> = ({ params }) => {
                   <div className="block w-full h-px bg-(--color-border-light)" />{" "}
                 </div>
                 <div className="flex justify-center pb-[calc(var(--section-padding)/5)]">
-                <div className="md:w-fit w-full">
-                  <RoundedButton
-                    href={"/work"}
-                    customText={"More Work."}
-                    className="rounded-full h-[4.25em]"
-                    border
-                  >
-                    <div className="text-white">All work</div>
-                  </RoundedButton>
-                </div>
+                  <div className="md:w-fit w-full">
+                    <RoundedButton
+                      href={"/work"}
+                      customText={"More Work."}
+                      className="rounded-full h-[4.25em]"
+                      border
+                    >
+                      <div className="text-white">All work</div>
+                    </RoundedButton>
+                  </div>
                 </div>
               </div>
               <SocialFooter />

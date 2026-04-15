@@ -2,7 +2,7 @@
 import { FC } from "react";
 import Text from "@/src/components/UI/Text";
 import WhatIMade from "@/src/components/work/WhatIMade";
-import Footer from "@/src/components/Footer";
+import Footer from "@/src/components/Footer/Footer";
 
 const ArchivePage: FC = () => {
   return (
@@ -20,18 +20,18 @@ const ArchivePage: FC = () => {
           </div>
         </div>
 
-        <div className="w-full container-custom hidden md:block">
-          <div className="w-full flex pb-(--gap-padding)">
+        <div className="w-full container-custom block">
+          <div className="w-full flex justify-between pb-(--gap-padding)">
             <div className="pl-(--container-padding) w-[44%]">
               <h5>Client</h5>
             </div>
-            <div className="w-[20%]">
+            <div className="w-[20%] block">
               <h5>Industry</h5>
             </div>
-            <div className="w-[22%]">
+            <div className="w-[22%] sm:block hidden">
               <h5>Role</h5>
             </div>
-            <div className="w-[14%] pr-(--container-padding)">
+            <div className="w-[14%] block pr-(--container-padding)">
               <h5>Year</h5>
             </div>
           </div>

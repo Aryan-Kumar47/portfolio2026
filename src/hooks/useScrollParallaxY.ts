@@ -10,8 +10,8 @@ interface ParallaxOptions {
   start?: string;
   end?: string;
   scrub?: number | boolean;
-  fromY?: number;
-  toY?: number;
+  fromY?: number | string;
+  toY?: number | string;
 }
 
 export const useScrollParallaxY = ({

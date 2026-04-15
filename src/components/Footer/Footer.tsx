@@ -3,15 +3,20 @@ import { FC, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { geraldine } from "../utlis/fonts";
-import { email, footerSocialLinks, navLinks, portfolio2025 } from "./Menu/data";
-import Magnetic from "./UI/Magnetic";
-import TransitionLink from "./TransitionLink";
-import RoundedButton from "./UI/RoundedButton";
-import ParallaxSlider from "./UI/ParallaxSlider";
+import { geraldine } from "../../utlis/fonts";
+import {
+  email,
+  footerSocialLinks,
+  navLinks,
+  portfolio2025,
+} from "../Menu/data";
+import Magnetic from "../UI/Magnetic";
+import TransitionLink from "../TransitionLink";
+import RoundedButton from "../UI/RoundedButton";
+import ParallaxSlider from "../UI/ParallaxSlider";
 import SocialFooter from "./SocialFooter";
 import FooterCurve from "./FooterCurve";
-import { useScrollParallaxY } from "../hooks/useScrollParallaxY";
+import { useScrollParallaxY } from "../../hooks/useScrollParallaxY";
 interface FooterProps {}
 
 const Footer: FC<FooterProps> = ({}) => {
@@ -61,7 +66,7 @@ const Footer: FC<FooterProps> = ({}) => {
                                 className="rounded-[50%] w-[clamp(5em,11vw,10em)] h-[clamp(5em,11vw,10em)]"
                               >
                                 <span className="text-white">
-                                  <Icon />
+                                  <Icon size={30} />
                                 </span>
                               </RoundedButton>
                             </div>

@@ -3,7 +3,7 @@ import { FC } from "react";
 import Text from "@/src/components/UI/Text";
 import WhatIMade from "@/src/components/work/WhatIMade";
 import RoundedButton from "@/src/components/UI/RoundedButton";
-import Footer from "@/src/components/Footer";
+import Footer from "@/src/components/Footer/Footer";
 
 const WorkPage: FC = () => {
   return (
