@@ -1,36 +1,27 @@
 "use client";
-import {
-  email,
-  footerSocialLinks,
-  navLinks,
-  portfolio2025,
-} from "@/src/components/Menu/data";
+import { email, footerSocialLinks, navLinks } from "@/src/components/Menu/data";
 import TransitionLink from "@/src/components/TransitionLink";
 import Magnetic from "@/src/components/UI/Magnetic";
 import RoundedButton from "@/src/components/UI/RoundedButton";
-import { useCursorContext } from "@/src/context/CursorContext";
 import { geraldine } from "@/src/utlis/fonts";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { usePathname } from "next/navigation";
 import React, { FC, useEffect, useState } from "react";
 import { PiSpinnerGapBold } from "react-icons/pi";
 
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
-  const pathname = usePathname();
   const [status, setStatus] = useState("Send it!");
   const [isLoading, setIsLoading] = useState<boolean>();
   const [time, setTime] = useState("");
   const currentYear = new Date().getFullYear();
-  const { enter, leave } = useCursorContext();
 
   useEffect(() => {
     const updateTime = () => {
       const formatted = new Date().toLocaleTimeString("en-IN", {
         timeZone: "Asia/Kolkata",
-        hour: "numeric", // 👈 no leading zero (9 instead of 09)
+        hour: "numeric",
         minute: "2-digit",
         hour12: true,
       });
