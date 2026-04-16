@@ -153,14 +153,14 @@ export default function Loose({
               ref={setImageRef(i)}
               style={{ aspectRatio: img.aspectRatio }}
             >
-              {/* <Image
+              <Image
                 height={baseHeight}
                 width={Math.round(baseHeight * 1.5)}
                 className="w-full h-full object-cover"
                 src={img.src}
                 alt={`Gallery image ${i + 1}`}
                 loading="lazy"
-              /> */}
+              />
             </div>
           ))}
         </div>
