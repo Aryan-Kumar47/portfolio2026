@@ -27,8 +27,8 @@ export default function Hero() {
             </Text>
           </div>
         </div>
-        <div className="absolute top-1/2 left-1/2 -translate-y-[40%] sm:-translate-y-[47%] -translate-x-1/2 w-full xl:w-fit md:w-[80%] lg:px-0 px-(--gap-padding)">
-          <div className="mask-ellipse overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-y-[40%] sm:-translate-y-[47%] -translate-x-1/2 w-full h-full xl:w-[50%] md:w-[80%] lg:px-0 px-(--gap-padding)">
+          <div className="mask-ellipse overflow-hidden h-full">
             <ParallaxImage
               className="bg-(--color-dark-dark)"
               startY={-100}

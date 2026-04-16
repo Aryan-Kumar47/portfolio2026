@@ -59,9 +59,9 @@ const Page: FC<PageProps> = ({ params }) => {
   useScrollParallaxY({
     trigger: ready ? ".image-wraper" : "",
     fromY: "60%",
-    toY: "0%",
+    toY: "-10%",
+    start: "-100px bottom",
     end: "top center",
-    start: "top bottom",
   });
 
   const handleMouseEnter = (e: React.MouseEvent) => {
@@ -285,7 +285,11 @@ const Page: FC<PageProps> = ({ params }) => {
           </div>
         )}
       </main>
-      {ready && <FooterCurve bgColor={project?.bgColor} />}
+      {ready && (
+        <FooterCurve
+          bgColor={project?.mobileImages ? project?.bgColor : undefined}
+        />
+      )}
       <footer
         className={`select-none h-full bg-(--color-dark) text-white w-full relative`}
       >

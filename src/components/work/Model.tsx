@@ -52,7 +52,7 @@ const Model: FC<ModelProps> = ({ model, projects, source }) => {
     if (!sliderRef.current) return;
     gsap.to(sliderRef.current, {
       yPercent: index * -100,
-      duration: 0.5,
+      duration: 0.7,
       ease: "power3.out",
       overwrite: true,
     });
@@ -64,7 +64,7 @@ const Model: FC<ModelProps> = ({ model, projects, source }) => {
       {!isArchive && (
         <CursorElement
           ref={imageRef}
-          followDuration={0.5}
+          followDuration={0.7}
           className="h-96 w-96 flex items-center justify-center overflow-hidden shadow-lg z-20"
         >
           <div ref={sliderRef} className="h-full w-full absolute top-0 left-0">
@@ -91,7 +91,7 @@ const Model: FC<ModelProps> = ({ model, projects, source }) => {
       {/* Cursor dot */}
       <CursorElement
         ref={dotRef}
-        followDuration={0.52}
+        followDuration={0.6}
         className="w-20 h-20 bg-(--color-dark) rounded-full z-30"
       />
 

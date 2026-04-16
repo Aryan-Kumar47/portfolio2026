@@ -12,6 +12,7 @@ interface ParallaxOptions {
   scrub?: number | boolean;
   fromY?: number | string;
   toY?: number | string;
+  markers?: boolean;
 }
 
 export const useScrollParallaxY = ({
@@ -21,6 +22,7 @@ export const useScrollParallaxY = ({
   scrub = 1,
   fromY = 50,
   toY = -50,
+  markers = false,
 }: ParallaxOptions) => {
   useEffect(() => {
     if (!trigger) return;
@@ -38,6 +40,7 @@ export const useScrollParallaxY = ({
             start,
             end,
             scrub,
+            markers,
           },
         },
       );

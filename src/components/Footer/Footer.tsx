@@ -23,7 +23,7 @@ const Footer: FC<FooterProps> = ({}) => {
   useScrollParallaxY({
     trigger: ".translate",
     fromY: 150,
-    toY: -100,
+    toY: 0,
   });
   return (
     <>
@@ -32,7 +32,7 @@ const Footer: FC<FooterProps> = ({}) => {
         className={`select-none h-full bg-(--color-dark) text-white w-full`}
       >
         <div className="section pb-0!">
-          <div className="flex footer items-end relative w-full shadow-[0px_5px_0px_5px_var(--color-dark)]">
+          <div className="flex items-end relative w-full shadow-[0px_5px_0px_5px_var(--color-dark)]">
             <div className="w-full translate">
               <div className="">
                 <div className="select-none pb-[calc(var(--section-padding)/2)]">

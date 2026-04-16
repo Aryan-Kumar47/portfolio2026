@@ -98,8 +98,29 @@ export const archiveProject: IArchiveProject[] = [
     role: "Design & Code",
     year: "2025",
     type: "Website",
-    industry: "Politics",
+    industry: "Political",
     meta: { links: { website: "https://digideck.in" } },
+  },
+  {
+    title: "Transforming UP",
+    role: "Design & Code",
+    year: "2025",
+    type: "Website",
+    industry: "Government",
+    meta: { links: { website: "https://transformingup.in" } },
+  },
+  {
+    title: "Gati Meter",
+    role: "Design & Code",
+    year: "2025",
+    type: "Mobile",
+    industry: "Transportation",
+    meta: {
+      links: {
+        android:
+          "https://play.google.com/store/apps/details?id=com.gatimeter&pcampaignid=aryankumarportfolio_vercel_app",
+      },
+    },
   },
 ];
 
