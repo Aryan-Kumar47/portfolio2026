@@ -149,19 +149,18 @@ export default function Loose({
           {imagesData.map((img, i) => (
             <div
               key={`${img.src}-${i}`}
-              className=" relative overflow-hidden [clip-path:inset(0_20%_0_20%)]"
+              className="relative overflow-hidden [clip-path:inset(0_20%_0_20%)] bg-(--color-lightgray)"
               ref={setImageRef(i)}
               style={{ aspectRatio: img.aspectRatio }}
             >
-              <Image
+              {/* <Image
                 height={baseHeight}
                 width={Math.round(baseHeight * 1.5)}
                 className="w-full h-full object-cover"
                 src={img.src}
                 alt={`Gallery image ${i + 1}`}
                 loading="lazy"
-                // unoptimized
-              />
+              /> */}
             </div>
           ))}
         </div>

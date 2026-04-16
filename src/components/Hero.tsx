@@ -29,14 +29,17 @@ export default function Hero() {
         </div>
         <div className="absolute top-1/2 left-1/2 -translate-y-[40%] sm:-translate-y-[47%] -translate-x-1/2 w-full xl:w-fit md:w-[80%] lg:px-0 px-(--gap-padding)">
           <div className="mask-ellipse overflow-hidden">
-            <ParallaxImage className="" startY={-100} endY={100}>
+            <ParallaxImage
+              className="bg-(--color-dark-dark)"
+              startY={-100}
+              endY={100}
+            >
               <Image
                 src="/me/10.png"
                 alt="Aryan Kumar — Software Developer"
                 width={1000}
                 height={1000}
-                className="w-full h-full object-cover object-center sm:mt-20 -mt-10"
-                unoptimized
+                className="w-full h-full object-cover object-center sm:mt-20 -mt-10 bg-(--color-dark-dark)!"
               />
             </ParallaxImage>
           </div>

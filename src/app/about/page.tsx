@@ -66,7 +66,7 @@ const About: FC<pageProps> = ({}) => {
             // ]}
           />
         </div>
-        {/* <Skills /> */}
+        <Skills />
         {/* <div className="section pt-0!">
           <div className="container-custom medium">
             <div className="flex justify-center ">

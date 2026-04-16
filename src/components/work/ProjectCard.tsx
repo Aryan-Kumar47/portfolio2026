@@ -64,7 +64,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
       >
         {/* Image */}
         <div
-          className="relative w-full overflow-hidden"
+          className="relative w-full overflow-hidden aspect-square"
           style={{ backgroundColor: bgColor }}
         >
           <Image
@@ -73,13 +73,8 @@ const ProjectCard: React.FC<ProjectProps> = ({
             width={800}
             alt={`${title}_preview`}
             className="w-full aspect-square bg-cover bg-center"
+            style={{ backgroundColor: bgColor }}
           />
-          {/* <div
-            className="w-full aspect-square bg-cover bg-center"
-            style={{
-              backgroundImage: `url("${image}")`,
-            }}
-          /> */}
         </div>
 
         {/* Title */}

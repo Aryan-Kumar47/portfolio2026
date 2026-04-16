@@ -7,7 +7,6 @@ import RoundedButton from "@/src/components/UI/RoundedButton";
 import Text from "@/src/components/UI/Text";
 import { useScrollParallaxY } from "@/src/hooks/useScrollParallaxY";
 import ImageHover from "@/src/components/UI/ImageHover";
-import Footer from "@/src/components/Footer/Footer";
 import SocialFooter from "@/src/components/Footer/SocialFooter";
 import FooterCurve from "@/src/components/Footer/FooterCurve";
 import TransitionLink from "@/src/components/TransitionLink";
@@ -15,12 +14,6 @@ import { notFound } from "next/navigation";
 import CursorElement, {
   CursorElementHandle,
 } from "@/src/components/UI/CursorElement";
-import { IoIosArrowRoundForward } from "react-icons/io";
-interface pageProps {
-  params: {
-    id: string;
-  };
-}
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -41,7 +34,6 @@ const Page: FC<PageProps> = ({ params }) => {
     );
 
     if (index === -1) {
-      console.log("not found");
       notFound();
     }
     setProject(projects[index]);
@@ -50,20 +42,26 @@ const Page: FC<PageProps> = ({ params }) => {
     setNextProject(next);
   }, [id]);
 
+  // Defer ScrollTriggers until project data loads — otherwise
+  // positions are calculated on an empty page (wrong height)
+  const ready = !!project;
+
   useScrollParallaxY({
-    trigger: ".link-button",
+    trigger: ready ? ".link-button" : "",
     fromY: 50,
     toY: -50,
   });
   useScrollParallaxY({
-    trigger: ".link-button-2",
+    trigger: ready ? ".link-button-2" : "",
     fromY: 50,
     toY: -50,
   });
   useScrollParallaxY({
-    trigger: ".image-wraper",
-    fromY: "80%",
-    toY: "-20%",
+    trigger: ready ? ".image-wraper" : "",
+    fromY: "60%",
+    toY: "0%",
+    end: "top center",
+    start: "top bottom",
   });
 
   const handleMouseEnter = (e: React.MouseEvent) => {
@@ -99,11 +97,13 @@ const Page: FC<PageProps> = ({ params }) => {
               <div className="block w-full md:mb-0 mb-[8vw] md:w-[calc(33.333%-var(--gap-padding))] md:mr-[calc(var(--gap-padding)*1.5)]">
                 <h5>Industry</h5>
                 <div className="my-[1.75em] mb-[1.5em] h-px w-full bg-(--color-border)"></div>
-                <li className="inline-flex">
-                  <p className="font-[450] text-[1em] leading-[1.66] text-(--text)">
-                    {project?.industry}
-                  </p>
-                </li>
+                <ul>
+                  <li className="inline-flex">
+                    <p className="font-[450] text-[1em] leading-[1.66] text-(--text)">
+                      {project?.industry}
+                    </p>
+                  </li>
+                </ul>
               </div>
 
               <div className="block w-full md:mb-0 mb-[8vw] md:w-[calc(33.333%-var(--gap-padding))] md:mr-[calc(var(--gap-padding)*1.5)]">
@@ -136,41 +136,45 @@ const Page: FC<PageProps> = ({ params }) => {
             </div>
           </div>
         </div>
-        <div className="container-custom">
-          <div className="relative">
-            <div className="overflow-hidden">
-              <ImageHover
-                symbols={id.replace(/_/g, "").split("")}
-                blockSize={30}
-                clusterSize={5}
-              >
-                <Image
-                  className=" w-full aspect-square sm:aspect-16/11 object-cover object-center"
-                  src={`/${project?.image}`}
-                  height={800}
-                  width={800}
-                  loading="eager"
-                  alt={`${project?.title ?? "Project"} screenshot`}
-                />
-              </ImageHover>
-            </div>
-            <div className="link-button w-fit absolute top-0 right-0 -translate-y-1/2 -translate-x-1/2 z-2">
-              <RoundedButton
-                target="_blank"
-                backgroundColor="var(--color-blue)"
-                hoverBackgroundColor="var(--color-blue-dark)"
-                rel="noopener noreferrer"
-                href={
-                  project?.meta?.links?.website || project?.meta?.links?.android
-                }
-                customText={"View Project Live"}
-                className="rounded-[50%] w-[clamp(9em,12vw,11em)] h-[clamp(9em,12vw,11em)]"
-              >
-                <span className="text-white">View</span>
-              </RoundedButton>
+        {project?.image && (
+          <div className="container-custom w-full">
+            <div className="relative">
+              <div className="overflow-hidden">
+                <ImageHover
+                  symbols={id.replace(/_/g, "").split("")}
+                  blockSize={30}
+                  clusterSize={5}
+                >
+                  <Image
+                    className=" w-full aspect-square sm:aspect-16/11 object-cover object-center"
+                    src={`/${project?.image}`}
+                    height={800}
+                    width={800}
+                    loading="eager"
+                    alt={`${project?.title ?? "Project"} screenshot`}
+                    style={{ backgroundColor: project.bgColor }}
+                  />
+                </ImageHover>
+              </div>
+              <div className="link-button w-fit absolute top-0 right-0 flex justify-end items-end -translate-y-1/2 -translate-x-1/2 z-2">
+                <RoundedButton
+                  target="_blank"
+                  backgroundColor="var(--color-blue)"
+                  hoverBackgroundColor="var(--color-blue-dark)"
+                  rel="noopener noreferrer"
+                  href={
+                    project?.meta?.links?.website ||
+                    project?.meta?.links?.android
+                  }
+                  customText={"View Project Live"}
+                  className="rounded-[50%] w-[clamp(9em,12vw,11em)] h-[clamp(9em,12vw,11em)]"
+                >
+                  <span className="text-white">View</span>
+                </RoundedButton>
+              </div>
             </div>
           </div>
-        </div>
+        )}
         <div className="section">
           <div className="container-custom">
             <div className="flex flex-wrap relative">
@@ -260,6 +264,7 @@ const Page: FC<PageProps> = ({ params }) => {
                     item={item}
                     title={project.title}
                     index={i}
+                    bgColor={project.bgColor}
                   />
                 ))}
               </div>
@@ -280,7 +285,7 @@ const Page: FC<PageProps> = ({ params }) => {
           </div>
         )}
       </main>
-      <FooterCurve />
+      {ready && <FooterCurve bgColor={project?.bgColor} />}
       <footer
         className={`select-none h-full bg-(--color-dark) text-white w-full relative`}
       >
@@ -305,7 +310,7 @@ const Page: FC<PageProps> = ({ params }) => {
                         {nextProject?.title}
                       </h2>
                     </div>
-                    <div className="w-[70vw] sm:w-[50vw] md:w[-40vw] lg:w-[calc(clamp(10em,27.5vw,25em)*0.9)] absolute left-1/2 bottom-0 -translate-x-1/2 z-2 overflow-hidden">
+                    <div className="w-[70vw] sm:w-[50vw] md:w-[40vw] lg:w-[calc(clamp(10em,27.5vw,25em)*0.9)] absolute left-1/2 bottom-0 -translate-x-1/2 z-2 overflow-hidden">
                       <div className="ab w-full translate-y-[60%] md:translate-y-[73%]">
                         <div className="w-full h-full image-wraper">
                           <Image
@@ -314,6 +319,7 @@ const Page: FC<PageProps> = ({ params }) => {
                             width={800}
                             alt={`${nextProject?.title} preview`}
                             className="object-cover w-full h-full"
+                            style={{ backgroundColor: nextProject?.bgColor }}
                           />
                         </div>
                       </div>
@@ -353,7 +359,17 @@ const Page: FC<PageProps> = ({ params }) => {
     </>
   );
 };
-const MobileImage = ({ item, title, index }: any) => {
+const MobileImage = ({
+  item,
+  title,
+  index,
+  bgColor,
+}: {
+  item: string;
+  title: string;
+  index: number;
+  bgColor?: string;
+}) => {
   const imageClass = `mobile-image-${index}`;
   useScrollParallaxY({
     trigger: `.${imageClass}`,
@@ -367,9 +383,10 @@ const MobileImage = ({ item, title, index }: any) => {
         <Image
           className="w-full object-contain object-center"
           src={`/${item}`}
-          height={2160}
-          width={2160}
+          height={800}
+          width={800}
           alt={`${title ?? "Project"}_screenshot`}
+          style={{ backgroundColor: bgColor }}
         />
       </div>
     </div>

@@ -80,6 +80,7 @@ const Model: FC<ModelProps> = ({ model, projects, source }) => {
                   width={800}
                   alt={`${project.title} preview`}
                   className="object-contain"
+                  style={{ backgroundColor: project.bgColor }}
                 />
               </div>
             ))}

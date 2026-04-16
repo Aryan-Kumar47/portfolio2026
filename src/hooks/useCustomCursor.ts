@@ -42,19 +42,19 @@ export function useCursor() {
       duration: 0.3,
       ease: "power3.out",
     });
-    if (!textRef.current || !text) return;
-    textRef.current.textContent = text;
-    tl.to(
-      textRef.current,
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.3,
-        ease: "power3.out",
-        transformOrigin: "left",
-      },
-      "<",
-    );
+    // if (!textRef.current || !text) return;
+    // textRef.current.textContent = text;
+    // tl.to(
+    //   textRef.current,
+    //   {
+    //     opacity: 1,
+    //     scale: 1,
+    //     duration: 0.3,
+    //     ease: "power3.out",
+    //     transformOrigin: "left",
+    //   },
+    //   "<",
+    // );
   };
 
   const leave = () => {

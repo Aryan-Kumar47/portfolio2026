@@ -23,6 +23,8 @@ export const useScrollParallaxY = ({
   toY = -50,
 }: ParallaxOptions) => {
   useEffect(() => {
+    if (!trigger) return;
+
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {

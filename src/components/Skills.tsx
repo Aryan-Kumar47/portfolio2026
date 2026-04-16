@@ -77,7 +77,7 @@ export default function Skills() {
     <div className="section">
       <div className="w-full container-custom medium">
         <div className="w-full pb-(--gap-padding)">
-          <div className="text-center">
+          <div className="text-cente">
             <h5>Skills</h5>
           </div>
         </div>
