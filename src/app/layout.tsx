@@ -5,7 +5,7 @@ import Transition from "../components/Transition";
 import { neueMontreal } from "../utlis/fonts";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aryankumar.dev"),
+  metadataBase: new URL("https://aryankumarportfolio.vercel.app"),
   title: {
     default: "Aryan Kumar — Software Developer & Designer",
     template: "%s | Aryan Kumar",
