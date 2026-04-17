@@ -150,7 +150,7 @@ const Page: FC<PageProps> = ({ params }) => {
                     src={`/${project?.image}`}
                     height={800}
                     width={800}
-                    loading="eager"
+                    loading="lazy"
                     alt={`${project?.title ?? "Project"} screenshot`}
                     style={{ backgroundColor: project.bgColor }}
                   />

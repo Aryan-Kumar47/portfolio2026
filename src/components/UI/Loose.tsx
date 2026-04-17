@@ -144,8 +144,11 @@ export default function Loose({
 
   return (
     <section className="w-full h-full">
-      <div className="container-custom medium">
-        <div ref={containerRef} className="flex flex-col items-start">
+      <div className="container-custom medium w-full">
+        <div
+          ref={containerRef}
+          className="flex flex-col items-start overflow-hidden"
+        >
           {imagesData.map((img, i) => (
             <div
               key={`${img.src}-${i}`}

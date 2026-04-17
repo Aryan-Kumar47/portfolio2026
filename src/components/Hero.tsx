@@ -32,8 +32,8 @@ export default function Hero() {
             <div className="mask-ellipse overflow-hidden w-full h-full">
               <ParallaxImage
                 className="bg-(--color-dark-dark) w-full h-full"
-                startY={-10}
-                endY={10}
+                startY={-100}
+                endY={50}
               >
                 <Image
                   src="/me/10.png"
