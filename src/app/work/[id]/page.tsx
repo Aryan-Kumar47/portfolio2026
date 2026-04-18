@@ -1,7 +1,11 @@
 "use client";
 import Image from "next/image";
 import { FC, use, useEffect, useRef, useState } from "react";
-import { IProject, projects } from "@/src/components/work/projects";
+import {
+  createProjectSlug,
+  IProject,
+  projects,
+} from "@/src/components/work/projects";
 import RoundedButton from "@/src/components/UI/RoundedButton";
 
 import Text from "@/src/components/UI/Text";
@@ -21,29 +25,22 @@ interface PageProps {
 
 const Page: FC<PageProps> = ({ params }) => {
   const { id } = use(params);
-
-  const [project, setProject] = useState<IProject>();
-  const [nextProject, setNextProject] = useState<IProject>();
   const labelRef = useRef<CursorElementHandle>(null);
   const dotRef = useRef<CursorElementHandle>(null);
 
-  useEffect(() => {
-    const index = projects.findIndex(
-      (object) =>
-        object.title.toLowerCase() === id.replace(/_/g, " ").toLowerCase(),
-    );
+  const project = projects.find(
+    (p) => p.title.toLowerCase() === id.replace(/_/g, " ").toLowerCase(),
+  );
 
-    if (index === -1) {
-      notFound();
-    }
-    setProject(projects[index]);
+  if (!project) {
+    notFound();
+  }
 
-    const next = projects[(index + 1) % projects.length];
-    setNextProject(next);
-  }, [id]);
+  const index = projects.findIndex(
+    (p) => p.title.toLowerCase() === id.replace(/_/g, " ").toLowerCase(),
+  );
 
-  // Defer ScrollTriggers until project data loads — otherwise
-  // positions are calculated on an empty page (wrong height)
+  const nextProject = projects[(index + 1) % projects.length];
   const ready = !!project;
 
   useScrollParallaxY({
@@ -303,7 +300,7 @@ const Page: FC<PageProps> = ({ params }) => {
                   onMouseMove={onMove}
                 >
                   <TransitionLink
-                    href={`/work/${nextProject?.title.replaceAll(" ", "_").toLowerCase()}`}
+                    href={createProjectSlug(nextProject?.title)}
                     className="pb-[13em] md:pb-[calc(var(--section-padding)/1.25)] flex flex-col relative"
                   >
                     <div className="w-full relative block">

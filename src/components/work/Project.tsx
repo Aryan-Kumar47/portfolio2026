@@ -1,7 +1,7 @@
 "use client";
 import { FC } from "react";
 import TransitionLink from "../TransitionLink";
-import { IProject } from "./projects";
+import { createProjectSlug, IProject } from "./projects";
 
 interface ProjectProps extends IProject {
   index: number;
@@ -38,7 +38,7 @@ const Project: FC<ProjectProps> = ({
         href={
           source === "Archive"
             ? `${meta?.links?.website || meta?.links?.android}`
-            : `/work/${title.replaceAll(" ", "_").toLowerCase()}`
+            : createProjectSlug(title)
         }
       >
         <div className="pl-(--container-padding) w-[44%] group-hover:opacity-33 group-hover:translate-x-[calc(var(--container-padding)*-0.1)] transition-all duration-300 ease-(--ease)">

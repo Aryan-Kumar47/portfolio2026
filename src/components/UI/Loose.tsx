@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useMemo, useCallback } from "react";
+import { useRef, useMemo, useCallback, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
@@ -159,10 +159,17 @@ export default function Loose({
               <Image
                 height={baseHeight}
                 width={Math.round(baseHeight * 1.5)}
-                className="w-full h-full object-cover"
                 src={img.src}
                 alt={`Gallery image ${i + 1}`}
                 loading="lazy"
+                onLoad={(e) => {
+                  gsap.to(e.currentTarget, {
+                    opacity: 1,
+                    duration: 0.7,
+                    ease: "power2.out",
+                  });
+                }}
+                className="w-full h-full object-cover opacity-0"
               />
             </div>
           ))}

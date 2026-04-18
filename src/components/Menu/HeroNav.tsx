@@ -3,6 +3,7 @@ import Magnetic from "../UI/Magnetic";
 import TransitionLink from "../TransitionLink";
 import { navLinks } from "./data";
 import { usePathname } from "next/navigation";
+import { projectSlugs } from "../work/projects";
 
 interface HeroNavProps {
   open: boolean;
@@ -11,10 +12,17 @@ interface HeroNavProps {
 const HeroNav: React.FC<HeroNavProps> = ({ open, setOpen }) => {
   const pathname = usePathname();
   const isKnownRoute = navLinks.some((link) => link.href === pathname);
+
+  const isWorkRoute = pathname.startsWith("/work/");
+  const slug = pathname.split("/work/")[1];
+  const isValidProject = projectSlugs.includes(slug);
+  console.log(isWorkRoute, isValidProject, slug);
+
   const isLightRoute =
     pathname === "/" ||
     pathname === "/contact" ||
-    (!isKnownRoute && pathname !== "/archive"); // this covers 404
+    !(isWorkRoute && isValidProject) || // only valid case studies
+    (!isKnownRoute && pathname !== "/archive" && !isWorkRoute); // real 404
   return (
     <header
       className={`absolute top-0 left-0 right-0 z-50 md:p-10 p-8 ${isLightRoute ? "text-white" : "text-[#1c1d20]"}`}
