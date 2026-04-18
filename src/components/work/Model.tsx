@@ -79,7 +79,14 @@ const Model: FC<ModelProps> = ({ model, projects, source }) => {
                   height={800}
                   width={800}
                   alt={`${project.title} preview`}
-                  className="object-contain"
+                  onLoad={(e) => {
+                    gsap.to(e.currentTarget, {
+                      opacity: 1,
+                      duration: 0.7,
+                      ease: "power2.out",
+                    });
+                  }}
+                  className="object-contain opacity-0"
                   style={{ backgroundColor: project.bgColor }}
                 />
               </div>

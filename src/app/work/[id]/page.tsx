@@ -18,6 +18,7 @@ import { notFound } from "next/navigation";
 import CursorElement, {
   CursorElementHandle,
 } from "@/src/components/UI/CursorElement";
+import gsap from "gsap";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -143,7 +144,14 @@ const Page: FC<PageProps> = ({ params }) => {
                   clusterSize={5}
                 >
                   <Image
-                    className=" w-full aspect-square sm:aspect-16/11 object-cover object-center"
+                    className=" w-full aspect-square sm:aspect-16/11 object-cover object-center opacity-0"
+                    onLoad={(e) => {
+                      gsap.to(e.currentTarget, {
+                        opacity: 1,
+                        duration: 0.7,
+                        ease: "power2.out",
+                      });
+                    }}
                     src={`/${project?.image}`}
                     height={800}
                     width={800}
@@ -319,7 +327,14 @@ const Page: FC<PageProps> = ({ params }) => {
                             height={800}
                             width={800}
                             alt={`${nextProject?.title} preview`}
-                            className="object-cover w-full h-full"
+                            className="object-cover w-full h-full opacity-0"
+                            onLoad={(e) => {
+                              gsap.to(e.currentTarget, {
+                                opacity: 1,
+                                duration: 0.7,
+                                ease: "power2.out",
+                              });
+                            }}
                             style={{ backgroundColor: nextProject?.bgColor }}
                           />
                         </div>
@@ -382,7 +397,14 @@ const MobileImage = ({
     <div className={`flex flex-1 ${imageClass}`}>
       <div className="overflow-hidden rounded-xl w-full">
         <Image
-          className="w-full object-contain object-center"
+          className="w-full object-contain object-center opacity-0"
+          onLoad={(e) => {
+            gsap.to(e.currentTarget, {
+              opacity: 1,
+              duration: 0.7,
+              ease: "power2.out",
+            });
+          }}
           src={`/${item}`}
           height={800}
           width={800}

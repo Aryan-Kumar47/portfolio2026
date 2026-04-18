@@ -2,6 +2,7 @@ import ParallaxImage from "./UI/ParallaxImage";
 import Image from "next/image";
 import { geraldine } from "../utlis/fonts";
 import Text from "./UI/Text";
+import gsap from "gsap";
 
 export default function Hero() {
   return (
@@ -40,7 +41,14 @@ export default function Hero() {
                   alt="Aryan Kumar — Software Developer"
                   width={1000}
                   height={1000}
-                  className="w-full h-ful object-cover object-center mt-0 bg-(--color-dark-dark)!"
+                  onLoad={(e) => {
+                    gsap.to(e.currentTarget, {
+                      opacity: 1,
+                      duration: 0.7,
+                      ease: "power2.out",
+                    });
+                  }}
+                  className="w-full h-ful object-cover object-center opacity-0 mt-0 bg-(--color-dark-dark)!"
                 />
               </ParallaxImage>
             </div>

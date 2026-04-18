@@ -4,6 +4,7 @@ import React from "react";
 import { createProjectSlug, IProject } from "./projects";
 import TransitionLink from "../TransitionLink";
 import Image from "next/image";
+import gsap from "gsap";
 
 interface ProjectProps extends IProject {
   source?: "Home" | "Work" | "Archive";
@@ -72,7 +73,14 @@ const ProjectCard: React.FC<ProjectProps> = ({
             height={800}
             width={800}
             alt={`${title}_preview`}
-            className="w-full aspect-square bg-cover bg-center"
+            className="w-full aspect-square bg-cover bg-center opacity-0"
+            onLoad={(e) => {
+              gsap.to(e.currentTarget, {
+                opacity: 1,
+                duration: 0.7,
+                ease: "power2.out",
+              });
+            }}
             style={{ backgroundColor: bgColor }}
           />
         </div>
