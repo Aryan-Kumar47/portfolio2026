@@ -21,7 +21,7 @@ const HeroNav: React.FC<HeroNavProps> = ({ open, setOpen }) => {
   const isLightRoute =
     pathname === "/" ||
     pathname === "/contact" ||
-    !(isWorkRoute && isValidProject) || // only valid case studies
+    (isWorkRoute && !isValidProject) || // only valid case studies
     (!isKnownRoute && pathname !== "/archive" && !isWorkRoute); // real 404
   return (
     <header
