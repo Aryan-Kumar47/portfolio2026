@@ -262,7 +262,7 @@ const page: FC<pageProps> = ({}) => {
               {footerSocialLinks.map((item, i) => (
                 <li key={"contact_footer_social" + i}>
                   <a
-                    href={item.link}
+                    href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative inline-block text-white"
@@ -305,7 +305,7 @@ const page: FC<pageProps> = ({}) => {
                   className="inline-flex"
                 >
                   <a
-                    href={item.link}
+                    href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`group relative inline-block text-white px-[calc(var(--gap-padding)/3)]`}

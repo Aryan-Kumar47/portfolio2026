@@ -20,10 +20,14 @@ import { useScrollParallaxY } from "../../hooks/useScrollParallaxY";
 interface FooterProps {}
 
 const Footer: FC<FooterProps> = ({}) => {
+  const pathname = usePathname();
+  const ref = useRef<HTMLDivElement | null>(null);
+
   useScrollParallaxY({
-    trigger: ".translate",
+    trigger: ref.current!,
     fromY: 150,
     toY: 0,
+    pathname: pathname,
   });
   return (
     <>
@@ -32,8 +36,8 @@ const Footer: FC<FooterProps> = ({}) => {
         className={`select-none h-full bg-(--color-dark) text-white w-full`}
       >
         <div className="section pb-0!">
-          <div className="flex items-end relative w-full shadow-[0px_5px_0px_5px_var(--color-dark)]">
-            <div className="w-full translate">
+          <div className="flex items-end relative w-full h-full shadow-[0px_5px_0px_5px_var(--color-dark)]">
+            <div ref={ref} className="w-full">
               <div className="">
                 <div className="select-none pb-[calc(var(--section-padding)/2)]">
                   <h1 className="text-[max(9em,15vw)]">
@@ -62,7 +66,7 @@ const Footer: FC<FooterProps> = ({}) => {
                                 target="_blank"
                                 border
                                 rel="noopener noreferrer"
-                                href={item.link}
+                                href={item.href}
                                 className="rounded-[50%] w-[clamp(5em,11vw,10em)] h-[clamp(5em,11vw,10em)]"
                               >
                                 <span className="text-white">

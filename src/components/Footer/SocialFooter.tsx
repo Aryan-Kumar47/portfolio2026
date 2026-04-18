@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { navLinks } from "../Menu/data";
+import { footerSocialLinks, navLinks } from "../Menu/data";
 import { usePathname } from "next/navigation";
 import TransitionLink from "../TransitionLink";
 import Magnetic from "../UI/Magnetic";
 
-export default function SocialFooter() {
+interface SocialFooterProps {
+  isNav?: boolean;
+  isLight?: boolean;
+}
+
+export default function SocialFooter({
+  isNav = true,
+  isLight = true,
+}: SocialFooterProps) {
   const [time, setTime] = useState("");
   const pathname = usePathname();
 
@@ -27,6 +35,7 @@ export default function SocialFooter() {
 
     return () => clearInterval(interval);
   }, []);
+  const data = isNav ? navLinks : footerSocialLinks;
   return (
     <div className="flex w-full flex-wrap relative flex-col-reverse md:flex-row justify-between  pt-[calc(var(--section-padding)/1.3)] sm:pr-[calc(var(--gap-padding)/1.33)] pb-[calc(var(--gap-padding)/1.75)] sm:pl-[calc(var(--gap-padding)/1.33)]">
       <div className="flex justify-between md:w-auto w-full relative md:px-0 px-(--container-padding) md:pb-0 pb-[calc(var(--gap-padding)*0.75)]">
@@ -43,22 +52,25 @@ export default function SocialFooter() {
       </div>
       <div className="px-[calc(var(--container-padding)-var(--gap-padding)*0.333)] pb-[calc(var(--section-padding)/3)] md:px-0 md:pb-0">
         <h5 className="md:pl-[calc(var(--gap-padding)*0.5)] pl-[calc(var(--gap-padding)/3)] mb-[1.5em]!">
-          Navigation
+          {isNav ? "Navigation" : "Socials"}
         </h5>
         <ul className={``}>
-          {navLinks.map((item, i) => {
+          {data.map((item, i) => {
             return pathname === item.href ? null : (
               <li key={i} className="inline-flex">
                 <TransitionLink
                   href={`${item.href}`}
-                  className={`group relative inline-block text-white px-[calc(var(--gap-padding)/3)]`}
+                  className={`group relative inline-block ${isLight ? "text-white" : "text-(--color-dark)"} px-[calc(var(--gap-padding)/3)]`}
+                  target={isNav ? "_self" : "_blank"}
                 >
                   <Magnetic>
                     <div>
                       <div className="h-[2.5em flex justify-center items-center">
                         {item.name}
                       </div>
-                      <span className="absolute left-1/2 -bottom-1 h-px w-full bg-white origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300 -translate-x-1/2"></span>
+                      <span
+                        className={`absolute left-1/2 -bottom-1 h-px w-full ${isLight ? "bg-white" : "bg-(--color-dark)"} origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300 -translate-x-1/2`}
+                      ></span>
                     </div>
                   </Magnetic>
                 </TransitionLink>

@@ -35,12 +35,21 @@ export const metadata: Metadata = {
     description:
       "Crafting production-ready web & mobile applications with modern technologies.",
     siteName: "Aryan Kumar Portfolio",
+    images: [
+      {
+        url: "/preivew.png", // path inside /public
+        width: 1200,
+        height: 630,
+        alt: "Aryan Kumar Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Aryan Kumar — Software Developer & Designer",
     description:
       "Crafting production-ready web & mobile applications with modern technologies.",
+    images: ["/preview.png"],
   },
   robots: {
     index: true,

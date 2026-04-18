@@ -10,7 +10,7 @@ export const github = "https://github.com/Aryan-Kumar47";
 export const linkedin = "https://www.linkedin.com/in/aryankumar10/";
 export const portfolio2025 = "https://aryankumarportfolio2025.vercel.app";
 export const resume = "";
-export const instagram = "";
+export const instagram = "https://www.instagram.com/kumar.aryan_";
 
 export const navLinks = [
   { name: "Home", href: "/", msg: "Me" },
@@ -45,16 +45,16 @@ export const footerSocialLinks = [
   {
     name: "Github",
     Icon: PiGithubLogoFill,
-    link: github,
+    href: github,
   },
   {
     name: "Linkedin",
     Icon: PiLinkedinLogoFill,
-    link: linkedin,
+    href: linkedin,
   },
   {
     name: "Instagram",
     Icon: PiInstagramLogoFill,
-    link: instagram,
+    href: instagram,
   },
 ];

@@ -98,7 +98,7 @@ export default function AboutSection({ source = "Home" }: AboutSectionI) {
                       customText={"Connect On Linkedin"}
                       className="rounded-[50%] h-44 w-44"
                     >
-                      <span className="text-white">linkedin</span>
+                      <span className="text-white">Linkedin</span>
                     </RounderButton>
                   )}
                 </div>

@@ -72,7 +72,7 @@ const FullscreenMenu: React.FC<FullscreenMenuProps> = ({ open, setOpen }) => {
                 {footerSocialLinks.map((item, i) => (
                   <li key={i} className="inline-flex text-[0.85em]">
                     <a
-                      href={item.link}
+                      href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`group relative inline-block text-white  px-[calc(var(--gap-padding)/3)]`}

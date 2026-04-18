@@ -6,13 +6,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface ParallaxOptions {
-  trigger: string;
+  trigger: string | Element;
   start?: string;
   end?: string;
   scrub?: number | boolean;
   fromY?: number | string;
   toY?: number | string;
   markers?: boolean;
+  pathname?: string;
 }
 
 export const useScrollParallaxY = ({
@@ -23,6 +24,7 @@ export const useScrollParallaxY = ({
   fromY = 50,
   toY = -50,
   markers = false,
+  pathname,
 }: ParallaxOptions) => {
   useEffect(() => {
     if (!trigger) return;
@@ -47,5 +49,5 @@ export const useScrollParallaxY = ({
     });
 
     return () => ctx.revert();
-  }, [trigger, start, end, scrub, fromY, toY]);
+  }, [trigger, start, end, scrub, fromY, toY, pathname]);
 };
